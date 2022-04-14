@@ -12,10 +12,13 @@ Discuss software toolsets/technology
 
 
 Contribution of individual team members:
+
 Progress and issues:
 Each team member created a use case for the requirements documents.
 
+
 Plans and goals:
+
 Michael S:
 Begin sketches/prototyping app interfaces
 
