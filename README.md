@@ -7,5 +7,5 @@ We aim to create an android app that allows users to select ingredients they hav
 
 Navigating the Repo:
 
-Our repository includes folders for the server side of the app along with the frontend (App) side of the application.
+Our repository includes folders for the server side of the app along with the frontend (App) side of the application. There is also a status reports folder that contains weekly status updates.
 
