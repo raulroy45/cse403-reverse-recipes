@@ -16,6 +16,6 @@ We have hosted our SQL database on Microsoft Azure, with the server name <code>r
 Setup:
 To be able to develop on the server side, you need to download conda. Instructions can be found here: https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html
 
-Next, you need to run <code>pip install requirements.txt</code> <code>conda env create -f environment.yml</code>. Now you have required packages to be able to develop. You can activate the conda environment by typing <code>conda activate rrenv</code> and deactivate it when done using by <code>conda deactivate</code>
+Next, you need to run <code>pip install requirements.txt</code>, followed by <code>conda env create -f environment.yml</code>. Now you have required packages to be able to develop. You can activate the conda environment by typing <code>conda activate rrenv</code> and deactivate it when done using by <code>conda deactivate</code>
 
 Furthermore, we used Azure SQL database to store required data. To edit the database, you would need some specific login credientials. Contact the repository's owner for more details.
