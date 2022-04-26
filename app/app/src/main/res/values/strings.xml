@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Reverse Recipes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="account_fragment">Account fragment</string>
+    <string name="pantry_fragment">Pantry fragment</string>
+    <string name="saved_recipes_fragment">Saved recipes fragment</string>
+    <string name="search_fragment">Search fragment</string>
 </resources>
