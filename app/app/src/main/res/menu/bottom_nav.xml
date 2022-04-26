@@ -2,15 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/searchFragment"
-        android:title="Search" />
-    <item
         android:id="@+id/accountFragment"
-        android:title="Account" />
+        android:title="ACCOUNT" />
     <item
         android:id="@+id/pantryFragment"
-        android:title="Pantry" />
+        android:title="PANTRY" />
     <item
         android:id="@+id/savedRecipesFragment"
-        android:title="Saved" />
+        android:title="SAVED" />\
 </menu>

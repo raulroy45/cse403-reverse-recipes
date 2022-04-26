@@ -4,12 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2435" />
+        <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/drawable-v24/ic_rectangle.xml" value="0.2435" />
+        <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/drawable/ic_android.xml" value="0.2435" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2435" />
+        <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/drawable/nav_item.xml" value="0.2435" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/fragment_account.xml" value="0.25" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/fragment_pantry.xml" value="0.25" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/fragment_saved_recipes.xml" value="0.25" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/fragment_search.xml" value="0.25" />
+        <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/nav_item.xml" value="0.25" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/menu/bottom_nav.xml" value="0.25" />
       </map>
     </option>

@@ -24,11 +24,14 @@
         android:id="@+id/bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:visibility="visible"
-        app:menu="@menu/bottom_nav" />
+        app:menu="@menu/bottom_nav"
+        app:labelVisibilityMode="labeled"
+        app:itemTextAppearanceActive="@style/BottomNavActiveStyle"
+        app:itemTextAppearanceInactive="@style/BottomNavInactiveStyle"
+        app:itemPaddingBottom="20dp"
+        app:itemBackground="@drawable/nav_indicator" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

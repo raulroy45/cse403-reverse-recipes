@@ -13,4 +13,14 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="BottomNavActiveStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/lato_regular</item>
+    </style>
+
+    <style name="BottomNavInactiveStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/lato_light</item>
+    </style>
 </resources>
