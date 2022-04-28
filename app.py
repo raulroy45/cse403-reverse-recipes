@@ -1,15 +1,10 @@
 from flask import Flask, request
-from flask_restful import Resource, Api, reqparse
-
 app = Flask(__name__)
-api = Api(app)
 
-class Recipes(Resource):
-    def get(self):
-        req = request.args.get("ingredients", type=str).split(",")
-        return 200
-
-api.add_resource(Recipes, '/get-recipe')
+@app.route("/get-recipes", methods=['GET'])
+def get_recipes():
+    req = request.args.get("ingredients", type=str).split(",")
+    return {'ingredients' : req}, 200
 
 if __name__ == "__main__":
     app.run()
