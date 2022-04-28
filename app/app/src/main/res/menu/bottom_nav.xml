@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/accountFragment"
+        android:title="ACCOUNT" />
+    <item
+        android:id="@+id/pantryFragment"
+        android:title="PANTRY" />
+    <item
+        android:id="@+id/savedRecipesFragment"
+        android:title="SAVED" />\
+</menu>
