@@ -3,6 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="account_fragment">Account fragment</string>
     <string name="pantry_fragment">Pantry fragment</string>
+    <string name="recipe_search_fragment">Recipe search fragment</string>
     <string name="saved_recipes_fragment">Saved recipes fragment</string>
     <string name="search_fragment">Search fragment</string>
     <string name="recipe_3">Recipe 3</string>
@@ -10,4 +11,6 @@
     <string name="recipe_1">Recipe 1</string>
     <string name="recipe_2">Recipe 2</string>
     <string name="recipe_5">Recipe 5</string>
+    <string name="my_pantry">My Pantry</string>
+    <string name="find_recipes">Find Recipes</string>
 </resources>
