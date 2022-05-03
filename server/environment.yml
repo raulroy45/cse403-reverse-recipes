@@ -1,0 +1,10 @@
+name: rrenv
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - pip=21.2.4
+  - python=3.8.13
+  - sqlite=3.38.2
+  - pip:
+    - recipe-scrapers==13.31.0

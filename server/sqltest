@@ -1,0 +1,7 @@
+/* Some random tests to check validity of the server. 
+Useful to check SQL Azure Database connection configuration. */ 
+
+SELECT pc.Name as CategoryName, p.name as ProductName
+FROM [SalesLT].[ProductCategory] pc
+JOIN [SalesLT].[Product] p
+ON pc.productcategoryid = p.productcategoryid;
