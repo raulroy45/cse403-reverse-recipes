@@ -19,7 +19,7 @@
         android:name="com.cse403.reverserecipes.SavedRecipesFragment"
         android:label="@string/saved_recipes_fragment" />
     <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.cse403.reverserecipes.SearchFragment"
+        android:id="@+id/ingredientSearchFragment"
+        android:name="com.cse403.reverserecipes.IngredientSearchFragment"
         android:label="@string/search_fragment" />
 </navigation>
