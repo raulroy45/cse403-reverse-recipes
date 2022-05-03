@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SavedRecipesFragment">
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="320dp"
+        android:layout_height="90dp"
+        android:text="@string/recipe_5"
+        app:iconTint="#00BCD4"
+        app:iconTintMode="add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.850"
+        app:strokeColor="#E91E63"
+        android:backgroundTint="#C3D1CE" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="320dp"
+        android:layout_height="90dp"
+        android:text="@string/recipe_1"
+        app:iconTint="#00BCD4"
+        app:iconTintMode="add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.700"
+        app:strokeColor="#E91E63"
+        android:backgroundTint="#C3D1CE" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="320dp"
+        android:layout_height="90dp"
+        android:text="@string/recipe_2"
+        app:iconTint="#00BCD4"
+        app:iconTintMode="add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.550"
+        app:strokeColor="#E91E63"
+        android:backgroundTint="#C3D1CE" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="320dp"
+        android:layout_height="90dp"
+        android:text="@string/recipe_3"
+        app:iconTint="#00BCD4"
+        app:iconTintMode="add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.400"
+        app:strokeColor="#E91E63"
+        android:backgroundTint="#C3D1CE" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="320dp"
+        android:layout_height="90dp"
+        android:text="@string/recipe_4"
+        app:iconTint="#00BCD4"
+        app:iconTintMode="add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.250"
+        app:strokeColor="#E91E63"
+        android:backgroundTint="#C3D1CE" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
