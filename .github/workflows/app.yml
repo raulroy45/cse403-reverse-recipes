@@ -14,5 +14,8 @@ jobs:
         with:
           java-version: 17
           distribution: 'adopt'
+      - name: Change working directory
+        run: |
+          cd app
       - name: Build with Gradle
-        run: ./app/gradlew build
+        run: ./gradlew build
