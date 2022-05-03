@@ -9,6 +9,7 @@ service = Service(executable_path=ChromeDriverManager().install())
 # Open Chrome browser
 driver = webdriver.Chrome(service=service)
 
+# Get all the recipe links for one page on Epicurious
 def scrape_epi(page_num):
     # Navigate to url
     driver.get("https://www.epicurious.com/search?content=recipe&page=" + str(page_num))
@@ -23,13 +24,11 @@ def scrape_epi(page_num):
     return recipe_links
 
 
-
-
-
 script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
 rel_path = "links/epi_links.txt"
 abs_file_path = os.path.join(script_dir, rel_path)
 
+# Write recipe links to txt file
 with open(abs_file_path, "w") as output:
     for i in range(1, 501):
         recipe_links = scrape_epi(i)
