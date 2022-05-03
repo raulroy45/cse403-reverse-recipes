@@ -1,0 +1,28 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.ReverseRecipes" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary text color. -->
+        <item name="android:textColor">@color/dark</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/light_green</item>
+        <item name="colorPrimaryVariant">@color/light_green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/dark_blue</item>
+        <item name="colorSecondaryVariant">@color/dark_blue</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="BottomNavActiveStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/lato_regular</item>
+    </style>
+
+    <style name="BottomNavInactiveStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/lato_light</item>
+    </style>
+</resources>
