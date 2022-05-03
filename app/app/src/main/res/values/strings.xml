@@ -6,4 +6,6 @@
     <string name="recipe_search_fragment">Recipe search fragment</string>
     <string name="saved_recipes_fragment">Saved recipes fragment</string>
     <string name="search_fragment">Search fragment</string>
+    <string name="my_pantry">My Pantry</string>
+    <string name="find_recipes">Find Recipes</string>
 </resources>
