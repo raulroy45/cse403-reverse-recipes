@@ -4,9 +4,8 @@ on: [push]
 
 jobs:
     build:
-    name: Build and publish Python distribution
-    runs-on: ubuntu-latest
-    steps:
+        runs-on: ubuntu-latest
+        steps:
         - uses: actions/checkout@master
         - name: Initialize Python 3.8
         uses: actions/setup-python@v1
