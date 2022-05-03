@@ -9,6 +9,7 @@
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2435" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/drawable/ic_plus_button.xml" value="0.1835" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/drawable/ic_rounded_button.xml" value="0.215" />
+        <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/drawable/ic_vertical_divider.xml" value="0.1835" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/drawable/nav_indicator.xml" value="0.215" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/drawable/nav_item.xml" value="0.2435" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -18,6 +19,8 @@
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/fragment_recipe_search.xml" value="0.22826086956521738" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/fragment_saved_recipes.xml" value="0.25" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/fragment_search.xml" value="0.25" />
+        <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/list_item_pantry_ingredient_category_list.xml" value="0.72" />
+        <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/list_item_pantry_ingredient_list.xml" value="0.536" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/nav_item.xml" value="0.25" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/recipe_search_fragment.xml" value="0.22826086956521738" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/menu/bottom_nav.xml" value="0.25" />
