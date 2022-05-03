@@ -32,11 +32,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8
           if [ -f server/src/requirements.txt ]; then pip install -r server/src/requirements.txt; fi
-        
-      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+      
       - name: Test with pytest
         run: |
           pytest
+      
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
         with:
