@@ -1,6 +1,6 @@
 import pyodbc
-server = 'rrecipes.database.windows.net'
-database = 'ReverseRecipes'
+server = 'reverserecipes.database.windows.net'
+database = 'rrecipesDB'
 username = 'azureuser'
 password = 'xgD72UEc4GH5SLw'   
 driver = '{ODBC Driver 18 for SQL Server}'
