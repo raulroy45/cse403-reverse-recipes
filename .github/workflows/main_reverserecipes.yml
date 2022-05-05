@@ -69,3 +69,4 @@ jobs:
           app-name: 'reverserecipes'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A9B70D00AC2947E199750018CBEB69F0 }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
