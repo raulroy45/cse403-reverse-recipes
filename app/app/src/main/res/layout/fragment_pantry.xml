@@ -59,6 +59,7 @@
         app:layout_constraintBottom_toTopOf="@+id/recipe_search_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingredient_search_button" />
+        app:layout_constraintTop_toBottomOf="@+id/ingredient_search_button"
+        tools:listitem="@layout/list_item_ingredient_category_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

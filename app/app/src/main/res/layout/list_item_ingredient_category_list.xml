@@ -32,5 +32,6 @@
         android:layout_below="@id/pantry_ingredient_list_item_title"
         android:layout_marginStart="6.5dp"
         android:layout_marginTop="4dp"
-        android:layout_toEndOf="@id/pantry_ingredient_list_item_divider" />
+        android:layout_toEndOf="@id/pantry_ingredient_list_item_divider"
+        tools:listitem="@layout/list_item_ingredient_category_ingredient_list" />
 </RelativeLayout>
