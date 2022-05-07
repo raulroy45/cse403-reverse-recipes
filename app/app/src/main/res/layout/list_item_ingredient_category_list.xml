@@ -3,35 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/pantry_ingredient_list_item_divider"
+        android:id="@+id/ingredient_category_list_item_divider"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_alignTop="@id/pantry_ingredient_list_item_title"
-        android:layout_alignBottom="@id/pantry_ingredient_list_item_list"
+        android:layout_alignTop="@id/ingredient_category_list_item_title"
+        android:layout_alignBottom="@id/ingredient_category_list_item_list"
         android:layout_marginTop="2.5dp"
-        android:layout_marginBottom="-4dp"
         app:srcCompat="@drawable/ic_vertical_divider" />
 
     <TextView
-        android:id="@+id/pantry_ingredient_list_item_title"
+        android:id="@+id/ingredient_category_list_item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/pantry_ingredient_list_item_divider"
+        android:layout_toEndOf="@id/ingredient_category_list_item_divider"
         android:layout_marginStart="9.5dp"
         android:fontFamily="@font/lato_bold"
         android:text="FRUITS"
         android:textSize="14sp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/pantry_ingredient_list_item_list"
+        android:id="@+id/ingredient_category_list_item_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/pantry_ingredient_list_item_title"
-        android:layout_marginStart="6.5dp"
-        android:layout_marginTop="4dp"
-        android:layout_toEndOf="@id/pantry_ingredient_list_item_divider"
+        android:layout_below="@id/ingredient_category_list_item_title"
+        android:layout_marginStart="9.5dp"
+        android:layout_marginTop="7dp"
+        android:layout_toEndOf="@id/ingredient_category_list_item_divider"
+        android:paddingBottom="8.5dp"
         tools:listitem="@layout/list_item_ingredient_category_ingredient_list" />
 </RelativeLayout>

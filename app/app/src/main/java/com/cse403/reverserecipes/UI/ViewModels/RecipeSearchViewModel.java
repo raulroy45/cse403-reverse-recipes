@@ -1,4 +1,4 @@
-package com.cse403.reverserecipes;
+package com.cse403.reverserecipes.UI.ViewModels;
 
 import androidx.lifecycle.ViewModel;
 

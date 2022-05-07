@@ -1,10 +1,17 @@
-package com.cse403.reverserecipes;
+package com.cse403.reverserecipes.UI.ViewModels;
 
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.cse403.reverserecipes.Data.Entities.Ingredient;
+import com.cse403.reverserecipes.IngredientCategory;
+import com.cse403.reverserecipes.Data.Entities.IngredientSelection;
+import com.cse403.reverserecipes.Utils.LiveDataUtilities;
+import com.cse403.reverserecipes.Data.Repositories.UserIngredientRepository;
+import com.cse403.reverserecipes.UI.Entities.ViewIngredient;
+import com.cse403.reverserecipes.UI.Entities.ViewIngredientCategory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,7 +41,7 @@ public class PantryViewModel extends ViewModel {
                         Map<IngredientCategory, List<ViewIngredient>> ingredientCategoryIngredientMap = new HashMap<>();
                         List<IngredientCategory> indexIngredientCategoryList = new ArrayList<>();
 
-                        // Iterate through ingredients, adding it into the its category if selected.
+                        // Iterate through ingredients, adding it into its category if selected.
                         // If the category has no previous ingredients, reserve the next index for it.
                         for (Ingredient ingredient : ingredients) {
                             if (selectedIngredientIdSet.contains(ingredient.getId())) {

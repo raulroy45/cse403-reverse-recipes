@@ -1,8 +1,10 @@
-package com.cse403.reverserecipes;
+package com.cse403.reverserecipes.Data.Entities;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import com.cse403.reverserecipes.IngredientCategory;
 
 @Entity(tableName = "ingredient_table")
 public class Ingredient {

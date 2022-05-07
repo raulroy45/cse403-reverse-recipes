@@ -1,4 +1,4 @@
-package com.cse403.reverserecipes;
+package com.cse403.reverserecipes.Data.Entities;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

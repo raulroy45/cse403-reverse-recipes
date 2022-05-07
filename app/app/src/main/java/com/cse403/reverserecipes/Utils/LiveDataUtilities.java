@@ -1,4 +1,4 @@
-package com.cse403.reverserecipes;
+package com.cse403.reverserecipes.Utils;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;

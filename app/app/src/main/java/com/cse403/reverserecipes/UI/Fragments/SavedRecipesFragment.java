@@ -1,4 +1,4 @@
-package com.cse403.reverserecipes;
+package com.cse403.reverserecipes.UI.Fragments;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.cse403.reverserecipes.R;
 
 /**
  * A simple {@link Fragment} subclass.

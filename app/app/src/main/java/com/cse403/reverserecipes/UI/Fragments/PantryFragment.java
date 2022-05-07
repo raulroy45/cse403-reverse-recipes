@@ -1,4 +1,4 @@
-package com.cse403.reverserecipes;
+package com.cse403.reverserecipes.UI.Fragments;
 
 import android.os.Bundle;
 
@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.cse403.reverserecipes.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,15 +17,7 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class PantryFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private ImageView mIngredientSearchButton;
 
     public PantryFragment() {
         // Required empty public constructor
@@ -39,20 +34,13 @@ public class PantryFragment extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static PantryFragment newInstance(String param1, String param2) {
         PantryFragment fragment = new PantryFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        mIngredientSearchButton = requireActivity().findViewById(R.id.ingredient_search_button);
     }
 
     @Override
