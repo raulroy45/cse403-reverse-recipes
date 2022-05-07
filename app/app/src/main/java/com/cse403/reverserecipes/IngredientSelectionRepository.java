@@ -19,6 +19,12 @@ public class IngredientSelectionRepository {
 
     public LiveData<List<IngredientSelection>> getAllIngredientSelections() { return mAllIngredientSelections; }
 
+    void insert(IngredientSelection ingredientSelection) {
+        ReverseRecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mIngredientSelectionDao.insert(ingredientSelection);
+        });
+    }
+
     void delete(IngredientSelection ingredientSelection) {
         ReverseRecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
            mIngredientSelectionDao.delete(ingredientSelection);

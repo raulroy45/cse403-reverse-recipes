@@ -19,7 +19,15 @@ public class UserIngredientRepository {
         mAllIngredientSelections = mIngredientSelectionRepository.getAllIngredientSelections();
     }
 
-    LiveData<List<Ingredient>> getAllIngredients() { return mAllIngredients; }
+    public LiveData<List<Ingredient>> getAllIngredients() { return mAllIngredients; }
 
     public LiveData<List<IngredientSelection>> getAllIngredientSelections() { return mAllIngredientSelections; }
+
+    public void insert(IngredientSelection ingredientSelection) {
+        mIngredientSelectionRepository.insert(ingredientSelection);
+    }
+
+    public void delete(IngredientSelection ingredientSelection) {
+        mIngredientSelectionRepository.delete(ingredientSelection);
+    }
 }
