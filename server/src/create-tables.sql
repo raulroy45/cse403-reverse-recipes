@@ -1,7 +1,7 @@
 -- Ingedient information
 CREATE TABLE Ingredient (
     name VARCHAR(255) PRIMARY KEY,
-    category TEXT
+    category VARCHAR(255)
 );
 
 -- Holds recipe information
