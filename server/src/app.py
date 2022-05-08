@@ -1,6 +1,6 @@
 from flask import Flask, request
-from database import setup_db
-from database import fetch_all_ingredients
+from src.database import setup_db
+from src.database import fetch_all_ingredients
 
 app = Flask(__name__)
 db = setup_db()

@@ -11,10 +11,11 @@ def setup_db():
     db = pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
     return db
 
+# Return all ingredients in the database as a dictionary
 def fetch_all_ingredients(db):
     cursor = db.cursor()
 
-    rows = cursor.execute("SELECT * FROM Ingredient where name = 'hi'").fetchall()
+    rows = cursor.execute("SELECT * FROM Ingredient").fetchall()
     ingredients = []
     for row in rows:
         ingredients.append({"name": row[0], "category": row[1]})

@@ -61,18 +61,16 @@ def get_ingredient(name):
     return False
 
 # Returns recipe information given its rid, returns None if
-# a recipe with the given rid doesn not exist in the database
+# recipe with the given rid doesn not exist in the database
 def get_recipe(rid):
     cursor.execute(GET_RECIPE, rid)
     row = cursor.fetchone()
     if row:
         return row 
     return None
-    
 
 if __name__ == "__main__":
     add_ingredient("onion", "Vegetable")
     add_ingredient("chicken", "Meat")
     add_ingredient("egg", "Dairy")
-    add_mapping("chicken", 1)
 
