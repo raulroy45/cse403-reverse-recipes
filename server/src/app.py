@@ -1,4 +1,5 @@
 from flask import Flask, request
+from numpy import place
 from pyparsing import conditionAsParseAction
 from src.database import setup_db
 from src.database import fetch_all_ingredients
@@ -30,8 +31,18 @@ def get_recipes():
         rid_list = []
         for row in rows:
             rid_list.append(row[0])
-    # else:
-    #     # get recipes with one or more of the ingredients
+    else:
+        # get recipes with one or more of the ingredients
+        query = "SELECT DISTINCT rid, COUNT(*) AS num_ingredients_matched " \
+                "FROM Ingredient_to_Recipe " \
+                "WHERE name IN ({}) " \
+                "GROUP BY rid ORDER BY num_ingredients_matched DESC;".format(placeholders)
+        
+        rows = cursor.execute(query, ingredients).fetchall()
+
+        rid_list = []
+        for row in rows:
+            rid_list.append(row[0])
 
     return {'rids' : rid_list}, 200
 
