@@ -1,14 +1,39 @@
 from flask import Flask, request
+from pyparsing import conditionAsParseAction
 from src.database import setup_db
 from src.database import fetch_all_ingredients
 
 app = Flask(__name__)
 db = setup_db()
 
-@app.route("/get-recipes", methods=['GET'])
+# recipe?get=all
+@app.route("/recipes", methods=["POST"])
 def get_recipes():
-    req = request.args.get("ingredients", type=str).split(",")
-    return {'ingredients' : req}, 200
+    body = request.get_json()
+    ingredients = body["ingredients"]
+    cursor = db.cursor()
+
+    # Parameterize the sql statement
+    placeholder= "?"
+    placeholders= ", ".join(placeholder * len(ingredients))
+
+    # Check for filters
+    filter = request.args.get("filter", type=str)
+    if filter == "all":
+        # get recipes with all ingredients
+        query = "SELECT DISTINCT rid FROM Ingredient_to_Recipe " \
+                "WHERE name IN ({}) " \
+                "GROUP BY rid HAVING COUNT(*) = ?;".format(placeholders)
+        params = ingredients + [len(ingredients)]
+        rows = cursor.execute(query, params).fetchall()
+
+        rid_list = []
+        for row in rows:
+            rid_list.append(row[0])
+    # else:
+    #     # get recipes with one or more of the ingredients
+
+    return {'rids' : rid_list}, 200
 
 @app.route("/ingredients", methods=['GET'])
 def get_ingredients():
