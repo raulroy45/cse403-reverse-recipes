@@ -1,6 +1,4 @@
 from flask import Flask, request
-from numpy import place
-from pyparsing import conditionAsParseAction
 from src.database import setup_db
 from src.database import fetch_all_ingredients
 
