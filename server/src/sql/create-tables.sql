@@ -18,9 +18,9 @@ CREATE TABLE Recipe (
 
 -- Mapping of ingredient name to recipe id
 CREATE TABLE Ingredient_to_Recipe (
-    name VARCHAR(255),
     rid INT,
-    PRIMARY KEY (name, rid),
-    FOREIGN KEY (name) REFERENCES Ingredient(name),
-    FOREIGN KEY (rid) REFERENCES Recipe(rid)
+    name VARCHAR(255),
+    PRIMARY KEY (rid, name),
+    FOREIGN KEY (rid) REFERENCES Recipe(rid),
+    FOREIGN KEY (name) REFERENCES Ingredient(name)
 );

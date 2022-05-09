@@ -1,12 +1,22 @@
+import pyodbc
 from flask import Flask, request
-from src.database import setup_db
-from src.database import fetch_all_ingredients
-
 app = Flask(__name__)
+
+# Sets up the database connection and returns the connection
+def setup_db():
+    server = 'reverserecipes.database.windows.net'
+    database = 'rrecipesDB'
+    username = 'azureuser'
+    password = 'xgD72UEc4GH5SLw'   
+    driver = '{ODBC Driver 18 for SQL Server}'
+
+    db = pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
+    return db
+
 db = setup_db()
 
 # recipe?get=all
-@app.route("/recipes", methods=["POST"])
+@app.route("/recipes/", methods=["POST"])
 def get_recipes():
     body = request.get_json()
     ingredients = body["ingredients"]
@@ -49,11 +59,11 @@ def get_recipes():
 
     return {"recipes" : recipes}, 200
 
-@app.route("/ingredients", methods=["GET"])
+@app.route("/ingredients/", methods=["GET"])
 def get_ingredients():
     return fetch_all_ingredients(db), 200
 
-@app.route("/recipes/<rid>", methods=["GET"])
+@app.route("/recipes/<rid>/", methods=["GET"])
 def get_recipe_info(rid):
     result = query_recipe_info(rid)
 
@@ -83,6 +93,17 @@ def format_recipe_json(data):
                 "instructions": instructions,
                 "image": "" if data[7] is None else data[7],
             }
+
+# Return all ingredients in the database as a dictionary
+def fetch_all_ingredients(db):
+    cursor = db.cursor()
+
+    rows = cursor.execute("SELECT * FROM Ingredient ORDER BY category").fetchall()
+    ingredients = []
+    for row in rows:
+        ingredients.append({"name": row[0], "category": row[1]})
+    
+    return {"ingredients": ingredients}
 
 
 if __name__ == "__main__":
