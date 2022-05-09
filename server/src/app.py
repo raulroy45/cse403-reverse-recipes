@@ -25,10 +25,12 @@ def get_recipes():
                 "GROUP BY rid HAVING COUNT(*) = ?;".format(placeholders)
         params = ingredients + [len(ingredients)]
         rows = cursor.execute(query, params).fetchall()
-
-        rid_list = []
+        
+        recipes = []
         for row in rows:
-            rid_list.append(row[0])
+            result = query_recipe_info(row[0])
+            json = format_recipe_json(result)
+            recipes.append(json)
     else:
         # get recipes with one or more of the ingredients
         query = "SELECT DISTINCT rid, COUNT(*) AS num_ingredients_matched " \
@@ -38,26 +40,34 @@ def get_recipes():
         
         rows = cursor.execute(query, ingredients).fetchall()
 
-        rid_list = []
+        recipes = []
         for row in rows:
-            rid_list.append(row[0])
+            result = query_recipe_info(row[0])
+            json = format_recipe_json(result)
+            json["num_ingredients_matched"] = row[1]
+            recipes.append(json)
 
-    return {'rids' : rid_list}, 200
+    return {"recipes" : recipes}, 200
 
 @app.route("/ingredients", methods=["GET"])
 def get_ingredients():
     return fetch_all_ingredients(db), 200
 
 @app.route("/recipes/<rid>", methods=["GET"])
-def get_recipe_information(rid):
-    cursor = db.cursor()
-    query = "SELECT * FROM Recipe WHERE rid = ?;"
-    result = cursor.execute(query, rid).fetchone()
+def get_recipe_info(rid):
+    result = query_recipe_info(rid)
 
     if result:
         json = format_recipe_json(result)
     
     return json, 200
+
+# Helper method to query the database for recipe information given an rid
+def query_recipe_info(rid):
+    cursor = db.cursor()
+    query = "SELECT * FROM Recipe WHERE rid = ?;"
+    result = cursor.execute(query, rid).fetchone()
+    return result
 
 # Helper method to format JSON containing one recipe information
 def format_recipe_json(data):
