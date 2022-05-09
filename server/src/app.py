@@ -16,7 +16,7 @@ def get_recipes():
     placeholder= "?"
     placeholders= ", ".join(placeholder * len(ingredients))
 
-    # Check for filters
+    # Check for the "filter" query parameter
     filter = request.args.get("filter", type=str)
     if filter == "all":
         # get recipes with all ingredients
@@ -44,9 +44,36 @@ def get_recipes():
 
     return {'rids' : rid_list}, 200
 
-@app.route("/ingredients", methods=['GET'])
+@app.route("/ingredients", methods=["GET"])
 def get_ingredients():
     return fetch_all_ingredients(db), 200
+
+@app.route("/recipes/<rid>", methods=["GET"])
+def get_recipe_information(rid):
+    cursor = db.cursor()
+    query = "SELECT * FROM Recipe WHERE rid = ?;"
+    result = cursor.execute(query, rid).fetchone()
+
+    if result:
+        json = format_recipe_json(result)
+    
+    return json, 200
+
+# Helper method to format JSON containing one recipe information
+def format_recipe_json(data):
+    instructions = data[6].split("\n")
+
+    return {
+                "rid": data[0],
+                "link": data[1],
+                "title": "" if data[2] is None else data[2],
+                "total_time": 0 if data[3] is None else data[3],
+                "yields": 0 if data[4] is None else data[4],
+                "ingredients": data[5],
+                "instructions": instructions,
+                "image": "" if data[7] is None else data[7],
+            }
+
 
 if __name__ == "__main__":
     app.run()
