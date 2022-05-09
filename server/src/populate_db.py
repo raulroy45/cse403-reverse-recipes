@@ -1,3 +1,6 @@
+import csv
+import os
+from recipe_scrapers import scrape_me
 import pyodbc
 server = 'reverserecipes.database.windows.net'
 database = 'rrecipesDB'
@@ -69,8 +72,85 @@ def get_recipe(rid):
         return row 
     return None
 
+def add_recipe(link):
+    try:
+        scraper = scrape_me(link)
+    except:
+        print("Could not scrape link: {}".format(link))
+        return
+
+    try:
+        title = scraper.title()
+    except Exception as e:
+        print(e)
+        title = None
+
+    try:
+        time = scraper.total_time()
+    except:
+        time = None
+
+    try:
+        yields = scraper.yields().split(" ")
+        if len(yields) > 1:
+            yields = yields[0]
+        yields = int(yields)
+    except:
+        yields = None
+    
+    try:
+        ingredients = scraper.ingredients()
+    except:
+        ingredients = None
+    
+    try:
+        instructions = scraper.instructions()
+    except:
+        instructions = None
+    
+    try:
+        image = scraper.image()
+    except:
+        image = None
+
+    cursor.execute(INSERT_RECIPE, link, title, time, yields, str(ingredients), instructions, image)
+    conn.commit()
+    
+
+def process_ingredients(file):
+    with open(file, "r") as csv_file:
+        # Skip first row of column names
+        next(csv_file)
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        for row in csv_reader:
+            name = row[0]
+            category = row[1]
+            add_ingredient(name, category)
+
+
+def process_links(file):
+    with open(file, "r") as links_file:
+        for link in links_file:
+            add_recipe(link.strip())
+
 if __name__ == "__main__":
-    add_ingredient("onion", "Vegetable")
-    add_ingredient("chicken", "Meat")
-    add_ingredient("egg", "Dairy")
+    script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
+    # rel_path = "./ingredients.csv"
+    # abs_file_path = os.path.join(script_dir, rel_path)
+    # process_ingredients(abs_file_path)
+
+    rel_path = "./test_links.txt"
+    abs_file_path = os.path.join(script_dir, rel_path)
+    process_links(abs_file_path)
+    
+
+
+
+
+   
+
+
+
+
+
 

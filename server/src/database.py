@@ -15,7 +15,7 @@ def setup_db():
 def fetch_all_ingredients(db):
     cursor = db.cursor()
 
-    rows = cursor.execute("SELECT * FROM Ingredient").fetchall()
+    rows = cursor.execute("SELECT * FROM Ingredient ORDER BY category").fetchall()
     ingredients = []
     for row in rows:
         ingredients.append({"name": row[0], "category": row[1]})
