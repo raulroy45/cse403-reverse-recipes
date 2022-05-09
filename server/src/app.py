@@ -69,15 +69,16 @@ def get_recipe_info(rid):
 
     if result:
         json = format_recipe_json(result)
-    
-    return json, 200
+        return json, 200
+    else:
+        return "Invalid Recipe ID", 400
 
 # Helper method to query the database for recipe information given an rid
 def query_recipe_info(rid):
     cursor = db.cursor()
     query = "SELECT * FROM Recipe WHERE rid = ?;"
     result = cursor.execute(query, rid).fetchone()
-    return result
+    return result if result is not None else None
 
 # Helper method to format JSON containing one recipe information
 def format_recipe_json(data):
