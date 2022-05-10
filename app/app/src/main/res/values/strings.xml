@@ -13,4 +13,5 @@
     <string name="recipe_5">Recipe 5</string>
     <string name="my_pantry">My Pantry</string>
     <string name="find_recipes">Find Recipes</string>
+    <string name="saved_page_header">Saved</string>
 </resources>
