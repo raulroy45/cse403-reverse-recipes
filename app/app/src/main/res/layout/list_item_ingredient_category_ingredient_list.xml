@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/ingredient_category_ingredient_list_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_rounded_button"
+        android:backgroundTint="?attr/colorSecondary"
+        android:fontFamily="@font/lato_bold"
+        android:paddingHorizontal="8dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="6dp"
+        android:text="@string/find_recipes"
+        android:textAllCaps="false"
+        android:textColor="?attr/colorOnPrimary"
+        android:textSize="16sp" />
+</RelativeLayout>

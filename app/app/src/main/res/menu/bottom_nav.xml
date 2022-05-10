@@ -10,4 +10,10 @@
     <item
         android:id="@+id/savedRecipesFragment"
         android:title="SAVED" />\
+    <item
+        android:id="@+id/ingredientSearchFragment"
+        android:title="INGREDIENTS" />\
+    <item
+        android:id="@+id/recipeSearchFragment"
+        android:title="RECIPE SEARCH" />\
 </menu>
