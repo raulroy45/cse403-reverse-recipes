@@ -13,13 +13,25 @@
     <fragment
         android:id="@+id/pantryFragment"
         android:name="com.cse403.reverserecipes.PantryFragment"
-        android:label="@string/pantry_fragment" />
+        android:label="@string/pantry_fragment" >
+        <action
+            android:id="@+id/action_pantryFragment_to_ingredientSearchFragment"
+            app:destination="@id/ingredientSearchFragment" />
+        <action
+            android:id="@+id/action_pantryFragment_to_recipeSearchFragment"
+            app:destination="@id/recipeSearchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/savedRecipesFragment"
         android:name="com.cse403.reverserecipes.SavedRecipesFragment"
         android:label="@string/saved_recipes_fragment" />
     <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.cse403.reverserecipes.SearchFragment"
+        android:id="@+id/ingredientSearchFragment"
+        android:name="com.cse403.reverserecipes.IngredientSearchFragment"
         android:label="@string/search_fragment" />
+    <fragment
+        android:id="@+id/recipeSearchFragment"
+        android:name="com.cse403.reverserecipes.RecipeSearchFragment"
+        android:label="fragment_recipe_search"
+        tools:layout="@layout/fragment_recipe_search" />
 </navigation>
