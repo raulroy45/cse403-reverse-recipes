@@ -40,6 +40,7 @@ public abstract class ReverseRecipesRoomDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
+    // TODO: Get rid of initial database fill, done for debug purposes.
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
@@ -53,7 +54,15 @@ public abstract class ReverseRecipesRoomDatabase extends RoomDatabase {
                 dao.insert(ingredient);
                 ingredient = new Ingredient(2, "Pork", IngredientCategory.PROTEIN);
                 dao.insert(ingredient);
-                ingredient = new Ingredient(3, "Dragonfruit of the Third Degree", IngredientCategory.FRUIT);
+                ingredient = new Ingredient(3, "Dragonfruit", IngredientCategory.FRUIT);
+                dao.insert(ingredient);
+                ingredient = new Ingredient(4, "Pomegranate", IngredientCategory.FRUIT);
+                dao.insert(ingredient);
+                ingredient = new Ingredient(5, "Jackfruit", IngredientCategory.FRUIT);
+                dao.insert(ingredient);
+                ingredient = new Ingredient(6, "Apple", IngredientCategory.FRUIT);
+                dao.insert(ingredient);
+                ingredient = new Ingredient(7, "Pear", IngredientCategory.FRUIT);
                 dao.insert(ingredient);
             });
         }

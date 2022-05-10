@@ -2,6 +2,7 @@ package com.cse403.reverserecipes.UI.Fragments;
 
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,10 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cse403.reverserecipes.UI.Adapters.IngredientSearchIngredientCategoryListAdapter;
+import com.cse403.reverserecipes.UI.ItemDecorations.IngredientCategoryListItemDecoration;
 import com.cse403.reverserecipes.UI.ViewModels.IngredientSearchViewModel;
 import com.cse403.reverserecipes.R;
 import com.cse403.reverserecipes.UI.Entities.ViewIngredient;
-import com.cse403.reverserecipes.Data.Entities.ViewIngredientCategoryDiff;
+import com.cse403.reverserecipes.UI.Entities.ViewIngredientCategoryDiff;
+import com.google.android.flexbox.AlignItems;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexboxItemDecoration;
+import com.google.android.flexbox.FlexboxLayoutManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,6 +59,9 @@ public class IngredientSearchFragment
                         new ViewIngredientCategoryDiff(), this);
         ingredientCategoryListView.setAdapter(adapter);
         ingredientCategoryListView.setLayoutManager(new LinearLayoutManager(requireActivity()));
+        RecyclerView.ItemDecoration itemDecoration = new IngredientCategoryListItemDecoration(requireActivity());
+        ingredientCategoryListView.addItemDecoration(itemDecoration);
+        ingredientCategoryListView.setItemAnimator(null);
 
         mIngredientSearchViewModel = new ViewModelProvider(requireActivity()).get(IngredientSearchViewModel.class);
 

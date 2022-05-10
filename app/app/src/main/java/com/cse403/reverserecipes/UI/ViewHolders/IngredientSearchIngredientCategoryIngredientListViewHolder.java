@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cse403.reverserecipes.UI.Adapters.IngredientSearchIngredientCategoryIngredientListAdapter;
 import com.cse403.reverserecipes.R;
 import com.cse403.reverserecipes.UI.Entities.ViewIngredient;
+import com.google.android.flexbox.FlexboxLayoutManager;
 
 public class IngredientSearchIngredientCategoryIngredientListViewHolder
         extends RecyclerView.ViewHolder

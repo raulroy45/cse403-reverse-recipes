@@ -1,4 +1,4 @@
-package com.cse403.reverserecipes.Data.Entities;
+package com.cse403.reverserecipes.UI.Entities;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
