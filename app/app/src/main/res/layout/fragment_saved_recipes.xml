@@ -7,10 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".SavedRecipesFragment">
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:fontFamily="@font/rozha_one_regular"
+        android:text="@string/saved_page_header"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/button11"
         android:layout_width="320dp"
         android:layout_height="90dp"
+        android:backgroundTint="#C3D1CE"
         android:text="@string/recipe_5"
         app:iconTint="#00BCD4"
         app:iconTintMode="add"
@@ -19,14 +34,15 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.850"
+        app:layout_constraintVertical_bias="0.930"
         app:strokeColor="#E91E63"
-        android:backgroundTint="#C3D1CE" />
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/button10"
         android:layout_width="320dp"
         android:layout_height="90dp"
+        android:backgroundTint="#C3D1CE"
         android:text="@string/recipe_1"
         app:iconTint="#00BCD4"
         app:iconTintMode="add"
@@ -35,14 +51,15 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.700"
+        app:layout_constraintVertical_bias="0.760"
         app:strokeColor="#E91E63"
-        android:backgroundTint="#C3D1CE" />
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/button8"
         android:layout_width="320dp"
         android:layout_height="90dp"
+        android:backgroundTint="#C3D1CE"
         android:text="@string/recipe_2"
         app:iconTint="#00BCD4"
         app:iconTintMode="add"
@@ -51,14 +68,15 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.550"
+        app:layout_constraintVertical_bias="0.590"
         app:strokeColor="#E91E63"
-        android:backgroundTint="#C3D1CE" />
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/button7"
         android:layout_width="320dp"
         android:layout_height="90dp"
+        android:backgroundTint="#C3D1CE"
         android:text="@string/recipe_3"
         app:iconTint="#00BCD4"
         app:iconTintMode="add"
@@ -67,14 +85,15 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.400"
+        app:layout_constraintVertical_bias="0.420"
         app:strokeColor="#E91E63"
-        android:backgroundTint="#C3D1CE" />
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="320dp"
         android:layout_height="90dp"
+        android:backgroundTint="#C3D1CE"
         android:text="@string/recipe_4"
         app:iconTint="#00BCD4"
         app:iconTintMode="add"
@@ -85,6 +104,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.250"
         app:strokeColor="#E91E63"
-        android:backgroundTint="#C3D1CE" />
+        tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
