@@ -1,98 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".RecipeSearchFragment">
 
-    <SearchView
-        android:layout_width="match_parent"
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/shapeListSearchView"
-        android:iconifiedByDefault="false"
-        android:background="@color/darkerGray"
-        android:queryHint="Ingredient Name"></SearchView>
+        android:text="@string/recipe_search_fragment"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/filterTabsLayout">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="All"
-            android:id="@+id/allFilter"
-            android:textColor="@color/red"
-            android:background="@color/darkerGray"/>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="Fruits"
-            android:textColor="@color/red"
-            android:id="@+id/triangleFilter"
-            android:background="@color/darkerGray"/>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="Veggies"
-            android:textColor="@color/red"
-            android:id="@+id/squareFilter"
-            android:background="@color/darkerGray"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/filterTabsLayout2">
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="Meat"
-            android:id="@+id/octagonFilter"
-            android:background="@color/darkerGray"/>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="Diary"
-            android:id="@+id/rectangleFilter"
-            android:background="@color/darkerGray"/>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="Grains"
-            android:id="@+id/circleFilter"
-            android:background="@color/darkerGray"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/sortTabsLayout2"/>
-
-
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/shapesListView"/>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
