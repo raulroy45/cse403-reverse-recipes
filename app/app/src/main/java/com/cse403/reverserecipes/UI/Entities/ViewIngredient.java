@@ -27,7 +27,7 @@ public class ViewIngredient {
             ViewIngredient other = (ViewIngredient) o;
             return
                     this.mId == other.mId &&
-                    this.mName.equals(((ViewIngredient) other).mName) &&
+                    this.mName.equals(other.mName) &&
                     this.mSelected == other.mSelected;
         } else {
             return false;

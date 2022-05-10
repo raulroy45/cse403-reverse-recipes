@@ -4,8 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.cse403.reverserecipes.IngredientCategory;
-
 @Entity(tableName = "result_recipe_table")
 public class ResultRecipe {
     @PrimaryKey
@@ -26,5 +24,16 @@ public class ResultRecipe {
 
     public String getName() {
         return mName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof ResultRecipe) {
+            ResultRecipe other = (ResultRecipe) o;
+            return
+                    this.mId == other.mId && this.mName.equals(other.mName);
+        } else {
+            return false;
+        }
     }
 }
