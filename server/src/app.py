@@ -8,7 +8,7 @@ def setup_db():
     database = 'rrecipesDB'
     username = 'azureuser'
     password = 'xgD72UEc4GH5SLw'   
-    driver = '{ODBC Driver 18 for SQL Server}'
+    driver = '{FreeTDS}'
 
     db = pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
     return db
