@@ -9,6 +9,7 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.cse403.reverserecipes.Data.Entities.Ingredient;
+import com.cse403.reverserecipes.Data.Entities.ResultRecipe;
 import com.cse403.reverserecipes.IngredientCategory;
 import com.cse403.reverserecipes.Data.Entities.IngredientSelection;
 
@@ -16,10 +17,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 // TODO: Set schema to export.
-@Database(entities = {Ingredient.class, IngredientSelection.class}, version = 1, exportSchema = false)
+@Database(entities = {Ingredient.class, IngredientSelection.class, ResultRecipe.class}, version = 1, exportSchema = false)
 public abstract class ReverseRecipesRoomDatabase extends RoomDatabase {
     public abstract IngredientDao ingredientDao();
     public abstract IngredientSelectionDao ingredientSelectionDao();
+    public abstract ResultRecipeDao resultRecipeDao();
 
     private static volatile ReverseRecipesRoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -64,6 +66,13 @@ public abstract class ReverseRecipesRoomDatabase extends RoomDatabase {
                 dao.insert(ingredient);
                 ingredient = new Ingredient(7, "Pear", IngredientCategory.FRUIT);
                 dao.insert(ingredient);
+
+                ResultRecipeDao rrDao = INSTANCE.resultRecipeDao();
+
+                ResultRecipe resultRecipe = new ResultRecipe(1, "Green Eggs");
+                rrDao.insert(resultRecipe);
+                resultRecipe = new ResultRecipe(2, "Green Ham");
+                rrDao.insert(resultRecipe);
             });
         }
     };
