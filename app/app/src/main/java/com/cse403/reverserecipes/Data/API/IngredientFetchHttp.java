@@ -19,7 +19,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class IngredientFetchHttp implements IngredientFetchApi {
 
-    private static final String ENDPOINT_URL = "https://reverserecipes.azurewebsites.net/ingredients/";
+    private static final String ENDPOINT_URL = "https://reverserecipes.azurewebsites.net/ingredients/?filter=used";
     
     @Override
     public List<DataIngredient> fetchIngredients() {
