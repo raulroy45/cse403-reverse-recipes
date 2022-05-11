@@ -34,46 +34,10 @@ public abstract class ReverseRecipesRoomDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             ReverseRecipesRoomDatabase.class, "word_database")
-                            .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
             }
         }
         return INSTANCE;
     }
-
-    // TODO: Get rid of initial database fill, done for debug purposes.
-    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-
-            databaseWriteExecutor.execute(() -> {
-                // Populate the database in the background.
-                IngredientDao dao = INSTANCE.ingredientDao();
-
-                Ingredient ingredient = new Ingredient(1, "Radish", IngredientCategory.VEGETABLE);
-                dao.insert(ingredient);
-                ingredient = new Ingredient(2, "Pork", IngredientCategory.PROTEIN);
-                dao.insert(ingredient);
-                ingredient = new Ingredient(3, "Dragonfruit", IngredientCategory.FRUIT);
-                dao.insert(ingredient);
-                ingredient = new Ingredient(4, "Pomegranate", IngredientCategory.FRUIT);
-                dao.insert(ingredient);
-                ingredient = new Ingredient(5, "Jackfruit", IngredientCategory.FRUIT);
-                dao.insert(ingredient);
-                ingredient = new Ingredient(6, "Apple", IngredientCategory.FRUIT);
-                dao.insert(ingredient);
-                ingredient = new Ingredient(7, "Pear", IngredientCategory.FRUIT);
-                dao.insert(ingredient);
-
-                ResultRecipeDao rrDao = INSTANCE.resultRecipeDao();
-
-                ResultRecipe resultRecipe = new ResultRecipe(1, "Green Eggs");
-                rrDao.insert(resultRecipe);
-                resultRecipe = new ResultRecipe(2, "Green Ham");
-                rrDao.insert(resultRecipe);
-            });
-        }
-    };
 }

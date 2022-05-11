@@ -47,7 +47,28 @@ public class IngredientHttp implements IngredientApi {
                     JSONObject ingredientObject = ingredientListArray.getJSONObject(i);
                     String ingredientCategory = ingredientObject.getString("category");
                     String ingredientName = ingredientObject.getString("name");
-                    ingredientList.add(new Ingredient(i, ingredientName, IngredientCategory.FRUIT));
+                    IngredientCategory category = IngredientCategory.FRUIT;
+                    switch (i % 6) {
+                        case 0:
+                            category = IngredientCategory.FRUIT;
+                            break;
+                        case 1:
+                            category = IngredientCategory.VEGETABLE;
+                            break;
+                        case 2:
+                            category = IngredientCategory.PROTEIN;
+                            break;
+                        case 3:
+                            category = IngredientCategory.DAIRY;
+                            break;
+                        case 4:
+                            category = IngredientCategory.GRAIN;
+                            break;
+                        case 5:
+                            category = IngredientCategory.LEGUME;
+                            break;
+                    }
+                    ingredientList.add(new Ingredient(i, ingredientName, category));
                 }
             } finally {
                 urlConnection.disconnect();

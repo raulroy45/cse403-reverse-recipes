@@ -28,7 +28,7 @@ public class RecipeSearchResultRecipeListViewHolder extends RecyclerView.ViewHol
     }
 
     public void bind(ResultRecipe resultRecipe) {
-        mListItemText.setText(resultRecipe.getName());
+        mListItemText.setText(resultRecipe.getTitle() + resultRecipe.getTotalTime());
     }
 
     public static RecipeSearchResultRecipeListViewHolder create(ViewGroup parent) {

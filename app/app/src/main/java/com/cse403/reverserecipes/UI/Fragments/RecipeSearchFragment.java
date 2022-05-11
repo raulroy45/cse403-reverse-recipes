@@ -64,6 +64,7 @@ public class RecipeSearchFragment extends Fragment {
         mRecipeSearchViewModel = new ViewModelProvider(requireActivity()).get(RecipeSearchViewModel.class);
 
         mRecipeSearchViewModel.getResultRecipes().observe(requireActivity(), adapter::submitList);
+        mRecipeSearchViewModel.getSelectedIngredients().observe(requireActivity(), mRecipeSearchViewModel::updateResultRecipes);
 
         return v;
     }

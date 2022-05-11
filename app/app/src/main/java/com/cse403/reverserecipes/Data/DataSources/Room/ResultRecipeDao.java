@@ -16,6 +16,12 @@ public interface ResultRecipeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(ResultRecipe resultRecipe);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(List<ResultRecipe> resultRecipe);
+
+    @Query("DELETE FROM result_recipe_table")
+    void deleteAll();
+
     @Query("SELECT * FROM result_recipe_table")
     LiveData<List<ResultRecipe>> getResultRecipes();
 }
