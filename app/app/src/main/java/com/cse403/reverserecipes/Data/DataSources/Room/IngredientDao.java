@@ -15,6 +15,9 @@ public interface IngredientDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Ingredient ingredient);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(List<Ingredient> ingredients);
+
     @Query("SELECT * FROM ingredient_table")
     LiveData<List<Ingredient>> getIngredients();
 }
