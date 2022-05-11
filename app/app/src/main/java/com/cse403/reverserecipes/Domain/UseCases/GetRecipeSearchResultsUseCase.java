@@ -5,6 +5,7 @@ import android.util.Pair;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
+import androidx.lifecycle.Observer;
 
 import com.cse403.reverserecipes.Data.Repositories.IngredientRepository;
 import com.cse403.reverserecipes.Data.Repositories.RecipeSearchResultRepository;
@@ -24,20 +25,30 @@ public class GetRecipeSearchResultsUseCase {
     }
 
     public LiveData<List<Recipe>> invoke() {
-        MediatorLiveData<List<Recipe>> recipeSearchResultsLiveData = new MediatorLiveData<>();
-        recipeSearchResultsLiveData.addSource(
+        LiveData<List<Ingredient>> ingredientsLiveData = mIngredientRepository.getIngredients();
+        MediatorLiveData<List<Recipe>> resolvedRecipeSearchResultsLiveData = new MediatorLiveData<>();
+        resolvedRecipeSearchResultsLiveData.addSource(
                 mIngredientRepository.getSelectedIngredients(),
-                ingredients -> {
-                    if (ingredients != null) {
-                        LiveData<List<Recipe>> recipeSearchResults =
-                                mRecipeSearchResultRepository.getResultRecipes(ingredients);
-                        recipeSearchResultsLiveData.addSource(
-                                recipeSearchResults,
-                                recipeSearchResultsLiveData::postValue
-                        );
+                new Observer<List<Ingredient>>() {
+                    private LiveData<List<Recipe>> recipeSearchResultsLiveData = null;
+
+                    @Override
+                    public void onChanged(List<Ingredient> ingredients) {
+                        if (ingredients != null) {
+                            // Unsubscribe from previous recipeSearchResultsLiveData and use new one.
+                            if (recipeSearchResultsLiveData != null) {
+                                resolvedRecipeSearchResultsLiveData.removeSource(recipeSearchResultsLiveData);
+                            }
+                            recipeSearchResultsLiveData =
+                                    mRecipeSearchResultRepository.getResultRecipes(ingredients);
+                            resolvedRecipeSearchResultsLiveData.addSource(
+                                    recipeSearchResultsLiveData,
+                                    resolvedRecipeSearchResultsLiveData::postValue
+                            );
+                        }
                     }
                 }
         );
-        return recipeSearchResultsLiveData;
+        return resolvedRecipeSearchResultsLiveData;
     }
 }
