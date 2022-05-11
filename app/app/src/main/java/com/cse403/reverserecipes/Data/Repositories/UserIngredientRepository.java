@@ -4,7 +4,7 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import com.cse403.reverserecipes.Data.Entities.Ingredient;
+import com.cse403.reverserecipes.Data.Entities.DataIngredient;
 import com.cse403.reverserecipes.Data.Entities.IngredientSelection;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 public class UserIngredientRepository {
     private IngredientRepository mIngredientRepository;
     private IngredientSelectionRepository mIngredientSelectionRepository;
-    private LiveData<List<Ingredient>> mAllIngredients;
+    private LiveData<List<DataIngredient>> mAllIngredients;
     private LiveData<List<IngredientSelection>> mAllIngredientSelections;
 
     public UserIngredientRepository(Application application) {
@@ -22,7 +22,7 @@ public class UserIngredientRepository {
         mAllIngredientSelections = mIngredientSelectionRepository.getAllIngredientSelections();
     }
 
-    public LiveData<List<Ingredient>> getAllIngredients() { return mAllIngredients; }
+    public LiveData<List<DataIngredient>> getAllIngredients() { return mAllIngredients; }
 
     public LiveData<List<IngredientSelection>> getAllIngredientSelections() { return mAllIngredientSelections; }
 

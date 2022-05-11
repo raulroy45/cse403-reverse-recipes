@@ -4,73 +4,34 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
-import com.cse403.reverserecipes.Data.Entities.Ingredient;
+import com.cse403.reverserecipes.Data.Entities.DataIngredient;
+import com.cse403.reverserecipes.Data.Entities.DataRecipe;
 import com.cse403.reverserecipes.Data.Entities.IngredientSelection;
-import com.cse403.reverserecipes.Data.Entities.ResultRecipe;
-import com.cse403.reverserecipes.Data.Repositories.ResultRecipeRepository;
+import com.cse403.reverserecipes.Data.Repositories.RecipeSearchResultRepository;
 import com.cse403.reverserecipes.Data.Repositories.UserIngredientRepository;
-import com.cse403.reverserecipes.IngredientCategory;
-import com.cse403.reverserecipes.UI.Entities.ViewIngredient;
-import com.cse403.reverserecipes.UI.Entities.ViewIngredientCategory;
+import com.cse403.reverserecipes.Domain.UseCases.GetCategorizedIngredientsUseCase;
+import com.cse403.reverserecipes.Domain.UseCases.GetRecipeSearchResultsUseCase;
+import com.cse403.reverserecipes.UI.Entities.Recipe;
 import com.cse403.reverserecipes.Utils.LiveDataUtilities;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
-import javax.xml.transform.Result;
-
 public class RecipeSearchViewModel extends AndroidViewModel {
-    // TODO: Implement the ViewModel
-    private ResultRecipeRepository mResultRecipeRepository;
-    private UserIngredientRepository mUserIngredientRepository;
 
-    private LiveData<List<ResultRecipe>> mResultRecipes;
-
-    private LiveData<List<Ingredient>> mSelectedIngredients;
+    private LiveData<List<Recipe>> mResultRecipes;
 
     public RecipeSearchViewModel(Application application) {
         super(application);
 
-        mUserIngredientRepository = new UserIngredientRepository(application);
-        mResultRecipeRepository = new ResultRecipeRepository(application);
-        mResultRecipes = mResultRecipeRepository.getAllResultRecipes();
-        LiveData<List<Ingredient>> allIngredients = mUserIngredientRepository.getAllIngredients();
-        LiveData<List<IngredientSelection>> allIngredientSelections = mUserIngredientRepository.getAllIngredientSelections();
-        mSelectedIngredients = LiveDataUtilities.combine(allIngredients, allIngredientSelections,
-                (ingredients, ingredientSelections) -> {
-                    if (ingredients != null && ingredientSelections != null) {
-                        Set<Integer> selectedIngredientIds = new HashSet<>();
-                        for (IngredientSelection selection : allIngredientSelections.getValue()) {
-                            selectedIngredientIds.add(selection.getIngredientId());
-                        }
-                        List<Ingredient> selectedIngredients = new ArrayList<>();
-                        for (Ingredient ingredient : allIngredients.getValue()) {
-                            if (selectedIngredientIds.contains(ingredient.getId())) {
-                                selectedIngredients.add(ingredient);
-                            }
-                        }
-                        return selectedIngredients;
-                    } else {
-                        return new ArrayList<>();
-                    }
-                }
-        );
+        GetRecipeSearchResultsUseCase useCase = new GetRecipeSearchResultsUseCase(application);
+        mResultRecipes = useCase.invoke();
     }
 
-    public LiveData<List<ResultRecipe>> getResultRecipes() {
+    public LiveData<List<Recipe>> getResultRecipes() {
         return mResultRecipes;
-    }
-
-    public LiveData<List<Ingredient>> getSelectedIngredients() { return mSelectedIngredients; }
-
-    public void updateResultRecipes(List<Ingredient> selectedIngredients) {
-        mResultRecipeRepository.updateResultRecipes(selectedIngredients);
     }
 }

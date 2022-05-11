@@ -1,31 +1,19 @@
-package com.cse403.reverserecipes.Data.Entities;
+package com.cse403.reverserecipes.UI.Entities;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
-@Entity(tableName = "result_recipe_table")
-public class ResultRecipe {
-    @PrimaryKey
-    @ColumnInfo(name = "rid")
+public class Recipe {
     private final int mRid;
 
-    @ColumnInfo(name = "image")
     private final String mImage;
 
-    @ColumnInfo(name = "link")
     private final String mLink;
 
-    @ColumnInfo(name = "title")
     private final String mTitle;
 
-    @ColumnInfo(name = "total_time")
     private final int mTotalTime;
 
-    @ColumnInfo(name = "yields")
     private final int mYields;
 
-    public ResultRecipe(int rid, String image, String link, String title, int totalTime, int yields) {
+    public Recipe(int rid, String image, String link, String title, int totalTime, int yields) {
         mRid = rid;
         mImage = image;
         mLink = link;
@@ -55,13 +43,13 @@ public class ResultRecipe {
     }
 
     public int getYields() {
-        return mTotalTime;
+        return mYields;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof ResultRecipe) {
-            ResultRecipe other = (ResultRecipe) o;
+        if (o instanceof Recipe) {
+            Recipe other = (Recipe) o;
             return
                     this.mRid == other.mRid &&
                     this.mImage.equals(other.mImage) &&

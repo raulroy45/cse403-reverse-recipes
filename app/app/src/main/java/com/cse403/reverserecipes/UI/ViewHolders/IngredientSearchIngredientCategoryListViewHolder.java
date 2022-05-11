@@ -1,5 +1,6 @@
 package com.cse403.reverserecipes.UI.ViewHolders;
 
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cse403.reverserecipes.UI.Adapters.IngredientSearchIngredientCategoryIngredientListAdapter;
 import com.cse403.reverserecipes.UI.Adapters.IngredientSearchIngredientCategoryListAdapter;
 import com.cse403.reverserecipes.R;
-import com.cse403.reverserecipes.UI.Entities.ViewIngredientCategory;
-import com.cse403.reverserecipes.UI.Entities.ViewIngredientDiff;
+import com.cse403.reverserecipes.UI.Entities.Ingredient;
+import com.cse403.reverserecipes.UI.Entities.IngredientDiff;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexboxItemDecoration;
 import com.google.android.flexbox.FlexboxLayoutManager;
+
+import java.util.List;
 
 public class IngredientSearchIngredientCategoryListViewHolder
         extends RecyclerView.ViewHolder
@@ -32,7 +35,7 @@ public class IngredientSearchIngredientCategoryListViewHolder
         RecyclerView listItemList = itemView.findViewById(R.id.ingredient_category_list_item_list);
         mListItemListAdapter =
                 new IngredientSearchIngredientCategoryIngredientListAdapter(
-                        new ViewIngredientDiff(), this);
+                        new IngredientDiff(), this);
         listItemList.setAdapter(mListItemListAdapter);
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(itemView.getContext());
         layoutManager.setAlignItems(AlignItems.FLEX_START);
@@ -51,9 +54,9 @@ public class IngredientSearchIngredientCategoryListViewHolder
         setIsRecyclable(false);
     }
 
-    public void bind(ViewIngredientCategory viewIngredientCategory) {
-        mListItemTitle.setText(viewIngredientCategory.getIngredientCategory().toString());
-        mListItemListAdapter.submitList(viewIngredientCategory.getIngredientList());
+    public void bind(Pair<String, List<Ingredient>> viewIngredientCategory) {
+        mListItemTitle.setText(viewIngredientCategory.first.toString());
+        mListItemListAdapter.submitList(viewIngredientCategory.second);
     }
 
     public static IngredientSearchIngredientCategoryListViewHolder create(

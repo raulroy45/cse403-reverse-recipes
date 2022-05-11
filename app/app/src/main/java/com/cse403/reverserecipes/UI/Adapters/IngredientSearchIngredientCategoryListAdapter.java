@@ -1,19 +1,23 @@
 package com.cse403.reverserecipes.UI.Adapters;
 
+import android.util.Pair;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
+import com.cse403.reverserecipes.UI.Entities.Ingredient;
 import com.cse403.reverserecipes.UI.ViewHolders.IngredientSearchIngredientCategoryListViewHolder;
 import com.cse403.reverserecipes.UI.Entities.ViewIngredientCategory;
 
-public class IngredientSearchIngredientCategoryListAdapter extends ListAdapter<ViewIngredientCategory, IngredientSearchIngredientCategoryListViewHolder> {
+import java.util.List;
+
+public class IngredientSearchIngredientCategoryListAdapter extends ListAdapter<Pair<String, List<Ingredient>>, IngredientSearchIngredientCategoryListViewHolder> {
     private final OnClickListener mOnClickListener;
 
     public IngredientSearchIngredientCategoryListAdapter(
-            @NonNull DiffUtil.ItemCallback<ViewIngredientCategory> diffCallback,
+            @NonNull DiffUtil.ItemCallback<Pair<String, List<Ingredient>>> diffCallback,
             OnClickListener onClickListener) {
         super(diffCallback);
         mOnClickListener = onClickListener;
@@ -27,7 +31,7 @@ public class IngredientSearchIngredientCategoryListAdapter extends ListAdapter<V
 
     @Override
     public void onBindViewHolder(@NonNull IngredientSearchIngredientCategoryListViewHolder holder, int position) {
-        ViewIngredientCategory current = getItem(position);
+        Pair<String, List<Ingredient>> current = getItem(position);
         holder.bind(current);
     }
 

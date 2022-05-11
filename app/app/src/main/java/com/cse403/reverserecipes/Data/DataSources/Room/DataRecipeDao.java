@@ -6,18 +6,21 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.cse403.reverserecipes.Data.Entities.Ingredient;
+import com.cse403.reverserecipes.Data.Entities.DataRecipe;
 
 import java.util.List;
 
 @Dao
-public interface IngredientDao {
+public interface DataRecipeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Ingredient ingredient);
+    void insert(DataRecipe dataRecipe);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(List<Ingredient> ingredients);
+    void insert(List<DataRecipe> dataRecipe);
 
-    @Query("SELECT * FROM ingredient_table")
-    LiveData<List<Ingredient>> getIngredients();
+    @Query("DELETE FROM DataRecipe")
+    void deleteAll();
+
+    @Query("SELECT * FROM DataRecipe")
+    LiveData<List<DataRecipe>> getResultRecipes();
 }

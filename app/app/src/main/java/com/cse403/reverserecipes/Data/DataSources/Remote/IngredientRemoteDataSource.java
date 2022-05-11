@@ -1,19 +1,19 @@
 package com.cse403.reverserecipes.Data.DataSources.Remote;
 
-import com.cse403.reverserecipes.Data.API.IngredientApi;
-import com.cse403.reverserecipes.Data.Entities.Ingredient;
+import com.cse403.reverserecipes.Data.API.IngredientFetchApi;
+import com.cse403.reverserecipes.Data.Entities.DataIngredient;
 
 import java.util.List;
 
 public class IngredientRemoteDataSource {
 
-    private IngredientApi mIngredientApi;
+    private IngredientFetchApi mIngredientFetchApi;
 
-    public IngredientRemoteDataSource(IngredientApi ingredientApi) {
-        mIngredientApi = ingredientApi;
+    public IngredientRemoteDataSource(IngredientFetchApi ingredientFetchApi) {
+        mIngredientFetchApi = ingredientFetchApi;
     }
 
-    public List<Ingredient> getIngredients() {
-        return mIngredientApi.fetchIngredients();
+    public List<DataIngredient> getIngredients() {
+        return mIngredientFetchApi.fetchIngredients();
     }
 }

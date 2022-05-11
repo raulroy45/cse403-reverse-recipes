@@ -12,11 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cse403.reverserecipes.R;
-import com.cse403.reverserecipes.UI.Adapters.IngredientSearchIngredientCategoryListAdapter;
-import com.cse403.reverserecipes.UI.Adapters.RecipeSearchResultRecipeListAdapter;
-import com.cse403.reverserecipes.UI.Entities.ResultRecipeDiff;
-import com.cse403.reverserecipes.UI.Entities.ViewIngredientCategoryDiff;
-import com.cse403.reverserecipes.UI.ViewModels.IngredientSearchViewModel;
+import com.cse403.reverserecipes.UI.Adapters.RecipeSearchRecipeListAdapter;
+import com.cse403.reverserecipes.UI.Entities.RecipeDiff;
 import com.cse403.reverserecipes.UI.ViewModels.RecipeSearchViewModel;
 
 /**
@@ -57,14 +54,12 @@ public class RecipeSearchFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_recipe_search, container, false);
 
         RecyclerView resultRecipeListView = v.findViewById(R.id.recipe_search_result_recipe_list);
-        final RecipeSearchResultRecipeListAdapter adapter = new RecipeSearchResultRecipeListAdapter(new ResultRecipeDiff());
+        final RecipeSearchRecipeListAdapter adapter = new RecipeSearchRecipeListAdapter(new RecipeDiff());
         resultRecipeListView.setAdapter(adapter);
         resultRecipeListView.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
         mRecipeSearchViewModel = new ViewModelProvider(requireActivity()).get(RecipeSearchViewModel.class);
-
         mRecipeSearchViewModel.getResultRecipes().observe(requireActivity(), adapter::submitList);
-        mRecipeSearchViewModel.getSelectedIngredients().observe(requireActivity(), mRecipeSearchViewModel::updateResultRecipes);
 
         return v;
     }
