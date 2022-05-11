@@ -34,7 +34,9 @@ Get all the ingredients by category available for querying in the database.
 - Method:
     - <code>GET</code>
 - URL Paramaters:
-    - Not required.
+    - Optional<br>
+    <code>?filter=used</code><br>
+        - Gets all ingredients that have an associated recipe
 - Data Parameters:
     - Not required.
 - Success Response:
