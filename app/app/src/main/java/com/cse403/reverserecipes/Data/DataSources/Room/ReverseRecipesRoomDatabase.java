@@ -14,7 +14,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 // TODO: Set schema to export.
-@Database(entities = {DataIngredient.class, IngredientSelection.class, DataRecipe.class}, version = 1, exportSchema = false)
+@Database(entities = {DataIngredient.class}, version = 1, exportSchema = false)
 public abstract class ReverseRecipesRoomDatabase extends RoomDatabase {
     public abstract DataIngredientDao ingredientDao();
 

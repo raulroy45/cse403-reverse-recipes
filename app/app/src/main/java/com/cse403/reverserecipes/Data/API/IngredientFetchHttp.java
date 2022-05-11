@@ -49,7 +49,7 @@ public class IngredientFetchHttp implements IngredientFetchApi {
                     fetchedIngredients.add(
                             new DataIngredient(
                                     fetchedIngredientObject.getString("name"),
-                                    fetchedIngredientObject.getString("name"),
+                                    fetchedIngredientObject.getString("category"),
                                     false));
                 }
             } finally {

@@ -22,8 +22,11 @@ public interface DataIngredientDao {
     @Delete
     void deleteIngredients(List<DataIngredient> dataIngredients);
 
-    @Query("SELECT * FROM ingredient_table")
+    @Query("SELECT * FROM ingredient_table ORDER BY category, name ASC")
     LiveData<List<DataIngredient>> getIngredientsLiveData();
+
+    @Query("SELECT * FROM ingredient_table WHERE selected = 1 ORDER BY category, name ASC")
+    LiveData<List<DataIngredient>> getSelectedIngredientsLiveData();
 
     @Query("SELECT * FROM ingredient_table")
     List<DataIngredient> getIngredients();

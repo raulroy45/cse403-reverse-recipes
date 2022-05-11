@@ -28,8 +28,8 @@ public class IngredientRepository {
     private final IngredientRemoteDataSource mIngredientRemoteDataSource;
     private final DataIngredientDao mDataIngredientDao;
 
-    private final LiveData<List<DataIngredient>> mDataIngredientsLiveData;
     private final MediatorLiveData<List<Ingredient>> mIngredientsLiveData;
+    private final MediatorLiveData<List<Ingredient>> mSelectedIngredientsLiveData;
 
     // TODO: Get rid of Application dependency for testability.
     public IngredientRepository(Application application) {
@@ -37,19 +37,47 @@ public class IngredientRepository {
         ReverseRecipesRoomDatabase db = ReverseRecipesRoomDatabase.getDatabase(application);
         mDataIngredientDao = db.ingredientDao();
 
-        mDataIngredientsLiveData = mDataIngredientDao.getIngredientsLiveData();
+        LiveData<List<DataIngredient>> dataIngredientsLiveData = mDataIngredientDao.getIngredientsLiveData();
+        LiveData<List<DataIngredient>> selectedDataIngredientsLiveData = mDataIngredientDao.getSelectedIngredientsLiveData();
 
         // TODO: Dependency injection for the mapper?
         ListMapper<DataIngredient, Ingredient> dataIngredientToIngredientListMapper =
                 new ArrayListMapper<>(new DataIngredientToIngredientMapper());
         mIngredientsLiveData = new MediatorLiveData<>();
         mIngredientsLiveData.addSource(
-                mDataIngredientsLiveData,
+                dataIngredientsLiveData,
                 dataIngredients -> mIngredientsLiveData.postValue(dataIngredientToIngredientListMapper.map(dataIngredients))
+        );
+        mSelectedIngredientsLiveData = new MediatorLiveData<>();
+        mSelectedIngredientsLiveData.addSource(
+                selectedDataIngredientsLiveData,
+                selectedDataIngredients ->
+                        mSelectedIngredientsLiveData.postValue(dataIngredientToIngredientListMapper.map(selectedDataIngredients))
         );
     }
 
     public LiveData<List<Ingredient>> getIngredients() {
+        executeIngredientFetch();
+
+        // Return the ingredients.
+        return mIngredientsLiveData;
+    }
+
+    public LiveData<List<Ingredient>> getSelectedIngredients() {
+        executeIngredientFetch();
+
+        // Return the ingredients.
+        return mSelectedIngredientsLiveData;
+    }
+
+    public void insertIngredient(Ingredient ingredient) {
+        ReverseRecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
+            // TODO: Dependency injection for the mapper?
+            mDataIngredientDao.insertIngredient(new IngredientToDataIngredientMapper().map(ingredient));
+        });
+    }
+
+    private void executeIngredientFetch() {
         // Update ingredients using a web fetch.
         ReverseRecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
             List<DataIngredient> fetchedIngredients = mIngredientRemoteDataSource.getIngredients();
@@ -81,16 +109,6 @@ public class IngredientRepository {
 
             mDataIngredientDao.deleteIngredients(new ArrayList<>(removedIngredientSet));
             mDataIngredientDao.insertIngredients(new ArrayList<>(ingredientNameToNewIngredientMap.values()));
-        });
-
-        // Return the ingredients.
-        return mIngredientsLiveData;
-    }
-
-    public void insertIngredient(Ingredient ingredient) {
-        ReverseRecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
-            // TODO: Dependency injection for the mapper?
-            mDataIngredientDao.insertIngredient(new IngredientToDataIngredientMapper().map(ingredient));
         });
     }
 }

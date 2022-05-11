@@ -14,8 +14,8 @@ import com.cse403.reverserecipes.UI.Entities.Recipe;
 import java.util.List;
 
 public class GetRecipeSearchResultsUseCase {
-    private IngredientRepository mIngredientRepository;
-    private RecipeSearchResultRepository mRecipeSearchResultRepository;
+    private final IngredientRepository mIngredientRepository;
+    private final RecipeSearchResultRepository mRecipeSearchResultRepository;
 
     // TODO: Get rid of Application dependency for testability.
     public GetRecipeSearchResultsUseCase(Application application) {
@@ -26,7 +26,7 @@ public class GetRecipeSearchResultsUseCase {
     public LiveData<List<Recipe>> invoke() {
         MediatorLiveData<List<Recipe>> recipeSearchResultsLiveData = new MediatorLiveData<>();
         recipeSearchResultsLiveData.addSource(
-                mIngredientRepository.getIngredients(),
+                mIngredientRepository.getSelectedIngredients(),
                 ingredients -> {
                     if (ingredients != null) {
                         LiveData<List<Recipe>> recipeSearchResults =

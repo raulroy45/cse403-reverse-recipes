@@ -31,19 +31,25 @@ public class GetCategorizedIngredientsUseCase {
     }
 
     public LiveData<List<Pair<String, List<Ingredient>>>> invoke(boolean onlySelected) {
+        // Determine which source to use depending on whether caller only wants selected ingredients.
+        LiveData<List<Ingredient>> ingredientsLiveData;
+        if (onlySelected) {
+            ingredientsLiveData = mIngredientRepository.getSelectedIngredients();
+        } else {
+            ingredientsLiveData = mIngredientRepository.getIngredients();
+        }
+
         MediatorLiveData<List<Pair<String, List<Ingredient>>>> categorizedIngredientsLiveData = new MediatorLiveData<>();
         categorizedIngredientsLiveData.addSource(
-                mIngredientRepository.getIngredients(),
+                ingredientsLiveData,
                 ingredients -> {
                     if (ingredients != null) {
                         Map<String, List<Ingredient>> ingredientCategoryToIngredientMap = new HashMap<>();
                         for (Ingredient ingredient : ingredients) {
-                            if (!onlySelected || ingredient.isSelected()) {
-                                if (!ingredientCategoryToIngredientMap.containsKey(ingredient.getCategory())) {
-                                    ingredientCategoryToIngredientMap.put(ingredient.getCategory(), new ArrayList<>());
-                                }
-                                ingredientCategoryToIngredientMap.get(ingredient.getCategory()).add(ingredient);
+                            if (!ingredientCategoryToIngredientMap.containsKey(ingredient.getCategory())) {
+                                ingredientCategoryToIngredientMap.put(ingredient.getCategory(), new ArrayList<>());
                             }
+                            ingredientCategoryToIngredientMap.get(ingredient.getCategory()).add(ingredient);
                         }
 
                         List<Pair<String, List<Ingredient>>> categorizedIngredients = new ArrayList<>();
