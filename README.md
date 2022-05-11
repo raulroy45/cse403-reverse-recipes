@@ -1,21 +1,27 @@
-# cse403-reverse-recipes
+# CSE 403 - Reverse Recipes
 
-Project Idea: 
+## Project Idea: 
 
 We aim to create an android app that allows users to select ingredients they have lying around the house and look through recipes that match up with the ingredients they inputed. We also aim to program the app to suggest alternative ingredients for the user if they don't have an ingredient for a recipe. 
 
 
-Navigating the Repo:
+## Navigating the Repo:
 
-Our repository includes folders for the server side of the app along with the frontend (App) side of the application. There is also a status reports folder that contains weekly status updates.
+Our repository includes folders for the server (hosted on Azure) side in <code>./server/</code> along with the frontend (mobile application) side in <code>./app/</code>. There is also a <code>./reports/</code> folder that contains weekly status updates.
 
 
-Tools:
-We have hosted our SQL database on Microsoft Azure, with the server name <code>reverserecipes.database.windows.net</code>.
+## Tools:
+We use Java and Android Studio to create the frontend for our application and we used Python and SQL along with the services Azure SQL Database, Azure App Service to create the backend for our application. The server is hosted on <code>http://reverserecipes.azurewebsites.net</code> and is able to serve API requests. More details on all the served endpoints and how to use them can be found in <code>server/README.md</code>.
 
-Setup:
-To be able to develop on the server side, you need to download conda. Instructions can be found here: https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html
+## Setup and Testing:
 
-First of all, you need to run <code>conda env create -f environment.yml</code> from the server/ folder. Now you have required packages to be able to develop. You can activate the conda environment by typing <code>conda activate rrenv</code> and deactivate it when done using by <code>conda deactivate</code>.
+### Server-side:
+- ### Setup
+    1. Obtain conda by installing Miniconda or Anaconda. Details on installation can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
+    2. On your Anaconda Prompt (on Windows) or your terminal (on Linux, MacOX) navigate to the folder </code>server/</code> within our repository and run the command <code>conda env create -f environment.yml</code>.
+    3. Now you can activate your conda environment required to run the backend server code by running the command </code>conda activate rrenv</code> and deactivate the environment by running the command <code>conda deactivate</code>.
+- ### Testing
+    1. While running the <code>rrenv</code> environment, run the command <code>pytest</code>. This will run all the tests in the <code>server/tests/</code> folder.
 
-Furthermore, we used Azure SQL database to store required data. To edit the database, you would need some specific login credientials. Contact the repository's owner for more details.
+## Deploy and Run
+1. Push your changes to the main branch of the repository, which will trigger our CI/CD pipeline to test and deploy the changes to our hosted server.

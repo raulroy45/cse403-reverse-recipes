@@ -8,3 +8,9 @@ dependencies:
   - sqlite=3.38.2
   - pip:
     - recipe-scrapers==13.31.0
+    - Flask==2.1.1
+    - Flask-RESTful==0.3.9
+    - pyodbc==4.0.32
+    - Werkzeug==2.1.1
+    - pytest==7.1.2
+    - selenium==4.1.3

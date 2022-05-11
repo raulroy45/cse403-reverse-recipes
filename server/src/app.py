@@ -82,6 +82,7 @@ def query_recipe_info(rid):
 
 # Helper method to format JSON containing one recipe information
 def format_recipe_json(data):
+    ingredients = data[5].split("\n")
     instructions = data[6].split("\n")
 
     return {
@@ -90,7 +91,7 @@ def format_recipe_json(data):
                 "title": "" if data[2] is None else data[2],
                 "total_time": 0 if data[3] is None else data[3],
                 "yields": 0 if data[4] is None else data[4],
-                "ingredients": data[5],
+                "ingredients": ingredients,
                 "instructions": instructions,
                 "image": "" if data[7] is None else data[7],
             }
