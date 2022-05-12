@@ -81,8 +81,7 @@ public class RecipeSearchFragment
                 .get(recipePosition);
         Uri clickedRecipeUri = Uri.parse(clickedRecipe.getLink());
         Intent intent = new Intent(Intent.ACTION_VIEW, clickedRecipeUri);
-        if (intent.resolveActivity(requireActivity().getPackageManager()) != null) {
-            startActivity(intent);
-        }
+        // TODO: Handle case where no browser exists.
+        startActivity(intent);
     }
 }
