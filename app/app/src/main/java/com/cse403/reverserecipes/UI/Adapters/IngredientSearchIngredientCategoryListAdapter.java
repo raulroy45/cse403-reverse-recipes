@@ -13,7 +13,9 @@ import com.cse403.reverserecipes.UI.Entities.ViewIngredientCategory;
 
 import java.util.List;
 
-public class IngredientSearchIngredientCategoryListAdapter extends ListAdapter<Pair<String, List<Ingredient>>, IngredientSearchIngredientCategoryListViewHolder> {
+// TODO: Promote code reuse by reconciling with PantryIngredientCategoryListAdapter.
+public class IngredientSearchIngredientCategoryListAdapter
+        extends ListAdapter<Pair<String, List<Ingredient>>, IngredientSearchIngredientCategoryListViewHolder> {
     private final OnClickListener mOnClickListener;
 
     public IngredientSearchIngredientCategoryListAdapter(

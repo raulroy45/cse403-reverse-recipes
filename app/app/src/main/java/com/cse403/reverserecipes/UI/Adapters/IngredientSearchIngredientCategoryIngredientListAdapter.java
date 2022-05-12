@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import com.cse403.reverserecipes.UI.ViewHolders.IngredientSearchIngredientCategoryIngredientListViewHolder;
 import com.cse403.reverserecipes.UI.Entities.Ingredient;
 
+// TODO: Promote code reuse by reconciling with PantryIngredientCategoryIngredientListAdapter.
 public class IngredientSearchIngredientCategoryIngredientListAdapter
         extends ListAdapter<Ingredient, IngredientSearchIngredientCategoryIngredientListViewHolder> {
     private final OnClickListener mOnClickListener;

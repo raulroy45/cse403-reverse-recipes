@@ -13,13 +13,17 @@ import java.util.List;
 
 public class PantryViewModel extends AndroidViewModel {
 
-    private final LiveData<List<Pair<String, List<Ingredient>>>> mViewIngredientCategories;
+    private final LiveData<List<Pair<String, List<Ingredient>>>> mIngredientCategories;
 
     // TODO: Address code duplication with RecipeSearchViewModel.
     public PantryViewModel(Application application) {
         super(application);
 
         GetCategorizedIngredientsUseCase useCase = new GetCategorizedIngredientsUseCase(application);
-        mViewIngredientCategories = useCase.invoke(true);
+        mIngredientCategories = useCase.invoke(true);
+    }
+
+    public LiveData<List<Pair<String, List<Ingredient>>>> getIngredientCategories() {
+        return mIngredientCategories;
     }
 }

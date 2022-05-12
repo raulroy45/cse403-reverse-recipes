@@ -16,6 +16,7 @@ import com.cse403.reverserecipes.UI.Adapters.IngredientSearchIngredientCategoryI
 import com.cse403.reverserecipes.R;
 import com.cse403.reverserecipes.UI.Entities.Ingredient;
 
+// TODO: Promote code reuse by reconciling with PantryIngredientCategoryIngredientListViewHolder.
 public class IngredientSearchIngredientCategoryIngredientListViewHolder
         extends RecyclerView.ViewHolder
         implements View.OnClickListener {

@@ -48,6 +48,8 @@ public class IngredientSearchFragment
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_ingredient_search, container, false);
 
+        // Set up ingredient list.
+        // TODO: Promote code reuse by reconciling with same in PantryFragment.
         RecyclerView ingredientCategoryListView = v.findViewById(R.id.ingredient_search_ingredient_category_list);
         final IngredientSearchIngredientCategoryListAdapter adapter =
                 new IngredientSearchIngredientCategoryListAdapter(
@@ -58,9 +60,9 @@ public class IngredientSearchFragment
         ingredientCategoryListView.addItemDecoration(itemDecoration);
         ingredientCategoryListView.setItemAnimator(null);
 
+        // Set up ViewModel.
         mIngredientSearchViewModel = new ViewModelProvider(requireActivity()).get(IngredientSearchViewModel.class);
-
-        mIngredientSearchViewModel.getViewIngredientCategories().observe(requireActivity(), adapter::submitList);
+        mIngredientSearchViewModel.getIngredientCategories().observe(requireActivity(), adapter::submitList);
 
         return v;
     }
@@ -68,7 +70,7 @@ public class IngredientSearchFragment
     @Override
     public void onClick(int categoryPosition, int ingredientPosition) {
         Ingredient clickedIngredient = mIngredientSearchViewModel
-                .getViewIngredientCategories()
+                .getIngredientCategories()
                 .getValue()
                 .get(categoryPosition)
                 .second

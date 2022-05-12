@@ -14,9 +14,9 @@ import java.util.List;
 
 // TODO: Remove need for context (AndroidViewModel -> ViewModel).
 public class IngredientSearchViewModel extends AndroidViewModel {
-    // TODO: Replace this with a domain layer use case.
+    // TODO: Replace this (for toggling selection) with a domain layer use case.
     private final IngredientRepository mIngredientRepository;
-    private final LiveData<List<Pair<String, List<Ingredient>>>> mViewIngredientCategories;
+    private final LiveData<List<Pair<String, List<Ingredient>>>> mIngredientCategories;
 
     // TODO: Address code duplication with PantryViewModel.
     public IngredientSearchViewModel(Application application) {
@@ -24,11 +24,11 @@ public class IngredientSearchViewModel extends AndroidViewModel {
 
         mIngredientRepository = new IngredientRepository(application);
         GetCategorizedIngredientsUseCase useCase = new GetCategorizedIngredientsUseCase(application);
-        mViewIngredientCategories = useCase.invoke(false);
+        mIngredientCategories = useCase.invoke(false);
     }
 
-    public LiveData<List<Pair<String, List<Ingredient>>>> getViewIngredientCategories() {
-        return mViewIngredientCategories;
+    public LiveData<List<Pair<String, List<Ingredient>>>> getIngredientCategories() {
+        return mIngredientCategories;
     }
 
     public void toggleSelection(Ingredient ingredient) {
