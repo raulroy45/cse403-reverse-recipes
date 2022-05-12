@@ -1,6 +1,10 @@
 import pyodbc
 from flask import Flask, request
+from flasgger import Swagger, swag_from
+from src.docs.swagger import template
+
 app = Flask(__name__)
+swagger = Swagger(app, template=template)
 
 # Sets up the database connection and returns the connection
 def setup_db():
@@ -17,6 +21,7 @@ db = setup_db()
 
 # recipe?get=all
 @app.route("/recipes/", methods=["POST"])
+@swag_from("./docs/recipes/recipes.yml")
 def get_recipes():
     body = request.get_json()
     ingredients = body["ingredients"]
@@ -60,6 +65,7 @@ def get_recipes():
     return {"recipes" : recipes}, 200
 
 @app.route("/ingredients/", methods=["GET"])
+@swag_from("./docs/ingredients/ingredients.yml")
 def get_ingredients():
     filter = request.args.get("filter", type=str)
     cursor = db.cursor()
@@ -77,6 +83,7 @@ def get_ingredients():
         return format_ingredients_json(rows), 200
 
 @app.route("/recipes/<rid>/", methods=["GET"])
+@swag_from("./docs/recipes/recipes_rid.yml")
 def get_recipe_info(rid):
     result = query_recipe_info(rid)
 
