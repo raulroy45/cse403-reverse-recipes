@@ -24,4 +24,12 @@ We use Java and Android Studio to create the frontend for our application and we
     1. While running the <code>rrenv</code> environment, run the command <code>pytest</code>. This will run all the tests in the <code>server/tests/</code> folder.
 
 ## Deploy and Run
-1. Push your changes to the main branch of the repository, which will trigger our CI/CD pipeline to test and deploy the changes to our hosted server.
+1. After making your changes, you can make a pull request and push your changes to the main branch of the repository, which will trigger our CI/CD pipeline to test and deploy the changes to our hosted server.
+
+## Operation Use Cases for the Beta Release:
+- Users can go to their pantry and search for ingredients by scrolling through an ingredient list in the search section.
+- Users can update their pantry by adding and removing ingredients by clicking (or re-clicking) on an ingredient name in the search section.
+- Users can view all the added ingredients in the Pantry section.
+- Users can look for the recipes most suitable for the ingredients that they have in their pantry by clicking the *Find Recipes* button in the Pantry section.
+- Recipes outputed to the users come in order - with the recipes that match the most ingredients to make that recipe is outputed first, the next most is outputed second, and so on.
+- Users can click on a recipe which will take them to the website containing the recipe.
