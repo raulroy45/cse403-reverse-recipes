@@ -19,7 +19,7 @@ We use Java and Android Studio to create the frontend for our application and we
 - ### Setup
     1. Obtain conda by installing Miniconda or Anaconda. Details on installation can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
     2. On your Anaconda Prompt (on Windows) or your terminal (on Linux, MacOX) navigate to the folder </code>server/</code> within our repository and run the command <code>conda env create -f environment.yml</code>.
-    3. Now you can activate your conda environment required to run the backend server code by running the command </code>conda activate rrenv</code> and deactivate the environment by running the command <code>conda deactivate</code>.
+    3. Now you can activate your conda environment required to run the backend server code by running the command <code>conda activate rrenv</code> and deactivate the environment by running the command <code>conda deactivate</code>.
 - ### Testing
     1. While running the <code>rrenv</code> environment, run the command <code>pytest</code>. This will run all the tests in the <code>server/tests/</code> folder.
 
