@@ -18,7 +18,7 @@ We use Java and Android Studio to create the frontend for our application and we
 ### Application-side:
 - ### Setup
     1. Install Android Studio. Details on installation can be found [here](https://developer.android.com/studio).
-	2. Open Android Studio and click the button labeled <code>Open</code>. Navigate to the <code>app/</code> folder within our repository and click the button labeled <code>OK</code>.
+	2. Open Android Studio and click the button labeled <code>Open</code>. Open the <code>app/</code> folder within our repository and click the button labeled <code>OK</code>.
 	3. Create a virtual device using the instructions [here](https://developer.android.com/studio/run/managing-avds).
 - ### Testing
     1. On your terminal, navigate to the folder <code>app/</code> within our repository and run the command <code>./gradlew test</code>. This runs all the application unit tests.
