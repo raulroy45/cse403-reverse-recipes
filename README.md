@@ -16,8 +16,10 @@ We use Java and Android Studio to create the frontend for our application and we
 ## Setup and Testing:
 
 ### Application-side:
-- ### Build (with Gradle)
-    1. On your terminal, navigate to the folder <code>app/</code> within our repository and run the command <code>./gradlew build</code>. This outputs <code>app-release-unsigned.apk</code> in the folder <code>app/app/build/outputs/apk/release</code> and <code>app-debug.apk</code> in the folder <code>app/app/build/outputs/apk/debug</code>.
+- ### Setup
+    1. Obtain Android Studio. Details on installation can be found [here](https://developer.android.com/studio).
+	2. Open Android Studio and click the button labeled <code>Open</code>. Navigate to the folder <code>app/</code> within our repository and clicke the button labeled <code>OK</code>.
+	3. Create a virtual device using the instructions [here](https://developer.android.com/studio/run/managing-avds).
 - ### Testing
     1. On your terminal, navigate to the folder <code>app/</code> within our repository and run the command <code>./gradlew test</code>. This runs all the application unit tests.
 
@@ -30,6 +32,14 @@ We use Java and Android Studio to create the frontend for our application and we
     1. While running the <code>rrenv</code> environment, run the command <code>pytest</code>. This will run all the tests in the <code>server/tests/</code> folder.
 
 ## Deploy and Run
+### Application-side:
+- ### Build and Run (with Gradle and an Android device)
+    1. On your terminal, navigate to the folder <code>app/</code> within our repository and run the command <code>./gradlew build</code>. This outputs <code>app-release-unsigned.apk</code> in the folder <code>app/app/build/outputs/apk/release</code> and <code>app-debug.apk</code> in the folder <code>app/app/build/outputs/apk/debug</code>.
+	2. Follow the instructions [here](https://www.thecustomdroid.com/how-to-install-apk-on-android/) to install the desired APK on your Android device.
+- ### Build and Run (with Android Studio)
+    1. In Android Studio with our project open, press the play button labeled <code>Run</code>.
+
+### Server-side:
 1. After making your changes, you can make a pull request and push your changes to the main branch of the repository, which will trigger our CI/CD pipeline to test and deploy the changes to our hosted server.
 
 ## Operation Use Cases for the Beta Release:
