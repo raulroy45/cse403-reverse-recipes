@@ -25,4 +25,3 @@ parameters:
 responses:
   200:
     description: Recipes based on provided list of ingredients found.
-            
