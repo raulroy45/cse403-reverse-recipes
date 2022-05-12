@@ -10,19 +10,28 @@ import com.cse403.reverserecipes.UI.Entities.Recipe;
 import com.cse403.reverserecipes.UI.ViewHolders.RecipeSearchRecipeListViewHolder;
 
 public class RecipeSearchRecipeListAdapter extends ListAdapter<Recipe, RecipeSearchRecipeListViewHolder> {
-    public RecipeSearchRecipeListAdapter(@NonNull DiffUtil.ItemCallback<Recipe> diffCallback) {
+
+    private OnClickListener mOnClickListener;
+
+    public RecipeSearchRecipeListAdapter(@NonNull DiffUtil.ItemCallback<Recipe> diffCallback, OnClickListener onClickListener) {
         super(diffCallback);
+
+        mOnClickListener = onClickListener;
     }
 
     @NonNull
     @Override
     public RecipeSearchRecipeListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return RecipeSearchRecipeListViewHolder.create(parent);
+        return RecipeSearchRecipeListViewHolder.create(parent, mOnClickListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecipeSearchRecipeListViewHolder holder, int position) {
         Recipe current = getItem(position);
         holder.bind(current);
+    }
+
+    public interface OnClickListener {
+        void onClick(int recipePosition);
     }
 }
