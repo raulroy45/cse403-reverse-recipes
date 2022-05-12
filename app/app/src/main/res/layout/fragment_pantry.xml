@@ -50,6 +50,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pantry_ingredient_category_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="38dp"

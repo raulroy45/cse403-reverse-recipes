@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="103dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_rounded_button"
+        app:tint="#C3D1CE"
+        app:tintMode="add" />
+    <ImageView
+        android:id="@+id/recipe_list_image"
+        android:layout_width="84dp"
+        android:layout_height="78dp"
+        android:src="@drawable/ic_android"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/recipe_list_item_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="19dp"
+        android:layout_toEndOf="@id/recipe_list_image"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/find_recipes"
+        android:textAllCaps="false"
+        android:textColor="#657280"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/recipe_list_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recipe_list_item_time"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="19dp"
+        android:layout_toEndOf="@id/recipe_list_image"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/find_recipes"
+        android:textAllCaps="false"
+        android:textColor="#00152A"
+        android:textSize="16sp" />
+</RelativeLayout>

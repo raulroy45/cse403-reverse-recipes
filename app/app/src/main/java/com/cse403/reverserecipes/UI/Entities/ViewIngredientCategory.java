@@ -6,9 +6,9 @@ import java.util.List;
 
 public class ViewIngredientCategory {
     private IngredientCategory mIngredientCategory;
-    private List<ViewIngredient> mIngredientList;
+    private List<Ingredient> mIngredientList;
 
-    public ViewIngredientCategory(IngredientCategory ingredientCategory, List<ViewIngredient> ingredientList) {
+    public ViewIngredientCategory(IngredientCategory ingredientCategory, List<Ingredient> ingredientList) {
         mIngredientCategory = ingredientCategory;
         mIngredientList = ingredientList;
     }
@@ -17,7 +17,7 @@ public class ViewIngredientCategory {
         return mIngredientCategory;
     }
 
-    public List<ViewIngredient> getIngredientList() {
+    public List<Ingredient> getIngredientList() {
         return mIngredientList;
     }
 
