@@ -17,6 +17,8 @@ import com.cse403.reverserecipes.R;
 import com.cse403.reverserecipes.UI.Adapters.RecipeSearchRecipeListAdapter;
 import com.cse403.reverserecipes.UI.Entities.Recipe;
 import com.cse403.reverserecipes.UI.Entities.RecipeDiff;
+import com.cse403.reverserecipes.UI.ItemDecorations.IngredientCategoryListItemDecoration;
+import com.cse403.reverserecipes.UI.ItemDecorations.RecipeListItemDecoration;
 import com.cse403.reverserecipes.UI.ViewModels.RecipeSearchViewModel;
 
 /**
@@ -58,10 +60,12 @@ public class RecipeSearchFragment
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_recipe_search, container, false);
 
-        RecyclerView resultRecipeListView = v.findViewById(R.id.recipe_search_result_recipe_list);
+        RecyclerView recipeListView = v.findViewById(R.id.recipe_search_result_recipe_list);
         final RecipeSearchRecipeListAdapter adapter = new RecipeSearchRecipeListAdapter(new RecipeDiff(), this);
-        resultRecipeListView.setAdapter(adapter);
-        resultRecipeListView.setLayoutManager(new LinearLayoutManager(requireActivity()));
+        recipeListView.setAdapter(adapter);
+        recipeListView.setLayoutManager(new LinearLayoutManager(requireActivity()));
+        RecyclerView.ItemDecoration itemDecoration = new RecipeListItemDecoration(requireActivity());
+        recipeListView.addItemDecoration(itemDecoration);
 
         mRecipeSearchViewModel = new ViewModelProvider(requireActivity()).get(RecipeSearchViewModel.class);
         mRecipeSearchViewModel.getResultRecipes().observe(requireActivity(), adapter::submitList);

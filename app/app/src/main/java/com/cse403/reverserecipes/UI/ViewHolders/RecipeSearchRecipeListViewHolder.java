@@ -17,27 +17,30 @@ public class RecipeSearchRecipeListViewHolder
         extends RecyclerView.ViewHolder
         implements View.OnClickListener {
 
-    private final TextView mListItemText;
+    private final TextView mListItemTime;
+    private final TextView mListItemTitle;
     private final RecipeSearchRecipeListAdapter.OnClickListener mOnClickListener;
 
     public RecipeSearchRecipeListViewHolder(@NonNull View itemView, RecipeSearchRecipeListAdapter.OnClickListener onClickListener) {
         super(itemView);
 
-        mListItemText = itemView.findViewById(R.id.ingredient_category_ingredient_list_item_text);
+        mListItemTime = itemView.findViewById(R.id.recipe_list_item_time);
+        mListItemTitle = itemView.findViewById(R.id.recipe_list_item_title);
         mOnClickListener = onClickListener;
 
         itemView.setOnClickListener(this);
     }
 
     public void bind(Recipe recipe) {
-        mListItemText.setText(recipe.getTitle());
+        mListItemTitle.setText(recipe.getTitle());
+        mListItemTime.setText(Integer.toString(recipe.getTotalTime()));
     }
 
     public static RecipeSearchRecipeListViewHolder create(
             ViewGroup parent,
             RecipeSearchRecipeListAdapter.OnClickListener onClickListener) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_ingredient_category_ingredient_list, parent, false);
+                .inflate(R.layout.list_item_recipe_list, parent, false);
         return new RecipeSearchRecipeListViewHolder(view, onClickListener);
     }
 
