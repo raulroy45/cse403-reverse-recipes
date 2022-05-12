@@ -15,4 +15,7 @@
     <string name="search">Search</string>
     <string name="find_recipes">Find Recipes</string>
     <string name="saved_page_header">Saved</string>
+    <string name="saved">SAVED</string>
+    <string name="pantry">PANTRY</string>
+    <string name="account">ACCOUNT</string>
 </resources>

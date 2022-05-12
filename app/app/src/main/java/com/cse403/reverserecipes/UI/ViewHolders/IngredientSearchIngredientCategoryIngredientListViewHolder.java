@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cse403.reverserecipes.UI.Adapters.IngredientSearchIngredientCategoryIngredientListAdapter;
 import com.cse403.reverserecipes.R;
-import com.cse403.reverserecipes.UI.Entities.ViewIngredient;
-import com.google.android.flexbox.FlexboxLayoutManager;
+import com.cse403.reverserecipes.UI.Entities.Ingredient;
 
+// TODO: Promote code reuse by reconciling with PantryIngredientCategoryIngredientListViewHolder.
 public class IngredientSearchIngredientCategoryIngredientListViewHolder
         extends RecyclerView.ViewHolder
         implements View.OnClickListener {
@@ -44,11 +44,11 @@ public class IngredientSearchIngredientCategoryIngredientListViewHolder
     }
 
     // TODO: Use something less esoteric for setting background colors.
-    public void bind(ViewIngredient viewIngredient) {
-        mListItemText.setText(viewIngredient.getName());
+    public void bind(Ingredient ingredient) {
+        mListItemText.setText(ingredient.getName());
         Drawable background = mListItemTextBackground;
         int listItemTextColor;
-        if (viewIngredient.isSelected()) {
+        if (ingredient.isSelected()) {
             background.setColorFilter(new PorterDuffColorFilter(mColorSelected, PorterDuff.Mode.SRC_IN));
             listItemTextColor = mColorOnSelected;
         } else {

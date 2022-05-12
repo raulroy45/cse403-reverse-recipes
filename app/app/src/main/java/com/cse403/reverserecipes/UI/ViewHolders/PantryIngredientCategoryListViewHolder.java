@@ -10,9 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cse403.reverserecipes.R;
 import com.cse403.reverserecipes.UI.Adapters.IngredientSearchIngredientCategoryIngredientListAdapter;
 import com.cse403.reverserecipes.UI.Adapters.IngredientSearchIngredientCategoryListAdapter;
-import com.cse403.reverserecipes.R;
+import com.cse403.reverserecipes.UI.Adapters.PantryIngredientCategoryIngredientListAdapter;
 import com.cse403.reverserecipes.UI.Entities.Ingredient;
 import com.cse403.reverserecipes.UI.Entities.IngredientDiff;
 import com.google.android.flexbox.AlignItems;
@@ -21,22 +22,17 @@ import com.google.android.flexbox.FlexboxLayoutManager;
 
 import java.util.List;
 
-// TODO: Promote code reuse by reconciling with PantryIngredientCategoryListViewHolder.
-public class IngredientSearchIngredientCategoryListViewHolder
-        extends RecyclerView.ViewHolder
-        implements IngredientSearchIngredientCategoryIngredientListAdapter.OnClickListener {
+// TODO: Promote code reuse by reconciling with IngredientSearchIngredientCategoryListViewHolder.
+public class PantryIngredientCategoryListViewHolder extends RecyclerView.ViewHolder {
     private final TextView mListItemTitle;
-    private final IngredientSearchIngredientCategoryIngredientListAdapter mListItemListAdapter;
-    private final IngredientSearchIngredientCategoryListAdapter.OnClickListener mOnClickListener;
+    private final PantryIngredientCategoryIngredientListAdapter mListItemListAdapter;
 
-    public IngredientSearchIngredientCategoryListViewHolder(
-            @NonNull View itemView, IngredientSearchIngredientCategoryListAdapter.OnClickListener onClickListener) {
+    public PantryIngredientCategoryListViewHolder(@NonNull View itemView) {
         super(itemView);
         mListItemTitle = itemView.findViewById(R.id.ingredient_category_list_item_title);
         RecyclerView listItemList = itemView.findViewById(R.id.ingredient_category_list_item_list);
         mListItemListAdapter =
-                new IngredientSearchIngredientCategoryIngredientListAdapter(
-                        new IngredientDiff(), this);
+                new PantryIngredientCategoryIngredientListAdapter(new IngredientDiff());
         listItemList.setAdapter(mListItemListAdapter);
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(itemView.getContext());
         layoutManager.setAlignItems(AlignItems.FLEX_START);
@@ -47,12 +43,6 @@ public class IngredientSearchIngredientCategoryListViewHolder
                 itemView.getContext(), R.drawable.ingredient_category_ingredient_list_divider));
         listItemList.addItemDecoration(itemDecoration);
         listItemList.setItemAnimator(null);
-        mOnClickListener = onClickListener;
-
-        // TODO: Change this; it prevents the list from briefly showing old contents when
-        //  selections are updated, causing items to jump around the screen, but also wastes
-        //  resources.
-        setIsRecyclable(false);
     }
 
     public void bind(Pair<String, List<Ingredient>> viewIngredientCategory) {
@@ -60,15 +50,9 @@ public class IngredientSearchIngredientCategoryListViewHolder
         mListItemListAdapter.submitList(viewIngredientCategory.second);
     }
 
-    public static IngredientSearchIngredientCategoryListViewHolder create(
-            ViewGroup parent, IngredientSearchIngredientCategoryListAdapter.OnClickListener onClickListener) {
+    public static PantryIngredientCategoryListViewHolder create(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_ingredient_category_list, parent, false);
-        return new IngredientSearchIngredientCategoryListViewHolder(view, onClickListener);
-    }
-
-    @Override
-    public void onClick(int ingredientPosition) {
-        mOnClickListener.onClick(getAdapterPosition(), ingredientPosition);
+        return new PantryIngredientCategoryListViewHolder(view);
     }
 }

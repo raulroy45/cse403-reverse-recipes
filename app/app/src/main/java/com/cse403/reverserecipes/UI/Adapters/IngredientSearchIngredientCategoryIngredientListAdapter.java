@@ -7,14 +7,15 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 import com.cse403.reverserecipes.UI.ViewHolders.IngredientSearchIngredientCategoryIngredientListViewHolder;
-import com.cse403.reverserecipes.UI.Entities.ViewIngredient;
+import com.cse403.reverserecipes.UI.Entities.Ingredient;
 
+// TODO: Promote code reuse by reconciling with PantryIngredientCategoryIngredientListAdapter.
 public class IngredientSearchIngredientCategoryIngredientListAdapter
-        extends ListAdapter<ViewIngredient, IngredientSearchIngredientCategoryIngredientListViewHolder> {
+        extends ListAdapter<Ingredient, IngredientSearchIngredientCategoryIngredientListViewHolder> {
     private final OnClickListener mOnClickListener;
 
     public IngredientSearchIngredientCategoryIngredientListAdapter(
-            @NonNull DiffUtil.ItemCallback<ViewIngredient> diffCallback,
+            @NonNull DiffUtil.ItemCallback<Ingredient> diffCallback,
             OnClickListener onClickListener) {
         super(diffCallback);
         mOnClickListener = onClickListener;
@@ -28,7 +29,7 @@ public class IngredientSearchIngredientCategoryIngredientListAdapter
 
     @Override
     public void onBindViewHolder(@NonNull IngredientSearchIngredientCategoryIngredientListViewHolder holder, int position) {
-        ViewIngredient current = getItem(position);
+        Ingredient current = getItem(position);
         holder.bind(current);
     }
 
