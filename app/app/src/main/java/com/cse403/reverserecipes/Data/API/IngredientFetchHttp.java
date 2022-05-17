@@ -20,6 +20,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class IngredientFetchHttp implements IngredientFetchApi {
 
     private static final String ENDPOINT_URL = "https://reverserecipes.azurewebsites.net/ingredients/?filter=used";
+    private static final int CONNECT_TIMEOUT = 10000;
     
     @Override
     public List<DataIngredient> fetchIngredients() {
@@ -30,6 +31,9 @@ public class IngredientFetchHttp implements IngredientFetchApi {
             URL url = new URL(ENDPOINT_URL);
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
             try {
+                urlConnection.setConnectTimeout(CONNECT_TIMEOUT);
+                urlConnection.connect();
+
                 // Fetch the data and collect the response body.
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 BufferedReader reader = new BufferedReader(new InputStreamReader(in));
