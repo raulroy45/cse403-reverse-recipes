@@ -106,7 +106,7 @@ Unit tests must be written in JUnit and contained within a sequence of packages 
 - The names of test methods should clearly describe what functionality is being tested.
 
 ##### UI/Integration tests:
-ActivityName_test
+- ActivityName_test
  
 ### Server:
 1. Create a new test file in the folder <code>tests/</code>. 
