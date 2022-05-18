@@ -54,6 +54,8 @@ The source code for our entire project is located at https://github.com/raulroy4
     ### Linux:
 
     [Instructions](https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver15#17)
+
+    **NOTE :** If for any reason you are unable to download Microsoft ODBC Driver 17 for SQL Server onto your machine, you can download any other ODBC drivers (eg. unixodbc on MacOS/Linux), but you would not be able to run some tests locally.
   
   
 2. Obtain conda by installing Miniconda or Anaconda. Details on installation can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
