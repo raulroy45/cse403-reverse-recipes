@@ -1,5 +1,7 @@
 package com.cse403.reverserecipes.UI.Fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,11 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cse403.reverserecipes.R;
-import com.cse403.reverserecipes.UI.Adapters.IngredientSearchIngredientCategoryListAdapter;
-import com.cse403.reverserecipes.UI.Adapters.RecipeSearchResultRecipeListAdapter;
-import com.cse403.reverserecipes.UI.Entities.ResultRecipeDiff;
-import com.cse403.reverserecipes.UI.Entities.ViewIngredientCategoryDiff;
-import com.cse403.reverserecipes.UI.ViewModels.IngredientSearchViewModel;
+import com.cse403.reverserecipes.UI.Adapters.RecipeSearchRecipeListAdapter;
+import com.cse403.reverserecipes.UI.Entities.Recipe;
+import com.cse403.reverserecipes.UI.Entities.RecipeDiff;
+import com.cse403.reverserecipes.UI.ItemDecorations.IngredientCategoryListItemDecoration;
+import com.cse403.reverserecipes.UI.ItemDecorations.RecipeListItemDecoration;
 import com.cse403.reverserecipes.UI.ViewModels.RecipeSearchViewModel;
 
 /**
@@ -24,7 +26,9 @@ import com.cse403.reverserecipes.UI.ViewModels.RecipeSearchViewModel;
  * Use the {@link RecipeSearchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RecipeSearchFragment extends Fragment {
+public class RecipeSearchFragment
+        extends Fragment
+        implements RecipeSearchRecipeListAdapter.OnClickListener {
 
     private RecipeSearchViewModel mRecipeSearchViewModel;
 
@@ -56,15 +60,28 @@ public class RecipeSearchFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_recipe_search, container, false);
 
-        RecyclerView resultRecipeListView = v.findViewById(R.id.recipe_search_result_recipe_list);
-        final RecipeSearchResultRecipeListAdapter adapter = new RecipeSearchResultRecipeListAdapter(new ResultRecipeDiff());
-        resultRecipeListView.setAdapter(adapter);
-        resultRecipeListView.setLayoutManager(new LinearLayoutManager(requireActivity()));
+        RecyclerView recipeListView = v.findViewById(R.id.recipe_search_result_recipe_list);
+        final RecipeSearchRecipeListAdapter adapter = new RecipeSearchRecipeListAdapter(new RecipeDiff(), this);
+        recipeListView.setAdapter(adapter);
+        recipeListView.setLayoutManager(new LinearLayoutManager(requireActivity()));
+        RecyclerView.ItemDecoration itemDecoration = new RecipeListItemDecoration(requireActivity());
+        recipeListView.addItemDecoration(itemDecoration);
 
         mRecipeSearchViewModel = new ViewModelProvider(requireActivity()).get(RecipeSearchViewModel.class);
-
         mRecipeSearchViewModel.getResultRecipes().observe(requireActivity(), adapter::submitList);
 
         return v;
+    }
+
+    @Override
+    public void onClick(int recipePosition) {
+        Recipe clickedRecipe = mRecipeSearchViewModel
+                .getResultRecipes()
+                .getValue()
+                .get(recipePosition);
+        Uri clickedRecipeUri = Uri.parse(clickedRecipe.getLink());
+        Intent intent = new Intent(Intent.ACTION_VIEW, clickedRecipeUri);
+        // TODO: Handle case where no browser exists.
+        startActivity(intent);
     }
 }

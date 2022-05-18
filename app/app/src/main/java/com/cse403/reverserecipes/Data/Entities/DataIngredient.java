@@ -1,5 +1,6 @@
 package com.cse403.reverserecipes.Data.Entities;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -7,32 +8,33 @@ import androidx.room.PrimaryKey;
 import com.cse403.reverserecipes.IngredientCategory;
 
 @Entity(tableName = "ingredient_table")
-public class Ingredient {
+public class DataIngredient {
     @PrimaryKey
-    @ColumnInfo(name = "id")
-    private final int mId;
-
+    @NonNull
     @ColumnInfo(name = "name")
     private final String mName;
 
     @ColumnInfo(name = "category")
-    private final IngredientCategory mCategory;
+    private final String mCategory;
 
-    public Ingredient(int id, String name, IngredientCategory category) {
-        mId = id;
+    @ColumnInfo(name = "selected")
+    private final boolean mSelected;
+
+    public DataIngredient(String name, String category, boolean selected) {
         mName = name;
         mCategory = category;
-    }
-
-    public int getId() {
-        return mId;
+        mSelected = selected;
     }
 
     public String getName() {
         return mName;
     }
 
-    public IngredientCategory getCategory() {
+    public String getCategory() {
         return mCategory;
+    }
+
+    public boolean isSelected() {
+        return mSelected;
     }
 }

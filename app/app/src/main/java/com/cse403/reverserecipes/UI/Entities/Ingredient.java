@@ -1,20 +1,22 @@
 package com.cse403.reverserecipes.UI.Entities;
 
-public class ViewIngredient {
-    private int mId;
+public class Ingredient {
     private String mName;
+    private String mCategory;
     private boolean mSelected;
 
-    public ViewIngredient(int id, String name, boolean selected) {
-        mId = id;
+    public Ingredient(String name, String category, boolean selected) {
         mName = name;
+        mCategory = category;
         mSelected = selected;
     }
 
-    public int getId() { return mId; }
-
     public String getName() {
         return mName;
+    }
+
+    public String getCategory() {
+        return mCategory;
     }
 
     public boolean isSelected() {
@@ -23,11 +25,11 @@ public class ViewIngredient {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof ViewIngredient) {
-            ViewIngredient other = (ViewIngredient) o;
+        if (o instanceof Ingredient) {
+            Ingredient other = (Ingredient) o;
             return
-                    this.mId == other.mId &&
                     this.mName.equals(other.mName) &&
+                    this.mCategory.equals(other.mCategory) &&
                     this.mSelected == other.mSelected;
         } else {
             return false;
