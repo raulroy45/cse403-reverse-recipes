@@ -10,27 +10,26 @@ The source code for our entire project is located at https://github.com/raulroy4
 
 ### App:
 #### Source files: 
-cse403-reverse-recipes/app/app/src/main/java/com
+- cse403-reverse-recipes/app/app/src/main/java/com
 
 #### Tests: 
-cse403-reverse-recipes/app/app/src/androidTest
+- cse403-reverse-recipes/app/app/src/androidTest
 
 #### Documentation: 
-cse403-reverse-recipes/README.md
+- cse403-reverse-recipes/README.md
 
 #### Data files:
-cse403-reverse-recipes/app/app/src/main/res
+- cse403-reverse-recipes/app/app/src/main/res
  
 ### Server:
 #### Source files:
-cse403-reverse-recipes/server/src
+- cse403-reverse-recipes/server/src
 
 #### Tests:
-cse403-reverse-recipes/server/tests
+- cse403-reverse-recipes/server/tests
 
 ### Documentation:
-cse403-reverse-recipes/server/src/docs
-
+- cse403-reverse-recipes/server/src/docs
 
 
 ## How to Build the Software:
@@ -42,23 +41,22 @@ cse403-reverse-recipes/server/src/docs
 ## Server:
 1. Make sure that you have an ODBC software installed on your system. We are using Microsoft ODBC Driver 17 for SQL Server. Installation instructions can be found below:
 
-### Windows:
+    ### Windows:
 
-  i. [(x64)](https://go.microsoft.com/fwlink/?linkid=2187214)
+    - [(x64)](https://go.microsoft.com/fwlink/?linkid=2187214)   
+    - [(x86)](https://go.microsoft.com/fwlink/?linkid=2187215)
+      
+    ### MacOS:
+
+    [Instructions](https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/install-microsoft-odbc-driver-sql-server-macos?view=sql-server-ver15#17)
+
+
+    ### Linux:
+
+    [Instructions](https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver15#17)
   
-  ii. [(x86)](https://go.microsoft.com/fwlink/?linkid=2187215)
   
-### MacOS:
-
-[Instructions](https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/install-microsoft-odbc-driver-sql-server-macos?view=sql-server-ver15#17)
-
-
-### Linux:
-
-[Instructions](https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver15#17)
-  
-  
-2. Obtain conda by installing Miniconda or Anaconda. Details on installation can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html)
+2. Obtain conda by installing Miniconda or Anaconda. Details on installation can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
 
 3. On your Anaconda Prompt (on Windows) or your terminal (on Linux, MacOX) navigate to the folder <code>server</code> within our repository and run the command <code>conda env create -f environment.yml</code>.
 
@@ -66,23 +64,17 @@ cse403-reverse-recipes/server/src/docs
 
 5. Follow these steps to run the Flask application:
 
-### Locally:
- 1. Navigate to the <code>server/src</code> directory in the terminal
- 2. <code>cd server/src</code>
- 3. Run the following commands in the terminal:
- 
-i. <code>export FLASK_APP=app</code>
+- Locally:
+1. Navigate to the <code>server/src</code> directory in the terminal
+2. <code>cd server/src</code>
+3. Run the following commands in the terminal:<br>
+<code>export FLASK_APP=app</code><br>
+<code>export FLASK_ENV=development</code><br>
+<code>flask run</code>
+4. Open http://localhost:5000/ in your browser
 
-ii. <code>export FLASK_ENV=development</code>
-
-iii. <code>flask run</code>
-
-iiii. Open http://localhost:5000/ in your browser
-
-#### On the server:
-Make a pull request for your branch with your changes. After approval and successful merging with the main branch, your changes will be deployed on the server.
-
-
+- On the server:<br>
+  Make a pull request for your branch with your changes. After approval and successful merging with the main branch, your changes will be deployed onto the cloud server.
 
 
 ## How to Test the Software:
@@ -113,7 +105,7 @@ Unit tests must be written in JUnit and contained within a sequence of packages 
 
 2. Import pytest into your new file and write your test functions.
 
-NOTE: Every pytest file and function name should start with <code>test_</code>.
+**NOTE:** Every pytest file and function name should start with "*test_*".
 
 ### Build Release Notes/Sanity Checks:
 - No version number
