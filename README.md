@@ -25,9 +25,20 @@ We use Java and Android Studio to create the frontend for our application and we
 
 ### Server-side:
 - ### Setup
-    1. Obtain conda by installing Miniconda or Anaconda. Details on installation can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
-    2. On your Anaconda Prompt (on Windows) or your terminal (on Linux, MacOX) navigate to the folder <code>server/</code> within our repository and run the command <code>conda env create -f environment.yml</code>.
-    3. Now you can activate your conda environment required to run the backend server code by running the command <code>conda activate rrenv</code> and deactivate the environment by running the command <code>conda deactivate</code>.
+    1. Make sure that you have an ODBC software installed on your system. We are using Microsoft ODBC Driver 17 for SQL Server. Installation instructions can be found below:<br>
+        - Windows:
+            - [(x64)](https://go.microsoft.com/fwlink/?linkid=2187214)   
+            - [(x86)](https://go.microsoft.com/fwlink/?linkid=2187215)<br>
+        - MacOS:
+        [Instructions](https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/install-microsoft-odbc-driver-sql-server-macos?view=sql-server-ver15#17)<br>
+        - Linux:
+        [Instructions](https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver15#17)
+        
+        **NOTE :** If for any reason you are unable to download Microsoft ODBC Driver 17 for SQL Server onto your machine, you can download any other ODBC drivers (eg. unixodbc on MacOS/Linux), but you would not be able to run some tests locally.
+  
+    2. Obtain conda by installing Miniconda or Anaconda. Details on installation can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
+    3. On your Anaconda Prompt (on Windows) or your terminal (on Linux, MacOX) navigate to the folder <code>server/</code> within our repository and run the command <code>conda env create -f environment.yml</code>.
+    4. Now you can activate your conda environment required to run the backend server code by running the command <code>conda activate rrenv</code> and deactivate the environment by running the command <code>conda deactivate</code>.
 - ### Testing
     1. While running the <code>rrenv</code> environment, run the command <code>pytest</code>. This will run all the tests in the <code>server/tests/</code> folder.
 
