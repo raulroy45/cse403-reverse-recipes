@@ -135,13 +135,13 @@ def process_links(file):
 
 if __name__ == "__main__":
     script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
-    # rel_path = "./ingredients.csv"
-    # abs_file_path = os.path.join(script_dir, rel_path)
-    # process_ingredients(abs_file_path)
-
-    rel_path = "./test_links.txt"
+    rel_path = "./ingredients.csv"
     abs_file_path = os.path.join(script_dir, rel_path)
-    process_links(abs_file_path)
+    process_ingredients(abs_file_path)
+
+    # rel_path = "./test_links.txt"
+    # abs_file_path = os.path.join(script_dir, rel_path)
+    # process_links(abs_file_path)
     
 
 
