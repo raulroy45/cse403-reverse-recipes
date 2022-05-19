@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(tableName = "ingredient_selection_table",
-        foreignKeys = @ForeignKey(entity = Ingredient.class, parentColumns = "id", childColumns = "ingredient_id", onDelete = CASCADE))
+        foreignKeys = @ForeignKey(entity = DataIngredient.class, parentColumns = "id", childColumns = "ingredient_id", onDelete = CASCADE))
 public class IngredientSelection {
     @PrimaryKey
     @ColumnInfo(name = "ingredient_id")

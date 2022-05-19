@@ -3,17 +3,11 @@
 
     <item
         android:id="@+id/accountFragment"
-        android:title="ACCOUNT" />
+        android:title="@string/account" />
     <item
         android:id="@+id/pantryFragment"
-        android:title="PANTRY" />
+        android:title="@string/pantry" />
     <item
         android:id="@+id/savedRecipesFragment"
-        android:title="SAVED" />\
-    <item
-        android:id="@+id/ingredientSearchFragment"
-        android:title="INGREDIENTS" />\
-    <item
-        android:id="@+id/recipeSearchFragment"
-        android:title="RECIPE SEARCH" />\
+        android:title="@string/saved" />
 </menu>
