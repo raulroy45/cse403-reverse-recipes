@@ -1,7 +1,7 @@
 from flask import request
 from flask import current_app as app
 from flasgger import swag_from
-from . import db
+from src import db
 
 # recipe?get=all
 @app.route("/recipes/", methods=["POST"])
