@@ -1,6 +1,8 @@
 package com.cse403.reverserecipes.UI.Entities;
 
-public class Recipe {
+import java.io.Serializable;
+
+public class Recipe implements Serializable {
     private final int mRid;
 
     private final String mImage;

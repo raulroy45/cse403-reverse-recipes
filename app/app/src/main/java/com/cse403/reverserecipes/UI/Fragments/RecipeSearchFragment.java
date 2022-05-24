@@ -5,7 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +25,7 @@ import com.cse403.reverserecipes.UI.Entities.RecipeDiff;
 import com.cse403.reverserecipes.UI.ItemDecorations.IngredientCategoryListItemDecoration;
 import com.cse403.reverserecipes.UI.ItemDecorations.RecipeListItemDecoration;
 import com.cse403.reverserecipes.UI.ViewModels.RecipeSearchViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,9 +85,27 @@ public class RecipeSearchFragment
                 .getResultRecipes()
                 .getValue()
                 .get(recipePosition);
-        Uri clickedRecipeUri = Uri.parse(clickedRecipe.getLink());
-        Intent intent = new Intent(Intent.ACTION_VIEW, clickedRecipeUri);
-        // TODO: Handle case where no browser exists.
-        startActivity(intent);
+
+//        FragmentTransaction ft =  getActivity().getSupportFragmentManager().beginTransaction();
+//        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        RecipePageFragment recipePage = new RecipePageFragment();
+
+        Bundle bundle = new Bundle();
+        Recipe obj = clickedRecipe;
+        bundle.putSerializable("recipe", obj);
+        recipePage.setArguments(bundle);
+        getChildFragmentManager().beginTransaction().replace(R.id., recipePage).commit();
+//        ft.replace(android.R.id.content, recipePage);
+//        ft.addToBackStack(null);
+//        ft.commit();
+//        FragmentManager supportFragmentManager = requireActivity().getSupportFragmentManager();
+//
+//        NavHostFragment navHostFragment =
+//                (NavHostFragment) supportFragmentManager.findFragmentById(R.id.nav_host_fragment);
+//        NavController navController = navHostFragment.getNavController();
+//
+//        navController.navigate(R.id.action_recipeSearchFragment_to_recipePageFragment);
+
+
     }
 }
