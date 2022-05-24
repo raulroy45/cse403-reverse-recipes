@@ -2,7 +2,6 @@ package com.cse403.reverserecipes.UI.Fragments;
 
 import android.os.Bundle;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,12 +15,8 @@ import com.cse403.reverserecipes.UI.Adapters.IngredientSearchIngredientCategoryL
 import com.cse403.reverserecipes.UI.ItemDecorations.IngredientCategoryListItemDecoration;
 import com.cse403.reverserecipes.UI.ViewModels.IngredientSearchViewModel;
 import com.cse403.reverserecipes.R;
-import com.cse403.reverserecipes.UI.Entities.ViewIngredient;
+import com.cse403.reverserecipes.UI.Entities.Ingredient;
 import com.cse403.reverserecipes.UI.Entities.ViewIngredientCategoryDiff;
-import com.google.android.flexbox.AlignItems;
-import com.google.android.flexbox.FlexDirection;
-import com.google.android.flexbox.FlexboxItemDecoration;
-import com.google.android.flexbox.FlexboxLayoutManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,6 +48,8 @@ public class IngredientSearchFragment
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_ingredient_search, container, false);
 
+        // Set up ingredient list.
+        // TODO: Promote code reuse by reconciling with same in PantryFragment.
         RecyclerView ingredientCategoryListView = v.findViewById(R.id.ingredient_search_ingredient_category_list);
         final IngredientSearchIngredientCategoryListAdapter adapter =
                 new IngredientSearchIngredientCategoryListAdapter(
@@ -63,26 +60,22 @@ public class IngredientSearchFragment
         ingredientCategoryListView.addItemDecoration(itemDecoration);
         ingredientCategoryListView.setItemAnimator(null);
 
+        // Set up ViewModel.
         mIngredientSearchViewModel = new ViewModelProvider(requireActivity()).get(IngredientSearchViewModel.class);
-
-        mIngredientSearchViewModel.getViewIngredientCategories().observe(requireActivity(), adapter::submitList);
+        mIngredientSearchViewModel.getIngredientCategories().observe(requireActivity(), adapter::submitList);
 
         return v;
     }
 
     @Override
     public void onClick(int categoryPosition, int ingredientPosition) {
-        ViewIngredient clickedIngredient = mIngredientSearchViewModel
-                .getViewIngredientCategories()
+        Ingredient clickedIngredient = mIngredientSearchViewModel
+                .getIngredientCategories()
                 .getValue()
                 .get(categoryPosition)
-                .getIngredientList()
+                .second
                 .get(ingredientPosition);
 
-        if (clickedIngredient.isSelected()) {
-            mIngredientSearchViewModel.deselect(clickedIngredient);
-        } else {
-            mIngredientSearchViewModel.select(clickedIngredient);
-        }
+        mIngredientSearchViewModel.toggleSelection(clickedIngredient);
     }
 }
