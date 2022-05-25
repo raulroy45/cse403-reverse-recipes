@@ -9,20 +9,15 @@ import com.cse403.reverserecipes.Data.API.RecipeFetchHttp;
 import com.cse403.reverserecipes.Data.DataSources.Remote.RecipeRemoteDataSource;
 import com.cse403.reverserecipes.Data.DataSources.Room.DataRecipeDao;
 import com.cse403.reverserecipes.Data.DataSources.Room.ReverseRecipesRoomDatabase;
-import com.cse403.reverserecipes.Data.Entities.DataIngredient;
 import com.cse403.reverserecipes.Data.Entities.DataRecipe;
 import com.cse403.reverserecipes.Domain.Mappers.ArrayListMapper;
-import com.cse403.reverserecipes.Domain.Mappers.DataRecipeToRecipeMapper;
+import com.cse403.reverserecipes.Domain.Mappers.DataRecipeToSavedRecipeMapper;
+import com.cse403.reverserecipes.Domain.Mappers.DataRecipeToUnsavedRecipeMapper;
 import com.cse403.reverserecipes.Domain.Mappers.ListMapper;
 import com.cse403.reverserecipes.Domain.Mappers.RecipeToDataRecipeMapper;
 import com.cse403.reverserecipes.UI.Entities.Recipe;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class SavedRecipeRepository {
 
@@ -41,7 +36,7 @@ public class SavedRecipeRepository {
 
         // TODO: Dependency injection for the mapper?
         ListMapper<DataRecipe, Recipe> dataRecipeToRecipeListMapper =
-                new ArrayListMapper<>(new DataRecipeToRecipeMapper());
+                new ArrayListMapper<>(new DataRecipeToSavedRecipeMapper());
         mSavedRecipesLiveData = new MediatorLiveData<>();
         mSavedRecipesLiveData.addSource(
                 dataSavedRecipesLiveData,

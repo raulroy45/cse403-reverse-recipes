@@ -11,8 +11,7 @@ import com.cse403.reverserecipes.Data.DataSources.Room.ReverseRecipesRoomDatabas
 import com.cse403.reverserecipes.Data.Entities.DataIngredient;
 import com.cse403.reverserecipes.Data.Entities.DataRecipe;
 import com.cse403.reverserecipes.Domain.Mappers.ArrayListMapper;
-import com.cse403.reverserecipes.Domain.Mappers.DataIngredientToIngredientMapper;
-import com.cse403.reverserecipes.Domain.Mappers.DataRecipeToRecipeMapper;
+import com.cse403.reverserecipes.Domain.Mappers.DataRecipeToUnsavedRecipeMapper;
 import com.cse403.reverserecipes.Domain.Mappers.IngredientToDataIngredientMapper;
 import com.cse403.reverserecipes.Domain.Mappers.ListMapper;
 import com.cse403.reverserecipes.UI.Entities.Ingredient;
@@ -39,7 +38,7 @@ public class RecipeSearchResultRepository {
             ListMapper<Ingredient, DataIngredient> ingredientToDataIngredientListMapper =
                     new ArrayListMapper<>(new IngredientToDataIngredientMapper());
             ListMapper<DataRecipe, Recipe> dataRecipeToRecipeListMapper =
-                    new ArrayListMapper<>(new DataRecipeToRecipeMapper());
+                    new ArrayListMapper<>(new DataRecipeToUnsavedRecipeMapper());
             List<DataRecipe> recipeResults = mRecipeSearchResultRemoteDataSource
                             .getResultRecipes(ingredientToDataIngredientListMapper.map(ingredients));
             recipeResultsLiveData.postValue(dataRecipeToRecipeListMapper.map(recipeResults));
