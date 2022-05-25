@@ -18,6 +18,7 @@ public class RecipeSearchViewModel extends AndroidViewModel {
     private final SavedRecipeRepository mSavedRecipeRepository;
     private LiveData<List<Recipe>> mResultRecipes;
 
+    // TODO: Address code duplication with SavedRecipesViewModel.
     public RecipeSearchViewModel(Application application) {
         super(application);
 
