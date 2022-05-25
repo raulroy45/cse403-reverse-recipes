@@ -14,9 +14,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 // TODO: Set schema to export.
-@Database(entities = {DataIngredient.class}, version = 1, exportSchema = false)
+@Database(entities = {DataIngredient.class, DataRecipe.class}, version = 1, exportSchema = false)
 public abstract class ReverseRecipesRoomDatabase extends RoomDatabase {
     public abstract DataIngredientDao ingredientDao();
+    public abstract DataRecipeDao recipeDao();
 
     private static volatile ReverseRecipesRoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;

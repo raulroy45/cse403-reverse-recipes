@@ -5,7 +5,7 @@ import com.cse403.reverserecipes.Data.Entities.DataRecipe;
 import com.cse403.reverserecipes.UI.Entities.Ingredient;
 import com.cse403.reverserecipes.UI.Entities.Recipe;
 
-public class DataRecipeToRecipeMapper implements Mapper<DataRecipe, Recipe> {
+public class DataRecipeToUnsavedRecipeMapper implements Mapper<DataRecipe, Recipe> {
 
     @Override
     public Recipe map(DataRecipe o) {
@@ -15,7 +15,8 @@ public class DataRecipeToRecipeMapper implements Mapper<DataRecipe, Recipe> {
                 o.getLink(),
                 o.getTitle(),
                 o.getTotalTime(),
-                o.getYields()
+                o.getYields(),
+                false
         );
     }
 }

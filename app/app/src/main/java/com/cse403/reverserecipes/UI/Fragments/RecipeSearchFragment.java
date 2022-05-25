@@ -74,7 +74,7 @@ public class RecipeSearchFragment
     }
 
     @Override
-    public void onClick(int recipePosition) {
+    public void onClickCard(int recipePosition) {
         Recipe clickedRecipe = mRecipeSearchViewModel
                 .getResultRecipes()
                 .getValue()
@@ -83,5 +83,14 @@ public class RecipeSearchFragment
         Intent intent = new Intent(Intent.ACTION_VIEW, clickedRecipeUri);
         // TODO: Handle case where no browser exists.
         startActivity(intent);
+    }
+
+    @Override
+    public void onClickFavorite(int recipePosition) {
+        Recipe clickedRecipe = mRecipeSearchViewModel
+                .getResultRecipes()
+                .getValue()
+                .get(recipePosition);
+        mRecipeSearchViewModel.toggleSaved(clickedRecipe);
     }
 }
