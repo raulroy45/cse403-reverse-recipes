@@ -2,9 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/accountFragment"
-        android:title="@string/account" />
-    <item
         android:id="@+id/pantryFragment"
         android:title="@string/pantry" />
     <item
