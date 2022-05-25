@@ -20,7 +20,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class RecipeFetchHttp implements RecipeFetchApi {
 
-    private static final String ENDPOINT_URL = "https://reverserecipes.azurewebsites.net/recipes/%d";
+    private static final String ENDPOINT_URL = "https://reverserecipes.azurewebsites.net/recipes/%d/";
     private static final int CONNECT_TIMEOUT = 10000;
     
     @Override

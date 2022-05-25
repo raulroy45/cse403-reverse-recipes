@@ -72,7 +72,11 @@ public class SavedRecipeRepository {
 
             for (DataRecipe currentRecipe : currentSavedRecipes) {
                 DataRecipe fetchedRecipe = mRecipeRemoteDataSource.getRecipe(currentRecipe.getRid());
-                mDataRecipeDao.insertRecipe(fetchedRecipe);
+
+                // Replace recipe with remote if remote exists.
+                if (fetchedRecipe != null) {
+                    mDataRecipeDao.insertRecipe(fetchedRecipe);
+                }
             }
         });
     }
