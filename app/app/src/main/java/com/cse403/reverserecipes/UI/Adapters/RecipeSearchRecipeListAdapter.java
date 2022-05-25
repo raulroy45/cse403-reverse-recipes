@@ -32,6 +32,7 @@ public class RecipeSearchRecipeListAdapter extends ListAdapter<Recipe, RecipeSea
     }
 
     public interface OnClickListener {
-        void onClick(int recipePosition);
+        void onClickCard(int recipePosition);
+        void onClickFavorite(int recipePosition);
     }
 }

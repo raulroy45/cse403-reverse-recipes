@@ -58,6 +58,13 @@ public class SavedRecipeRepository {
         });
     }
 
+    public void deleteSavedRecipe(Recipe recipe) {
+        ReverseRecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
+            // TODO: Dependency injection for the mapper?
+            mDataRecipeDao.deleteRecipe(new RecipeToDataRecipeMapper().map(recipe));
+        });
+    }
+
     private void executeRecipeFetch() {
         // Update saved recipe data using a web fetch.
         ReverseRecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
