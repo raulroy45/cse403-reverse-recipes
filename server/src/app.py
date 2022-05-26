@@ -19,7 +19,6 @@ def setup_db():
 
 db = setup_db()
 
-# recipe?get=all
 @app.route("/recipes/", methods=["POST"])
 @swag_from("./docs/recipes/recipes.yml")
 def get_recipes():
@@ -31,36 +30,32 @@ def get_recipes():
     placeholder= "?"
     placeholders= ", ".join(placeholder * len(ingredients))
 
+    query = "WITH res AS (SELECT DISTINCT rid, COUNT(*) AS total_num_ingredients " \
+                         "FROM Ingredient_to_Recipe " \
+                         "GROUP BY rid)" \
+            "SELECT itr.rid, total_num_ingredients, COUNT(*) AS num_ingredients_matched " \
+            "FROM Ingredient_to_Recipe AS itr, res " \
+            "WHERE itr.rid = res.rid AND name IN ({}) " \
+            "GROUP BY itr.rid, total_num_ingredients ".format(placeholders)
+
     # Check for the "filter" query parameter
     filter = request.args.get("filter", type=str)
     if filter == "all":
-        # get recipes with all ingredients
-        query = "SELECT DISTINCT rid FROM Ingredient_to_Recipe " \
-                "WHERE name IN ({}) " \
-                "GROUP BY rid HAVING COUNT(*) = ?;".format(placeholders)
-        params = ingredients + [len(ingredients)]
-        rows = cursor.execute(query, params).fetchall()
-        
-        recipes = []
-        for row in rows:
-            result = query_recipe_info(row[0])
-            json = format_recipe_json(result)
-            recipes.append(json)
+        # get recipes that only have ingredients from user's pantry
+        query += "HAVING COUNT(*) = total_num_ingredients;"
+        rows = cursor.execute(query, ingredients).fetchall() 
     else:
         # get recipes with one or more of the ingredients
-        query = "SELECT DISTINCT rid, COUNT(*) AS num_ingredients_matched " \
-                "FROM Ingredient_to_Recipe " \
-                "WHERE name IN ({}) " \
-                "GROUP BY rid ORDER BY num_ingredients_matched DESC;".format(placeholders)
-        
+        query += "ORDER BY (1.0 * COUNT(*) / total_num_ingredients) DESC;"
         rows = cursor.execute(query, ingredients).fetchall()
 
-        recipes = []
-        for row in rows:
-            result = query_recipe_info(row[0])
-            json = format_recipe_json(result)
-            json["num_ingredients_matched"] = row[1]
-            recipes.append(json)
+    recipes = []
+    for row in rows:
+        result = query_recipe_info(row[0])
+        json = format_recipe_json(result)
+        json["total_num_ingredients"] = row[1]
+        json["num_ingredients_matched"] = row[2]
+        recipes.append(json)
 
     return {"recipes" : recipes}, 200
 
@@ -123,7 +118,6 @@ def format_ingredients_json(data):
         ingredients.append({"name": ingr[0], "category": ingr[1]})
     
     return {"ingredients": ingredients}
-
 
 if __name__ == "__main__":
     app.run()
