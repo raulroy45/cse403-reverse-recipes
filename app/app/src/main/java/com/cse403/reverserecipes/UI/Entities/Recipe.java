@@ -13,13 +13,16 @@ public class Recipe {
 
     private final int mYields;
 
-    public Recipe(int rid, String image, String link, String title, int totalTime, int yields) {
+    private final boolean mSaved;
+
+    public Recipe(int rid, String image, String link, String title, int totalTime, int yields, boolean saved) {
         mRid = rid;
         mImage = image;
         mLink = link;
         mTitle = title;
         mTotalTime = totalTime;
         mYields = yields;
+        mSaved = saved;
     }
 
     public int getRid() {
@@ -46,6 +49,10 @@ public class Recipe {
         return mYields;
     }
 
+    public boolean isSaved() {
+        return mSaved;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o instanceof Recipe) {
@@ -56,7 +63,8 @@ public class Recipe {
                     this.mLink.equals(other.mLink) &&
                     this.mTitle.equals(other.mTitle) &&
                     this.mTotalTime == other.mTotalTime &&
-                    this.mYields == other.mYields;
+                    this.mYields == other.mYields &&
+                    this.mSaved == other.mSaved;
         } else {
             return false;
         }

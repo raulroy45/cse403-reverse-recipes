@@ -1,6 +1,7 @@
 package com.cse403.reverserecipes.Data.API;
 
 import com.cse403.reverserecipes.Data.Entities.DataIngredient;
+import com.cse403.reverserecipes.Data.Entities.DataRecipe;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,18 +18,18 @@ import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class IngredientFetchHttp implements IngredientFetchApi {
+public class RecipeFetchHttp implements RecipeFetchApi {
 
-    private static final String ENDPOINT_URL = "https://reverserecipes.azurewebsites.net/ingredients/?filter=used";
+    private static final String ENDPOINT_URL = "https://reverserecipes.azurewebsites.net/recipes/%d/";
     private static final int CONNECT_TIMEOUT = 10000;
     
     @Override
-    public List<DataIngredient> fetchIngredients() {
-        List<DataIngredient> fetchedIngredients = new ArrayList<>();
+    public DataRecipe fetchRecipe(int rid) {
+        DataRecipe fetchedRecipe = null;
 
-        // Fetch ingredients from Reverse Recipes web server using GET request.
+        // Fetch recipe from Reverse Recipes web server using GET request.
         try {
-            URL url = new URL(ENDPOINT_URL);
+            URL url = new URL(String.format(ENDPOINT_URL, rid));
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
             try {
                 urlConnection.setConnectTimeout(CONNECT_TIMEOUT);
@@ -45,17 +46,15 @@ public class IngredientFetchHttp implements IngredientFetchApi {
                 }
 
                 // Convert fetched data to DataIngredient form.
-                JSONObject fetchedIngredientsObject = new JSONObject(result.toString());
-                JSONArray fetchedIngredientsArray = fetchedIngredientsObject.getJSONArray("ingredients");
-                for (int i = 0; i < fetchedIngredientsArray.length(); i++) {
-                    // We consider ingredients to not be selected by default.
-                    JSONObject fetchedIngredientObject = fetchedIngredientsArray.getJSONObject(i);
-                    fetchedIngredients.add(
-                            new DataIngredient(
-                                    fetchedIngredientObject.getString("name"),
-                                    fetchedIngredientObject.getString("category"),
-                                    false));
-                }
+                JSONObject fetchedRecipeObject = new JSONObject(result.toString());
+                fetchedRecipe =
+                        new DataRecipe(
+                                fetchedRecipeObject.getInt("rid"),
+                                fetchedRecipeObject.getString("image"),
+                                fetchedRecipeObject.getString("link"),
+                                fetchedRecipeObject.getString("title"),
+                                fetchedRecipeObject.getInt("total_time"),
+                                fetchedRecipeObject.getInt("yields"));
             } finally {
                 urlConnection.disconnect();
             }
@@ -65,6 +64,6 @@ public class IngredientFetchHttp implements IngredientFetchApi {
             e.printStackTrace();
         }
 
-        return fetchedIngredients;
+        return fetchedRecipe;
     }
 }
