@@ -5,25 +5,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.Fragments.IngredientSearchFilterMenuFragment"
-    android:background="@color/teal_700">
+    android:background="@color/white">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/Filters"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment"
+        android:fontFamily="@font/lato_regular"
+        android:text="Filters"
+        android:textSize="18sp"
+        android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_regular"
+        android:text="Close"
+        android:textColor="@color/light_blue"
+        android:textSize="14sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_regular"
+        android:text="Reset"
+        android:textColor="@color/light_blue"
+        android:textSize="14sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="409dp"
-        android:layout_height="710dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/Filters"
         tools:listitem="@layout/list_item_filter_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
