@@ -19,10 +19,12 @@
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/fragment_account.xml" value="0.25" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/fragment_ingredient_search.xml" value="0.22826086956521738" />
+        <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/fragment_ingredient_search_filter_menu.xml" value="0.264" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/fragment_pantry.xml" value="0.33356497567755383" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/fragment_recipe_search.xml" value="0.22826086956521738" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/fragment_saved_recipes.xml" value="0.264" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/fragment_search.xml" value="0.25" />
+        <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/list_item_filter_list.xml" value="0.44302325581395346" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/list_item_ingredient_category_ingredient_list.xml" value="0.72" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/list_item_ingredient_category_list.xml" value="0.45263157894736844" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/layout/list_item_pantry_category_list.xml" value="0.264" />

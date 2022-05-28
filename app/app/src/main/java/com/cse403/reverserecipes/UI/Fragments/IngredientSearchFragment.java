@@ -3,6 +3,7 @@ package com.cse403.reverserecipes.UI.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.cse403.reverserecipes.UI.Adapters.IngredientSearchIngredientCategoryListAdapter;
 import com.cse403.reverserecipes.UI.ItemDecorations.IngredientCategoryListItemDecoration;
@@ -59,6 +61,18 @@ public class IngredientSearchFragment
         RecyclerView.ItemDecoration itemDecoration = new IngredientCategoryListItemDecoration(requireActivity());
         ingredientCategoryListView.addItemDecoration(itemDecoration);
         ingredientCategoryListView.setItemAnimator(null);
+
+        // Set up filter menu button.
+        Button filterMenuButton = v.findViewById(R.id.ingredient_search_filter_menu_button);
+        FragmentContainerView filterMenuFrame = v.findViewById(R.id.ingredient_search_filter_menu_frame);
+        filterMenuButton.setOnClickListener(
+                view -> {
+                    if (filterMenuFrame.getVisibility() == View.GONE) {
+                        filterMenuFrame.setVisibility(View.VISIBLE);
+                    } else {
+                        filterMenuFrame.setVisibility(View.GONE);
+                    }
+                });
 
         // Set up ViewModel.
         mIngredientSearchViewModel = new ViewModelProvider(requireActivity()).get(IngredientSearchViewModel.class);
