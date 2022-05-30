@@ -76,7 +76,7 @@ public class IngredientSearchFragment
 
         // Set up ViewModel.
         mIngredientSearchViewModel = new ViewModelProvider(requireActivity()).get(IngredientSearchViewModel.class);
-        mIngredientSearchViewModel.getIngredientCategories().observe(requireActivity(), adapter::submitList);
+        mIngredientSearchViewModel.getFilteredIngredientCategories().observe(requireActivity(), adapter::submitList);
 
         return v;
     }
@@ -84,12 +84,12 @@ public class IngredientSearchFragment
     @Override
     public void onClick(int categoryPosition, int ingredientPosition) {
         Ingredient clickedIngredient = mIngredientSearchViewModel
-                .getIngredientCategories()
+                .getFilteredIngredientCategories()
                 .getValue()
                 .get(categoryPosition)
                 .second
                 .get(ingredientPosition);
 
-        mIngredientSearchViewModel.toggleSelection(clickedIngredient);
+        mIngredientSearchViewModel.toggleIngredientSelection(clickedIngredient);
     }
 }

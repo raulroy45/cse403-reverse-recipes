@@ -3,64 +3,77 @@ package com.cse403.reverserecipes.UI.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.cse403.reverserecipes.R;
+import com.cse403.reverserecipes.UI.Adapters.IngredientSearchIngredientCategoryFilterListAdapter;
+import com.cse403.reverserecipes.UI.Entities.ViewIngredientCategoryFilterDiff;
+import com.cse403.reverserecipes.UI.ViewModels.IngredientSearchViewModel;
+import com.google.android.flexbox.AlignItems;
+import com.google.android.flexbox.FlexboxLayoutManager;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link IngredientSearchFilterMenuFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class IngredientSearchFilterMenuFragment extends Fragment {
+public class IngredientSearchFilterMenuFragment
+        extends Fragment implements IngredientSearchIngredientCategoryFilterListAdapter.OnClickListener {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private IngredientSearchViewModel mIngredientSearchViewModel;
 
     public IngredientSearchFilterMenuFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment IngredientSearchFilterMenuFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static IngredientSearchFilterMenuFragment newInstance(String param1, String param2) {
-        IngredientSearchFilterMenuFragment fragment = new IngredientSearchFilterMenuFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+        return new IngredientSearchFilterMenuFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ingredient_search_filter_menu, container, false);
+        View v = inflater.inflate(R.layout.fragment_ingredient_search_filter_menu, container, false);
+
+        // Set up filter list.
+        RecyclerView ingredientCategoryFilterListView = v.findViewById(R.id.ingredient_search_ingredient_category_filter_list);
+        final IngredientSearchIngredientCategoryFilterListAdapter adapter =
+                new IngredientSearchIngredientCategoryFilterListAdapter(
+                        new ViewIngredientCategoryFilterDiff(), this);
+        ingredientCategoryFilterListView.setAdapter(adapter);
+        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(requireActivity());
+        layoutManager.setAlignItems(AlignItems.FLEX_START);
+        ingredientCategoryFilterListView.setLayoutManager(layoutManager);
+        ingredientCategoryFilterListView.setItemAnimator(null);
+
+        // Set up ViewModel.
+        mIngredientSearchViewModel = new ViewModelProvider(requireActivity()).get(IngredientSearchViewModel.class);
+        mIngredientSearchViewModel.getIngredientCategoryFilters().observe(requireActivity(), adapter::submitList);
+
+        return v;
+    }
+
+    @Override
+    public void onClick(int filterPosition) {
+        String clickedIngredientCategory = mIngredientSearchViewModel
+                .getIngredientCategoryFilters()
+                .getValue()
+                .get(filterPosition)
+                .first;
+
+        mIngredientSearchViewModel.toggleIngredientCategoryFilter(clickedIngredientCategory);
     }
 }
