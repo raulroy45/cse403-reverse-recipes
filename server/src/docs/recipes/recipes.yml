@@ -1,5 +1,4 @@
-Find recipe information by ID
-Description goes here
+Get a list of recipes based on ingredients
 ---
 tags:
   - Recipe
@@ -22,6 +21,14 @@ parameters:
           description: An ingredient.
       example: { "ingredients" : ["eggs", "tomato"] }
 
+  - name: filter
+    in: query
+    type: string
+    enum: ["all"]
+    description: (Optional) Include this query parameter to return only recipes that can be made with the given list of ingredients
+
 responses:
   200:
     description: Recipes based on provided list of ingredients found.
+    schema:
+      $ref: "#/definitions/Recipes"
