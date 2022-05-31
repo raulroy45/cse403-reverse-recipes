@@ -42,5 +42,9 @@
         android:id="@+id/recipePageFragment"
         android:name="com.cse403.reverserecipes.UI.Fragments.RecipePageFragment"
         android:label="fragment_recipe_page"
-        tools:layout="@layout/fragment_recipe_page" />
+        tools:layout="@layout/fragment_recipe_page" >
+        <argument
+            android:name="recipe"
+            app:argType="com.cse403.reverserecipes.UI.Entities.Recipe" />
+    </fragment>
 </navigation>

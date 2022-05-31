@@ -1,6 +1,7 @@
 package com.cse403.reverserecipes.UI.Entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Recipe implements Serializable {
     private final int mRid;
@@ -15,13 +16,17 @@ public class Recipe implements Serializable {
 
     private final int mYields;
 
-    public Recipe(int rid, String image, String link, String title, int totalTime, int yields) {
+    private final List<String> mIngredients;
+
+    public Recipe(int rid, String image, String link, String title,
+                  int totalTime, int yields, List<String> ingredients) {
         mRid = rid;
         mImage = image;
         mLink = link;
         mTitle = title;
         mTotalTime = totalTime;
         mYields = yields;
+        mIngredients = ingredients;
     }
 
     public int getRid() {
@@ -47,6 +52,8 @@ public class Recipe implements Serializable {
     public int getYields() {
         return mYields;
     }
+
+    public List<String> getIngredients() {return mIngredients;}
 
     @Override
     public boolean equals(Object o) {

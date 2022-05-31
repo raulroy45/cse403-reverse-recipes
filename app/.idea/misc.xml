@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2435" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/drawable-v24/ic_rectangle.xml" value="0.2435" />
         <entry key="..\:/D/UWDev/CSE403/cse403-reverse-recipes/app/app/src/main/res/drawable/ic_android.xml" value="0.2435" />
@@ -36,6 +37,16 @@
         <entry key="..\:/Users/Micha/cse403-reverse-recipes/app/app/src/main/res/layout/fragment_pantry.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Micha/cse403-reverse-recipes/app/app/src/main/res/layout/fragment_saved_recipes.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/Micha/cse403-reverse-recipes/app/app/src/main/res/menu/bottom_nav.xml" value="0.22" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_android.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_plus_button.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_rounded_button.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_vertical_divider.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ingredient_category_ingredient_list_divider.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ingredient_category_list_divider.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_recipe_page.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_recipe_search.xml" value="0.11854103343465046" />
       </map>
     </option>
   </component>

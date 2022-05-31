@@ -65,6 +65,13 @@ public class RecipeSearchHttp implements RecipeSearchApi {
                 JSONArray fetchedRecipesArray = fetchedRecipesObject.getJSONArray("recipes");
                 for (int i = 0; i < fetchedRecipesArray.length(); i++) {
                     JSONObject fetchedRecipeObject = fetchedRecipesArray.getJSONObject(i);
+                    List<String> ingredients = new ArrayList<>();
+                    JSONArray fetchedRecipeIngredientsArray = fetchedRecipeObject.
+                            getJSONArray("ingredients");
+                    for (int j = 0; j < fetchedRecipeIngredientsArray.length(); j++) {
+                        String ingredient = fetchedRecipeIngredientsArray.getString(j);
+                        ingredients.add(ingredient);
+                    }
                     dataRecipes.add(
                             new DataRecipe(
                                     fetchedRecipeObject.getInt("rid"),
@@ -72,7 +79,9 @@ public class RecipeSearchHttp implements RecipeSearchApi {
                                     fetchedRecipeObject.getString("link"),
                                     fetchedRecipeObject.getString("title"),
                                     fetchedRecipeObject.getInt("total_time"),
-                                    fetchedRecipeObject.getInt("yields")));
+                                    fetchedRecipeObject.getInt("yields"),
+                                    ingredients));
+
                 }
             } finally {
                 urlConnection.disconnect();

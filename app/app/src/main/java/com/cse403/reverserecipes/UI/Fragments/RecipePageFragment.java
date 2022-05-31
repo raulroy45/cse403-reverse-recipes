@@ -1,5 +1,9 @@
 package com.cse403.reverserecipes.UI.Fragments;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,10 +12,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.cse403.reverserecipes.R;
 import com.cse403.reverserecipes.UI.Entities.Recipe;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,11 +78,51 @@ public class RecipePageFragment extends Fragment {
         // Inflate the layout for this fragment
 //        return inflater.inflate(R.layout.fragment_recipe_page, container, false);
         View v = inflater.inflate(R.layout.fragment_recipe_page, container, false);
-        Bundle bundle = getArguments();
-        Recipe recipe = (Recipe) bundle.getSerializable("recipe");
-        image = v.findViewById(R.id.imageView);
+        Recipe recipe = RecipePageFragmentArgs.fromBundle(getArguments()).getRecipe();
+        ImageView recipeImage = (ImageView)v.findViewById(R.id.recipeImage);
 
-        Log.i("image", recipe.getImage());
+        Button serving = (Button)v.findViewById(R.id.serving);
+        String servingTxt = recipe.getYields() + " servings";
+        serving.setText(servingTxt);
+
+        Button timing = (Button)v.findViewById(R.id.timing);
+        String timingTxt = recipe.getTotalTime() + " Min";
+        timing.setText(timingTxt);
+
+        Button website = (Button)v.findViewById(R.id.website);
+        website.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Uri link = Uri.parse(recipe.getLink());
+                Intent intent = new Intent(Intent.ACTION_VIEW, link);
+                startActivity(intent);
+            }
+        });
+//        URL url = null;
+//        try {
+//            url = new URL(recipe.getImage());
+//            Bitmap image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+//            recipeImage.setImageBitmap(image);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+
+        TextView title = (TextView)v.findViewById(R.id.title);
+        title.setText(recipe.getTitle());
+        TextView ingredientText = (TextView)v.findViewById(R.id.ingredientText);
+        List<String> ingredients = recipe.getIngredients();
+        String ingredientStr = "";
+        if (!ingredients.isEmpty()) {
+            ingredientStr = recipe.getIngredients().get(0);
+            for (int i = 1; i < ingredients.size(); i++) {
+                ingredientStr += "\n" + ingredients.get(i);
+            }
+        }
+        ingredientText.setText(ingredientStr);
         return v;
 
 

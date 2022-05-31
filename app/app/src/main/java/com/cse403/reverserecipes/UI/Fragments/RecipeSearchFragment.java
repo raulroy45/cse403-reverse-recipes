@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -86,25 +87,15 @@ public class RecipeSearchFragment
                 .getValue()
                 .get(recipePosition);
 
-//        FragmentTransaction ft =  getActivity().getSupportFragmentManager().beginTransaction();
-//        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        RecipePageFragment recipePage = new RecipePageFragment();
+        RecipeSearchFragmentDirections.ActionRecipeSearchFragmentToRecipePageFragment action = RecipeSearchFragmentDirections.actionRecipeSearchFragmentToRecipePageFragment(clickedRecipe);
 
-        Bundle bundle = new Bundle();
-        Recipe obj = clickedRecipe;
-        bundle.putSerializable("recipe", obj);
-        recipePage.setArguments(bundle);
-        getChildFragmentManager().beginTransaction().replace(R.id., recipePage).commit();
-//        ft.replace(android.R.id.content, recipePage);
-//        ft.addToBackStack(null);
-//        ft.commit();
-//        FragmentManager supportFragmentManager = requireActivity().getSupportFragmentManager();
-//
-//        NavHostFragment navHostFragment =
-//                (NavHostFragment) supportFragmentManager.findFragmentById(R.id.nav_host_fragment);
-//        NavController navController = navHostFragment.getNavController();
-//
-//        navController.navigate(R.id.action_recipeSearchFragment_to_recipePageFragment);
+        FragmentManager supportFragmentManager = requireActivity().getSupportFragmentManager();
+
+        NavHostFragment navHostFragment =
+                (NavHostFragment) supportFragmentManager.findFragmentById(R.id.nav_host_fragment);
+        NavController navController = navHostFragment.getNavController();
+
+        navController.navigate(action);
 
 
     }
