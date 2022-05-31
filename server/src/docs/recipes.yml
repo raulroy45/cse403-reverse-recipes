@@ -1,8 +1,14 @@
 Get a list of recipes based on ingredients.
-**Example API call**
+**Example API call**:  `https://reverserecipes.azurewebsites.net/recipes?filter=all`
+
 See below for an example of the required body of a request.
 
-`https://reverserecipes.azurewebsites.net/recipes?filter=all`
+
+**Note about the API response, containing an array of recipes**
+
+The array of recipes is sorted by the ratio calculated by `num_ingredients_matched / total_num_ingredients`.
+
+With this, recipes that are most suited for a list of ingredients a user has are at the top. If the optional query parameter is used, then the ratio should be 1 for every recipe in the array, i.e., user has every ingredient for that recipe.
 
 ---
 tags:
@@ -30,10 +36,21 @@ parameters:
     in: query
     type: string
     enum: ["all"]
-    description: (Optional) Include this query parameter to return only recipes that can be made with the given list of ingredients.
+    description: |
+      **(Optional)** Include this query parameter to return only recipes that can be made with the given list of ingredients.
 
 responses:
   200:
     description: Recipes based on provided list of ingredients found.
     schema:
       $ref: "#/definitions/Recipes"
+
+  400:
+    description: | 
+      Possible 400 error messages:
+      - Invalid request. Missing key named 'ingredients'.
+      - Invalid request. Value of 'ingredients' must be a non-empty array.
+      - Invalid request. If the request includes query parameters, use valid key-value pairs as described in the apidocs.
+
+  500:
+    description: Something went wrong with our servers 😭✌️

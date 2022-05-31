@@ -1,9 +1,12 @@
 swagger: "2.0"
 info:
-  title: Reverse Recipes API
-  description: Reverse Recipes API provides information about food recipes and ingredients.
+  title: Reverse Recipes API 🍳
+  description: |
+    base URL: ```http://reverserecipes.azurewebsites.net/```
+
+    <Reverse Recipes API provides information about food recipes and ingredients.
+    <h2>✨Happy cooking!✨</h2>
   version: 1.0.0
-  schemes: http
  
 definitions:
   Recipe:

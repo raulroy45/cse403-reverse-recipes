@@ -1,7 +1,6 @@
 Get all ingredients and its category
-**Example API call**
+**Example API call**: `https://reverserecipes.azurewebsites.net/ingredients?filter=used`
 
-`https://reverserecipes.azurewebsites.net/ingredients?filter=used`
 ---
 tags:
   - Ingredient
@@ -12,7 +11,8 @@ parameters:
     in: query
     type: string
     enum: ["used"]
-    description: (Optional) Include this query parameter to return only ingredients that have at least one associated recipe.
+    description: |
+      **(Optional)** Include this query parameter to return only ingredients that have at least one associated recipe.
 
 responses:
   200:
@@ -31,3 +31,10 @@ responses:
               name:
                 type: string
                 description: The name of this ingredient.
+  
+  400:
+    description: Invalid request. If the request includes query parameters, 
+                 use valid key-value pairs as described in the apidocs.
+  
+  500:
+    description: Something went wrong with our servers 😭✌️

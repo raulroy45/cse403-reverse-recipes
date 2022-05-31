@@ -1,7 +1,6 @@
 Find recipe information by ID.
-**Example API call**
+**Example API call**: `https://reverserecipes.azurewebsites.net/recipes/101`
 
-`https://reverserecipes.azurewebsites.net/recipes/101`
 ---
 tags:
   - Recipe
@@ -19,3 +18,9 @@ responses:
     description: Recipe information found.
     schema:
       $ref: "#/definitions/Recipe"
+  
+  404:
+    description: Given rid is an invalid recipe ID.
+  
+  500:
+    description: Something went wrong with our servers 😭✌️
