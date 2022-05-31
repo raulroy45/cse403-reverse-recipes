@@ -73,10 +73,10 @@ def get_recipes():
 @swag_from("../docs/recipes_rid.yml")
 def get_recipe_info(rid):
     try:
-        result = query_recipes_info([rid])
+        result = query_recipes_info(rid)
 
         if result:  # valid rid
-            json = format_recipe_json(result[0])
+            json = format_recipe_json(result)
             return json, HTTP_200_OK
         else:   # invalid rid
             abort(HTTP_404_NOT_FOUND, "{} is an invalid recipe ID (rid)".format(rid))
@@ -84,13 +84,19 @@ def get_recipe_info(rid):
         abort(HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-# Helper method to query the database for recipe information given an array of rids
+# Helper method to query the database for recipe information given a single rid or an array of rids
 def query_recipes_info(rids):
     cursor = db.cursor()
-    placeholder= "?"
-    placeholders= ", ".join(placeholder * len(rids))
-    query = "SELECT * FROM Recipe WHERE rid IN ({}) ORDER BY Recipe.rid;".format(placeholders)
-    result = cursor.execute(query, rids).fetchall()
+    
+    if isinstance(rids, list):
+        placeholder= "?"
+        placeholders= ", ".join(placeholder * len(rids))
+        query = "SELECT * FROM Recipe WHERE rid IN ({}) ORDER BY Recipe.rid;".format(placeholders)
+        result = cursor.execute(query, rids).fetchall()
+    else:
+        query = "SELECT * FROM Recipe WHERE rid = ?;"
+        result = cursor.execute(query, rids).fetchone()
+
     return result if result is not None else None
 
 
