@@ -3,8 +3,9 @@ from flask import current_app as app
 from flasgger import swag_from
 from src import db
 
+# Gets recipes based on a list of ingredients provided in the body of the POST request.
 @app.route("/recipes/", methods=["POST"])
-@swag_from("../docs/recipes/recipes.yml")
+@swag_from("../docs/recipes.yml")
 def get_recipes():
     body = request.get_json()
     ingredients = body["ingredients"]
@@ -25,11 +26,11 @@ def get_recipes():
     # Check for the "filter" query parameter
     filter = request.args.get("filter", type=str)
     if filter == "all":
-        # get recipes that only have ingredients from user's pantry
+        # Get recipes that only have ingredients from user's pantry
         query += "HAVING COUNT(*) = total_num_ingredients;"
         rows = cursor.execute(query, ingredients).fetchall() 
     else:
-        # get recipes with one or more of the ingredients
+        # Get recipes with one or more of the ingredients
         query += "ORDER BY (1.0 * COUNT(*) / total_num_ingredients) DESC;"
         rows = cursor.execute(query, ingredients).fetchall()
 
@@ -44,8 +45,9 @@ def get_recipes():
     return {"recipes" : recipes}, 200
 
 
+# Given an rid, returns recipe information associated with that rid.
 @app.route("/recipes/<int:rid>/", methods=["GET"])
-@swag_from("../docs/recipes/recipes_rid.yml")
+@swag_from("../docs/recipes_rid.yml")
 def get_recipe_info(rid):
     result = query_recipe_info(rid)
 
@@ -55,12 +57,14 @@ def get_recipe_info(rid):
     else:
         return "Invalid Recipe ID", 400
 
+
 # Helper method to query the database for recipe information given an rid
 def query_recipe_info(rid):
     cursor = db.cursor()
     query = "SELECT * FROM Recipe WHERE rid = ?;"
     result = cursor.execute(query, rid).fetchone()
     return result if result is not None else None
+
 
 # Helper method to format JSON containing one recipe information
 def format_recipe_json(data):
