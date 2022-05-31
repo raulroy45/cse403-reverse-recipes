@@ -30,7 +30,7 @@
         android:layout_alignBottom="@id/filter_list_circle"
         android:layout_alignTop="@id/filter_list_circle"
         android:layout_alignEnd="@id/filter_list_circle"
-        android:src="@drawable/orange" />
+        android:src="@drawable/ic_android" />
     <TextView
         android:id="@+id/filter_list_text"
         android:layout_width="0dp"
