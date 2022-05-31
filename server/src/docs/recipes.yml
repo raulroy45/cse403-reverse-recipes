@@ -4,7 +4,7 @@ Get a list of recipes based on ingredients.
 See below for an example of the required body of a request.
 
 
-**Note about the API response, containing an array of recipes**
+**Note about the API response containing an array of recipes**
 
 The array of recipes is sorted by the ratio calculated by `num_ingredients_matched / total_num_ingredients`.
 
