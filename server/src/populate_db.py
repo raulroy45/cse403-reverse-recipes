@@ -225,6 +225,10 @@ def match_entity_to_ingredient(entity):
         return row[0]
 
     # lemon zest, chicken breasts, roma tomato, parmesan cheese, clove garlic, garlic clove,
+    singular_str = " ".join(singulars)
+    if singular_str == "clove garlic" or singular_str == "garlic clove":
+        return "garlic"
+
     temp = {}
     entity_parts = entity.split(" ")
     for i in range(len(entity_parts)):
@@ -302,6 +306,6 @@ if __name__ == "__main__":
     # abs_file_path = os.path.join(script_dir, rel_path)
     # process_links(abs_file_path)
 
-    rel_path = "./scrapers/website-crawlers/links/tasty_links.txt"
+    rel_path = "./scrapers/website-crawlers/links/all_recipes.txt"
     abs_file_path = os.path.join(script_dir, rel_path)
-    process_links(abs_file_path, 0, 5405)
+    process_links(abs_file_path, 1000, 1000)
