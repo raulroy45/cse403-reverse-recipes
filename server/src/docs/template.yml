@@ -1,9 +1,10 @@
 swagger: "2.0"
 info:
   title: Reverse Recipes API
-  description: API for Reverse Recipes
-  version: 1.0
+  description: Reverse Recipes API provides information about food recipes and ingredients.
+  version: 1.0.0
   schemes: http
+ 
 definitions:
   Recipe:
     type: object

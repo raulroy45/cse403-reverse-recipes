@@ -1,10 +1,33 @@
 Get all ingredients and its category
+**Example API call**
+
+`https://reverserecipes.azurewebsites.net/ingredients?filter=used`
 ---
 tags:
   - Ingredient
 produces:
 - "application/json"
+parameters:
+  - name: filter
+    in: query
+    type: string
+    enum: ["used"]
+    description: (Optional) Include this query parameter to return only ingredients that have at least one associated recipe.
 
 responses:
   200:
     description: The list of ingredients and its categories was successully returned.
+    schema:
+      type: object
+      properties:
+        ingredients:
+          type: array
+          items:
+            type: object
+            properties:
+              category:
+                type: string
+                description: The category this ingredient belongs to.
+              name:
+                type: string
+                description: The name of this ingredient.
