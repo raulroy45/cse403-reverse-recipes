@@ -1,4 +1,9 @@
-Get a list of recipes based on ingredients
+Get a list of recipes based on ingredients.
+**Example API call**
+See below for an example of the required body of a request.
+
+`https://reverserecipes.azurewebsites.net/recipes?filter=all`
+
 ---
 tags:
   - Recipe
@@ -10,7 +15,7 @@ parameters:
   - name: ingredients
     in: body
     required: true
-    description: The list of the ingredients
+    description: The list of the ingredients. The ingredient names must come from the Reverse Recipe Database.
     schema:
       type: object
       properties:
@@ -19,13 +24,13 @@ parameters:
           items:
             type: string
           description: An ingredient.
-      example: { "ingredients" : ["eggs", "tomato"] }
+      example: { "ingredients" : ["butter", "parmesan", "spaghetti", "olive oil", "tomato"] }
 
   - name: filter
     in: query
     type: string
     enum: ["all"]
-    description: (Optional) Include this query parameter to return only recipes that can be made with the given list of ingredients
+    description: (Optional) Include this query parameter to return only recipes that can be made with the given list of ingredients.
 
 responses:
   200:

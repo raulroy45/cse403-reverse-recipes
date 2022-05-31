@@ -1,4 +1,7 @@
-Find recipe information by ID
+Find recipe information by ID.
+**Example API call**
+
+`https://reverserecipes.azurewebsites.net/recipes/101`
 ---
 tags:
   - Recipe
@@ -9,7 +12,7 @@ parameters:
     in: path
     type: integer
     required: true
-    description: The recipe ID
+    description: The recipe ID.
 
 responses:
   200:
