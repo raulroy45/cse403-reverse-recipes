@@ -1,3 +1,4 @@
+import pyodbc
 from flask import request, abort
 from flask import current_app as app
 from flasgger import swag_from
@@ -27,7 +28,7 @@ def get_ingredients():
             abort(HTTP_400_BAD_REQUEST, "Invalid Request. If the request includes" \
                                         " query parameters, use valid key-value pairs" \
                                         " as described in the apidocs.")
-    except:
+    except pyodbc.Error:
         abort(HTTP_500_INTERNAL_SERVER_ERROR)
 
 # Helper method to format JSON containing ingredients
