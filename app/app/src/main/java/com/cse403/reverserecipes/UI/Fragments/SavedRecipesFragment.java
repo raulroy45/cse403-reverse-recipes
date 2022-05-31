@@ -83,7 +83,6 @@ public class SavedRecipesFragment
                 .getSavedRecipes()
                 .getValue()
                 .get(recipePosition);
-
         SavedRecipesFragmentDirections.ActionSavedRecipesFragmentToRecipePageFragment action =
                 SavedRecipesFragmentDirections.actionSavedRecipesFragmentToRecipePageFragment(clickedRecipe);
 
