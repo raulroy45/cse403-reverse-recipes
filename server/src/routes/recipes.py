@@ -36,11 +36,11 @@ def get_recipes():
         filter = request.args.get("filter", type=str)
         if filter == "all":
             # Get recipes that only have ingredients from user's pantry
-            query += "HAVING COUNT(*) = total_num_ingredients;"
+            query += "HAVING COUNT(*) = total_num_ingredients ORDER BY itr.rid;"
             rows = cursor.execute(query, ingredients).fetchall() 
         elif filter is None:
             # Get recipes with one or more of the ingredients
-            query += "ORDER BY (1.0 * COUNT(*) / total_num_ingredients) DESC;"
+            query += "ORDER BY itr.rid;"
             rows = cursor.execute(query, ingredients).fetchall()
         else:
             abort(HTTP_400_BAD_REQUEST, "Invalid request. If the request includes" \
@@ -48,14 +48,22 @@ def get_recipes():
                                         " as described in the apidocs.")
 
         recipes = []
+        rids = []
+
         for row in rows:
-            result = query_recipe_info(row[0])
-            json = format_recipe_json(result)
-            json["total_num_ingredients"] = row[1]
-            json["num_ingredients_matched"] = row[2]
+            rids.append(row[0])
+
+        recipes_info = query_recipes_info(rids)
+
+        for i in range(len(recipes_info)):
+            json = format_recipe_json(recipes_info[i])
+            json["total_num_ingredients"] = rows[i][1]
+            json["num_ingredients_matched"] = rows[i][2]
             recipes.append(json)
 
-        return {"recipes" : recipes}, HTTP_200_OK
+        recipes.sort(key=lambda r: r["num_ingredients_matched"] / r["total_num_ingredients"], reverse=True)
+
+        return { "recipes" : recipes }, HTTP_200_OK
     except pyodbc.Error:
         abort(HTTP_500_INTERNAL_SERVER_ERROR)
 
@@ -65,10 +73,10 @@ def get_recipes():
 @swag_from("../docs/recipes_rid.yml")
 def get_recipe_info(rid):
     try:
-        result = query_recipe_info(rid)
+        result = query_recipes_info([rid])
 
         if result:  # valid rid
-            json = format_recipe_json(result)
+            json = format_recipe_json(result[0])
             return json, HTTP_200_OK
         else:   # invalid rid
             abort(HTTP_404_NOT_FOUND, "{} is an invalid recipe ID (rid)".format(rid))
@@ -76,11 +84,13 @@ def get_recipe_info(rid):
         abort(HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-# Helper method to query the database for recipe information given an rid
-def query_recipe_info(rid):
+# Helper method to query the database for recipe information given an array of rids
+def query_recipes_info(rids):
     cursor = db.cursor()
-    query = "SELECT * FROM Recipe WHERE rid = ?;"
-    result = cursor.execute(query, rid).fetchone()
+    placeholder= "?"
+    placeholders= ", ".join(placeholder * len(rids))
+    query = "SELECT * FROM Recipe WHERE rid IN ({}) ORDER BY Recipe.rid;".format(placeholders)
+    result = cursor.execute(query, rids).fetchall()
     return result if result is not None else None
 
 
