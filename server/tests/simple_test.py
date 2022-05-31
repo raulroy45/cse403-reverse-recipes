@@ -25,12 +25,12 @@ def test_get_recipe_by_rid():
     assert "total_time" in res.keys() and isinstance(res.get("total_time"), int)
     assert "yields" in res.keys() and isinstance(res.get("yields"), int)
 
-def test_get_recipes_no_filter_no_results():
-    response = send_post_request_no_filter({ "ingredients" : [""]})
-    res = json.loads(response.data.decode('utf-8'))
-    assert response.status_code == 200
-    assert "recipes" in res.keys() and isinstance(res.get("recipes"), list)
-    assert len(res.get("recipes")) == 0
+# def test_get_recipes_no_filter_no_results():
+#     response = send_post_request_no_filter({ "ingredients" : [""]})
+#     res = json.loads(response.data.decode('utf-8'))
+#     assert response.status_code == 200
+#     assert "recipes" in res.keys() and isinstance(res.get("recipes"), list)
+#     assert len(res.get("recipes")) == 0
 
 # def test_get_recipes_no_filter_one_result():
 #     response = send_post_request_no_filter({ "ingredients" : ["spaghetti"]})
