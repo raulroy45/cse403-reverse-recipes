@@ -1,0 +1,75 @@
+swagger: "2.0"
+info:
+  title: Reverse Recipes API 🍳
+  description: |
+    base URL: ```http://reverserecipes.azurewebsites.net/```
+
+    <Reverse Recipes API provides information about food recipes and ingredients.
+    <h2>✨Happy cooking!✨</h2>
+  version: 1.0.0
+ 
+definitions:
+  Recipe:
+    type: object
+    properties:
+      image:
+        type: string
+        description: The link to the image of the recipe dish.
+        example: "https://img.buzzfeed.com/thumbnailer-prod-us-east-1/57ae237823b4405f8910299960514033/BFV44742_PantryPasta_FB_Final.jpg?resize=1200:*"
+      ingredients:
+        type: array
+        items:
+          type: string
+        description: The list of ingredients.
+        example: [
+                  "salt, to taste",
+                  "½ lb spaghetti",
+                  "2 tablespoons olive oil",
+                  "2 tablespoons unsalted butter",
+                  "2 teaspoons coarsely ground black pepper",
+                  "4 oz grated parmesan cheese, or pecorino romano cheese"
+                ]
+      instructions:
+        type: array
+        items:
+          type: string
+        description: The list of instructions.
+      link:
+        type: string
+        description: The link to the recipe.
+        example: "https://tasty.co/recipe/spaghetti-with-cheese-and-pepper"
+      rid:
+        type: integer
+        description: The recipe ID.
+        example: 1
+      title:
+        type: string
+        description: The title of the recipe.
+        example: "Cacio e Pepe (Spaghetti with Cheese and Pepper) Recipe by Tasty"
+      total_time:
+        type: string
+        description: The total time the recipe takes. A value of 0 means this was not provided by the chef.
+        example: 0
+      yields:
+        type: integer
+        description: Number of servings this recipe makes.
+        example: 4
+
+  Recipes:
+    type: object
+    properties:
+      recipes:
+        type: array
+        items:
+          allOf:
+            - $ref: "#/definitions/Recipe"
+            - type: object
+              properties:
+                num_ingredients_matched:
+                  type: integer
+                  description: The number of ingredients from the request that are in this recipe.
+                  example: 4
+                total_num_ingredients:
+                  type: integer
+                  description: The total number of ingredients in this recipe (excluding salt, black pepper, and water).
+                  example: 6
