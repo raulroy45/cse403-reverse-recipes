@@ -1,4 +1,4 @@
-# CSE 403 - Reverse Recipes
+# CSE 403 - Reverse Recipes 🍳
 
 ## Project Idea: 
 
@@ -11,7 +11,7 @@ Our repository includes folders for the server (hosted on Azure) side in <code>.
 
 
 ## Tools:
-We use Java and Android Studio to create the frontend for our application and we used Python and SQL along with the services Azure SQL Database, Azure App Service to create the backend for our application. The server is hosted on <code>http://reverserecipes.azurewebsites.net</code> and is able to serve API requests. More details on all the served endpoints and how to use them can be found in <code>server/README.md</code>.
+We use Java and Android Studio to create the frontend for our application and we used Python and SQL along with the services Azure SQL Database, Azure App Service to create the backend for our application. The server is hosted on <code>http://reverserecipes.azurewebsites.net</code> and is able to serve API requests. More details on all the served endpoints and how to use them can be found in <code>server/README.md</code> or http://reverserecipes.azurewebsites.net/apidocs/.
 
 ## Setup and Testing:
 
