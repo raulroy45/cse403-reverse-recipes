@@ -45,7 +45,7 @@
         <entry key="app/src/main/res/drawable/ic_vertical_divider.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ingredient_category_ingredient_list_divider.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ingredient_category_list_divider.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_recipe_page.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_recipe_page.xml" value="0.4131301879882812" />
         <entry key="app/src/main/res/layout/fragment_recipe_search.xml" value="0.11854103343465046" />
       </map>
     </option>

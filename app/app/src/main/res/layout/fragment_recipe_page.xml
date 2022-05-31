@@ -4,6 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginTop="30dp"
+    android:layout_marginBottom="30dp"
     tools:context=".UI.Fragments.RecipePageFragment">
 
 
@@ -23,15 +27,17 @@
             tools:layout_editor_absoluteX="-73dp" />
 
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/serving"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:drawableLeft="@drawable/ic_servings"
+            android:layout_marginStart="5dp"
+            android:background="@android:color/transparent"
+            app:icon="@drawable/ic_servings"
+            app:iconPadding="0dp"
+            app:iconTint="@color/black"
             android:text="6 servings"
             android:textColor="#121010"
-            android:background="@android:color/transparent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/timing" />
 
@@ -41,7 +47,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/ic_timing"
+            app:icon="@drawable/ic_timing"
+            app:iconPadding="0dp"
+            app:iconTint="@color/black"
             android:text="15 min"
             android:textColor="#121010"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,10 +61,12 @@
             android:id="@+id/website"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:drawableLeft="@drawable/ic_website"
-            android:text="website"
+            android:layout_marginEnd="5dp"
             android:background="@android:color/transparent"
+            app:icon="@drawable/ic_website"
+            app:iconPadding="0dp"
+            app:iconTint="@color/black"
+            android:text="website"
             android:textColor="#121010"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/timing" />

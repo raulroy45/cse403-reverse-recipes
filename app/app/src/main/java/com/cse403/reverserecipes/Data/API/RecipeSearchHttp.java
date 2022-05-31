@@ -79,7 +79,7 @@ public class RecipeSearchHttp implements RecipeSearchApi {
                             getJSONArray("instructions");
                     for (int j = 0; j < fetchedRecipeInstructionsArray.length(); j++) {
                         String instruction = fetchedRecipeInstructionsArray.getString(j);
-                        ingredients.add(instruction);
+                        instructions.add(instruction);
                     }
 
                     dataRecipes.add(
