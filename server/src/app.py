@@ -61,20 +61,22 @@ def get_recipes():
                                         " as described in the apidocs.")
 
         recipes = []
-        rids = []
 
-        for row in rows:
-            rids.append(row[0])
+        if len(rows) > 0:
+            rids = []
 
-        recipes_info = query_recipes_info(rids)
+            for row in rows:
+                rids.append(row[0])
 
-        for i in range(len(recipes_info)):
-            json = format_recipe_json(recipes_info[i])
-            json["total_num_ingredients"] = rows[i][1]
-            json["num_ingredients_matched"] = rows[i][2]
-            recipes.append(json)
+            recipes_info = query_recipes_info(rids)
 
-        recipes.sort(key=lambda r: r["num_ingredients_matched"] / r["total_num_ingredients"], reverse=True)
+            for i in range(len(recipes_info)):
+                json = format_recipe_json(recipes_info[i])
+                json["total_num_ingredients"] = rows[i][1]
+                json["num_ingredients_matched"] = rows[i][2]
+                recipes.append(json)
+
+            recipes.sort(key=lambda r: r["num_ingredients_matched"] / r["total_num_ingredients"], reverse=True)
 
         return { "recipes" : recipes }, HTTP_200_OK
     except pyodbc.Error:
