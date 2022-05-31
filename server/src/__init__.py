@@ -18,4 +18,5 @@ def create_app():
         # Include our routes
         from src.routes import ingredients
         from src.routes import recipes
+        from src.routes import error_handlers
         return app
