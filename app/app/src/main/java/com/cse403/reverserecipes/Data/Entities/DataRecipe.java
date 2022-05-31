@@ -17,8 +17,10 @@ public class DataRecipe {
 
     private final List<String> mIngredients;
 
+    private final List<String> mInstructions;
+
     public DataRecipe(int rid, String image, String link, String title,
-                      int totalTime, int yields, List<String> ingredients) {
+                      int totalTime, int yields, List<String> ingredients, List<String> instructions) {
         mRid = rid;
         mImage = image;
         mLink = link;
@@ -26,6 +28,7 @@ public class DataRecipe {
         mTotalTime = totalTime;
         mYields = yields;
         mIngredients = ingredients;
+        mInstructions = instructions;
     }
 
     public int getRid() {
@@ -53,4 +56,6 @@ public class DataRecipe {
     }
 
     public List<String> getIngredients() {return mIngredients;}
+
+    public List<String> getInstructions() {return mInstructions; }
 }

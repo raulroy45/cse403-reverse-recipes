@@ -113,16 +113,31 @@ public class RecipePageFragment extends Fragment {
 
         TextView title = (TextView)v.findViewById(R.id.title);
         title.setText(recipe.getTitle());
+
+        //ingredient
         TextView ingredientText = (TextView)v.findViewById(R.id.ingredientText);
         List<String> ingredients = recipe.getIngredients();
         String ingredientStr = "";
         if (!ingredients.isEmpty()) {
-            ingredientStr = recipe.getIngredients().get(0);
+            ingredientStr = ingredients.get(0);
             for (int i = 1; i < ingredients.size(); i++) {
                 ingredientStr += "\n" + ingredients.get(i);
             }
         }
         ingredientText.setText(ingredientStr);
+
+        //instructions
+        TextView instructionTxt = (TextView)v.findViewById(R.id.instructionText);
+        List<String> instructions = recipe.getInstructions();
+        String instructionStr = "";
+        if (!instructions.isEmpty()) {
+            instructionStr = instructions.get(0);
+            for (int i = 1; i < instructions.size(); i++) {
+                instructionStr += "\n" + instructions.get(i);
+            }
+        }
+        instructionTxt.setText(instructionStr);
+
         return v;
 
 
