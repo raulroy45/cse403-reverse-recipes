@@ -4,7 +4,7 @@ info:
   description: |
     base URL: ```http://reverserecipes.azurewebsites.net/```
 
-    <Reverse Recipes API provides information about food recipes and ingredients.
+    Reverse Recipes API provides information about food recipes and ingredients.
     <h2>✨Happy cooking!✨</h2>
   version: 1.0.0
  
