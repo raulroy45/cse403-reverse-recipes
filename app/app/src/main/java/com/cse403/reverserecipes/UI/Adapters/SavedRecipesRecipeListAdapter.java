@@ -8,13 +8,14 @@ import androidx.recyclerview.widget.ListAdapter;
 
 import com.cse403.reverserecipes.UI.Entities.Recipe;
 import com.cse403.reverserecipes.UI.ViewHolders.RecipeSearchRecipeListViewHolder;
+import com.cse403.reverserecipes.UI.ViewHolders.SavedRecipesRecipeListViewHolder;
 
-// TODO: Promote code reuse by reconciling with SavedRecipesRecipeListAdapter.
-public class RecipeSearchRecipeListAdapter extends ListAdapter<Recipe, RecipeSearchRecipeListViewHolder> {
+// TODO: Promote code reuse by reconciling with RecipeSearchRecipeListAdapter.
+public class SavedRecipesRecipeListAdapter extends ListAdapter<Recipe, SavedRecipesRecipeListViewHolder> {
 
     private OnClickListener mOnClickListener;
 
-    public RecipeSearchRecipeListAdapter(@NonNull DiffUtil.ItemCallback<Recipe> diffCallback, OnClickListener onClickListener) {
+    public SavedRecipesRecipeListAdapter(@NonNull DiffUtil.ItemCallback<Recipe> diffCallback, OnClickListener onClickListener) {
         super(diffCallback);
 
         mOnClickListener = onClickListener;
@@ -22,12 +23,12 @@ public class RecipeSearchRecipeListAdapter extends ListAdapter<Recipe, RecipeSea
 
     @NonNull
     @Override
-    public RecipeSearchRecipeListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return RecipeSearchRecipeListViewHolder.create(parent, mOnClickListener);
+    public SavedRecipesRecipeListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return SavedRecipesRecipeListViewHolder.create(parent, mOnClickListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecipeSearchRecipeListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SavedRecipesRecipeListViewHolder holder, int position) {
         Recipe current = getItem(position);
         holder.bind(current);
     }

@@ -81,7 +81,7 @@ public class RecipeSearchFragment
     }
 
     @Override
-    public void onClick(int recipePosition) {
+    public void onClickCard(int recipePosition) {
         Recipe clickedRecipe = mRecipeSearchViewModel
                 .getResultRecipes()
                 .getValue()
@@ -96,7 +96,14 @@ public class RecipeSearchFragment
         NavController navController = navHostFragment.getNavController();
 
         navController.navigate(action);
+    }
 
-
+    @Override
+    public void onClickFavorite(int recipePosition) {
+        Recipe clickedRecipe = mRecipeSearchViewModel
+                .getResultRecipes()
+                .getValue()
+                .get(recipePosition);
+        mRecipeSearchViewModel.toggleSaved(clickedRecipe);
     }
 }

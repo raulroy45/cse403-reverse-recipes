@@ -3,13 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/accountFragment">
+    app:startDestination="@id/pantryFragment">
 
-    <fragment
-        android:id="@+id/accountFragment"
-        android:name="com.cse403.reverserecipes.UI.Fragments.AccountFragment"
-        android:label="@string/account_fragment"
-        tools:layout="@layout/fragment_account" />
     <fragment
         android:id="@+id/pantryFragment"
         android:name="com.cse403.reverserecipes.UI.Fragments.PantryFragment"
@@ -24,7 +19,11 @@
     <fragment
         android:id="@+id/savedRecipesFragment"
         android:name="com.cse403.reverserecipes.UI.Fragments.SavedRecipesFragment"
-        android:label="@string/saved_recipes_fragment" />
+        android:label="@string/saved_recipes_fragment" >
+        <action
+            android:id="@+id/action_savedRecipesFragment_to_recipePageFragment"
+            app:destination="@id/recipePageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/ingredientSearchFragment"
         android:name="com.cse403.reverserecipes.UI.Fragments.IngredientSearchFragment"

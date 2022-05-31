@@ -23,6 +23,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class RecipeSearchHttp implements RecipeSearchApi {
 
     private static final String ENDPOINT_URL = "https://reverserecipes.azurewebsites.net/recipes/";
+    private static final int CONNECT_TIMEOUT = 10000;
 
     @Override
     public List<DataRecipe> fetchResultRecipes(List<DataIngredient> dataIngredients) {
@@ -36,6 +37,8 @@ public class RecipeSearchHttp implements RecipeSearchApi {
                 urlConnection.setDoOutput(true);
                 urlConnection.setRequestMethod("POST");
                 urlConnection.setRequestProperty("Content-Type", "application/json; utf-8");
+                urlConnection.setConnectTimeout(CONNECT_TIMEOUT);
+                urlConnection.connect();
 
                 // Generate the request body.
                 JSONArray ingredientNamesArray = new JSONArray();

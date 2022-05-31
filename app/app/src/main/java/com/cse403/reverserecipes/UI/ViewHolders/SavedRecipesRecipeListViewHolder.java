@@ -13,10 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cse403.reverserecipes.R;
 import com.cse403.reverserecipes.UI.Adapters.RecipeSearchRecipeListAdapter;
+import com.cse403.reverserecipes.UI.Adapters.SavedRecipesRecipeListAdapter;
 import com.cse403.reverserecipes.UI.Entities.Recipe;
 
-// TODO: Promote code reuse by reconciling with SavedRecipesRecipeListViewHolder.
-public class RecipeSearchRecipeListViewHolder
+// TODO: Promote code reuse by reconciling with RecipeSearchRecipeListViewHolder.
+public class SavedRecipesRecipeListViewHolder
         extends RecyclerView.ViewHolder
         implements View.OnClickListener {
 
@@ -24,17 +25,15 @@ public class RecipeSearchRecipeListViewHolder
     private final TextView mListItemTitle;
     private final ImageView mListItemFavoriteButton;
     private final Drawable mListItemFavoriteButtonFilledDrawable;
-    private final Drawable mListItemFavoriteButtonUnfilledDrawable;
-    private final RecipeSearchRecipeListAdapter.OnClickListener mOnClickListener;
+    private final SavedRecipesRecipeListAdapter.OnClickListener mOnClickListener;
 
-    public RecipeSearchRecipeListViewHolder(@NonNull View itemView, RecipeSearchRecipeListAdapter.OnClickListener onClickListener) {
+    public SavedRecipesRecipeListViewHolder(@NonNull View itemView, SavedRecipesRecipeListAdapter.OnClickListener onClickListener) {
         super(itemView);
 
         mListItemTime = itemView.findViewById(R.id.recipe_list_item_time);
         mListItemTitle = itemView.findViewById(R.id.recipe_list_item_title);
         mListItemFavoriteButton = itemView.findViewById(R.id.recipe_list_favorite_button);
         mListItemFavoriteButtonFilledDrawable = ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_favorite);
-        mListItemFavoriteButtonUnfilledDrawable = ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_favorite_border);
         mOnClickListener = onClickListener;
 
         itemView.setOnClickListener(this);
@@ -48,19 +47,16 @@ public class RecipeSearchRecipeListViewHolder
         mListItemTitle.setText(recipe.getTitle());
         mListItemTime.setText(Integer.toString(recipe.getTotalTime()));
 
-        if (recipe.isSaved()) {
-            mListItemFavoriteButton.setImageDrawable(mListItemFavoriteButtonFilledDrawable);
-        } else {
-            mListItemFavoriteButton.setImageDrawable(mListItemFavoriteButtonUnfilledDrawable);
-        }
+        // Everything is saved, so just set favorite icon to filled.
+        mListItemFavoriteButton.setImageDrawable(mListItemFavoriteButtonFilledDrawable);
     }
 
-    public static RecipeSearchRecipeListViewHolder create(
+    public static SavedRecipesRecipeListViewHolder create(
             ViewGroup parent,
-            RecipeSearchRecipeListAdapter.OnClickListener onClickListener) {
+            SavedRecipesRecipeListAdapter.OnClickListener onClickListener) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_recipe_list, parent, false);
-        return new RecipeSearchRecipeListViewHolder(view, onClickListener);
+        return new SavedRecipesRecipeListViewHolder(view, onClickListener);
     }
 
     @Override
