@@ -1,4 +1,5 @@
 
+from html import entities
 from recipe_scrapers import scrape_me
 from ingreedypy import Ingreedy
 import pyodbc
@@ -22,7 +23,7 @@ rel_path = "./key.json"
 abs_file_path = os.path.join(script_dir, rel_path)
 client = language.LanguageServiceClient.from_service_account_json(abs_file_path)
 
-exclude = ["water", "salt", "black pepper", "optional", "ice"]
+exclude = ["water", "salt", "black pepper", "ground pepper", "optional", "ice"]
 
 GET_INGREDIENT_EXACT = "SELECT name from Ingredient WHERE name = ?"
 
@@ -92,13 +93,13 @@ def add_recipe(link):
     cursor.execute("SELECT rid FROM Recipe WHERE link LIKE '' + ? + ''", link)
     if cursor.fetchone():
         print(link + " already exists")
-        return
+        return False
 
     try:
         scraper = scrape_me(link)
     except:
         print("Could not scrape link: {}".format(link))
-        return
+        return False
 
     try:
         title = scraper.title()
@@ -122,11 +123,14 @@ def add_recipe(link):
     try:
         ingredients = scraper.ingredients()
         parsed_ingredients = [(Ingreedy().parse(ingr))["ingredient"] for ingr in ingredients]
+        if None in parsed_ingredients:
+            parsed_ingredients = ingredients
         entities = analyze_recipe_entities(parsed_ingredients)
         matched_ingredients = confirm_ingredient_mappings(link, entities, ingredients)
         ingredients = "\n".join(ingredients)
     except:
         ingredients = None
+        matched_ingredients = None
     
     try:
         instructions = scraper.instructions()
@@ -148,6 +152,8 @@ def add_recipe(link):
             add_mapping(ingr, rid)
 
         print("rid", rid, "added")
+        return True
+    return False
     
 
 def process_ingredients(file):
@@ -166,11 +172,14 @@ def process_links(file, start, num):
         for i in range(start):
             next(links_file)
         count = 0  # REMOVE LATER
+        successful = 0
         for link in links_file:
             if count == num:
                 break
-            add_recipe(link.strip())
+            if add_recipe(link.strip()):
+                successful += 1
             count += 1
+        print("Sucessfully added", successful, "recipes out of", count)
 
 
 # Parses a list of ingredients, identifying entities using Google's NLP API.
@@ -198,6 +207,7 @@ def analyze_recipe_entities(ingredients):
 # as an ingredient. Returns the ingredient from the database
 # if there is a match, otherwise returns None.
 def match_entity_to_ingredient(entity):
+    entity = entity.lower()
     cursor = conn.cursor()
     cursor.execute(GET_INGREDIENT_EXACT, entity)
     row = cursor.fetchone()
@@ -215,8 +225,27 @@ def match_entity_to_ingredient(entity):
     if row:
         print(row[0])
         return row[0]
-    else:
-        return None
+
+    # lemon zest, chicken breasts, roma tomato, parmesan cheese, clove garlic, garlic clove,
+    temp = {}
+    entity_parts = entity.split(" ")
+    for i in range(len(entity_parts)):
+        cursor.execute(GET_INGREDIENT_EXACT, entity_parts[i])
+        row = cursor.fetchone()
+        if row:
+            temp[entity_parts[i]] = row[0]
+        else:
+            cursor.execute(GET_INGREDIENT_EXACT, singulars[i])
+            row = cursor.fetchone()
+            if row:
+                temp[singulars[i]] = row[0]
+
+    if len(temp) == 1:
+        match = temp.popitem()[1]
+        print(singulars, "match", match)
+        return match
+
+    return None
 
 
 def confirm_ingredient_mappings(link, entities, ingredients):
@@ -235,7 +264,7 @@ def confirm_ingredient_mappings(link, entities, ingredients):
                 no_matches.append(entity)
                 print(entity, "did not match")
 
-    if (len(matches) + num_excluded) == len(ingredients):
+    if (len(matches) + num_excluded) >= len(ingredients):
         return matches
     elif (len(matches) / len(ingredients)) >= 0.75 :
         log_incomplete_recipe(link)
@@ -247,6 +276,7 @@ def confirm_ingredient_mappings(link, entities, ingredients):
 
 
 def exclude_ingredient(ingredient):
+    ingredient = ingredient.lower()
     for excl in exclude:
         if re.search(r"\b" + excl + r"\b", ingredient):
             print("exclude {}".format(excl))
@@ -266,7 +296,7 @@ def log_incomplete_recipe(link):
 
 if __name__ == "__main__":
     script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
-    # rel_path = "./ingredients.csv"
+    # rel_path = "./no_match_ingredients.csv"
     # abs_file_path = os.path.join(script_dir, rel_path)
     # process_ingredients(abs_file_path)
 
@@ -276,15 +306,4 @@ if __name__ == "__main__":
 
     rel_path = "./scrapers/website-crawlers/links/tasty_links.txt"
     abs_file_path = os.path.join(script_dir, rel_path)
-    process_links(abs_file_path, 200, 100)
-
-
-
-
-   
-
-
-
-
-
-
+    process_links(abs_file_path, 0, 5405)
