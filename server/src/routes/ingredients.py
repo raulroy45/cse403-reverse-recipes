@@ -25,7 +25,7 @@ def get_ingredients():
             rows = cursor.execute("SELECT * FROM Ingredient ORDER BY category").fetchall()
             return format_ingredients_json(rows), HTTP_200_OK
         else:
-            abort(HTTP_400_BAD_REQUEST, "Invalid Request. If the request includes" \
+            abort(HTTP_400_BAD_REQUEST, "Invalid request. If the request includes" \
                                         " query parameters, use valid key-value pairs" \
                                         " as described in the apidocs.")
     except pyodbc.Error:
