@@ -19,7 +19,11 @@
     <fragment
         android:id="@+id/savedRecipesFragment"
         android:name="com.cse403.reverserecipes.UI.Fragments.SavedRecipesFragment"
-        android:label="@string/saved_recipes_fragment" />
+        android:label="@string/saved_recipes_fragment" >
+        <action
+            android:id="@+id/action_savedRecipesFragment_to_recipePageFragment"
+            app:destination="@id/recipePageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/ingredientSearchFragment"
         android:name="com.cse403.reverserecipes.UI.Fragments.IngredientSearchFragment"
@@ -28,5 +32,18 @@
         android:id="@+id/recipeSearchFragment"
         android:name="com.cse403.reverserecipes.UI.Fragments.RecipeSearchFragment"
         android:label="fragment_recipe_search"
-        tools:layout="@layout/fragment_recipe_search" />
+        tools:layout="@layout/fragment_recipe_search" >
+        <action
+            android:id="@+id/action_recipeSearchFragment_to_recipePageFragment"
+            app:destination="@id/recipePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipePageFragment"
+        android:name="com.cse403.reverserecipes.UI.Fragments.RecipePageFragment"
+        android:label="fragment_recipe_page"
+        tools:layout="@layout/fragment_recipe_page" >
+        <argument
+            android:name="recipe"
+            app:argType="com.cse403.reverserecipes.UI.Entities.Recipe" />
+    </fragment>
 </navigation>

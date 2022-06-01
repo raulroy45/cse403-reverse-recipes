@@ -16,6 +16,8 @@ public class DataRecipeToUnsavedRecipeMapper implements Mapper<DataRecipe, Recip
                 o.getTitle(),
                 o.getTotalTime(),
                 o.getYields(),
+                o.getIngredients(),
+                o.getInstructions(),
                 false
         );
     }

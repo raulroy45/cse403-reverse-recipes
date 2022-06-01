@@ -1,5 +1,7 @@
 package com.cse403.reverserecipes.Data.Entities;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -27,13 +29,22 @@ public class DataRecipe {
     @ColumnInfo(name = "yields")
     private final int mYields;
 
-    public DataRecipe(int rid, String image, String link, String title, int totalTime, int yields) {
+    @ColumnInfo(name = "ingredients")
+    private final List<String> mIngredients;
+
+    @ColumnInfo(name = "instructions")
+    private final List<String> mInstructions;
+
+    public DataRecipe(int rid, String image, String link, String title,
+                      int totalTime, int yields, List<String> ingredients, List<String> instructions) {
         mRid = rid;
         mImage = image;
         mLink = link;
         mTitle = title;
         mTotalTime = totalTime;
         mYields = yields;
+        mIngredients = ingredients;
+        mInstructions = instructions;
     }
 
     public int getRid() {
@@ -59,4 +70,8 @@ public class DataRecipe {
     public int getYields() {
         return mYields;
     }
+
+    public List<String> getIngredients() {return mIngredients;}
+
+    public List<String> getInstructions() {return mInstructions; }
 }

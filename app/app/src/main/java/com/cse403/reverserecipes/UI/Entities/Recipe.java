@@ -1,6 +1,9 @@
 package com.cse403.reverserecipes.UI.Entities;
 
-public class Recipe {
+import java.io.Serializable;
+import java.util.List;
+
+public class Recipe implements Serializable {
     private final int mRid;
 
     private final String mImage;
@@ -12,16 +15,23 @@ public class Recipe {
     private final int mTotalTime;
 
     private final int mYields;
+    private final List<String> mIngredients;
+
+    private final List<String> mInstructions;
 
     private final boolean mSaved;
 
-    public Recipe(int rid, String image, String link, String title, int totalTime, int yields, boolean saved) {
+    public Recipe(int rid, String image, String link, String title,
+                  int totalTime, int yields,
+                  List<String> ingredients, List<String> instructions, boolean saved) {
         mRid = rid;
         mImage = image;
         mLink = link;
         mTitle = title;
         mTotalTime = totalTime;
         mYields = yields;
+        mIngredients = ingredients;
+        mInstructions = instructions;
         mSaved = saved;
     }
 
@@ -48,6 +58,10 @@ public class Recipe {
     public int getYields() {
         return mYields;
     }
+
+    public List<String> getIngredients() {return mIngredients; }
+
+    public List<String> getInstructions() {return mInstructions; }
 
     public boolean isSaved() {
         return mSaved;

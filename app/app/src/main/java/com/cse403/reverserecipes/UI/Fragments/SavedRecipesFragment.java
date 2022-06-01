@@ -5,7 +5,10 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -80,10 +83,16 @@ public class SavedRecipesFragment
                 .getSavedRecipes()
                 .getValue()
                 .get(recipePosition);
-        Uri clickedRecipeUri = Uri.parse(clickedRecipe.getLink());
-        Intent intent = new Intent(Intent.ACTION_VIEW, clickedRecipeUri);
-        // TODO: Handle case where no browser exists.
-        startActivity(intent);
+        SavedRecipesFragmentDirections.ActionSavedRecipesFragmentToRecipePageFragment action =
+                SavedRecipesFragmentDirections.actionSavedRecipesFragmentToRecipePageFragment(clickedRecipe);
+
+        FragmentManager supportFragmentManager = requireActivity().getSupportFragmentManager();
+
+        NavHostFragment navHostFragment =
+                (NavHostFragment) supportFragmentManager.findFragmentById(R.id.nav_host_fragment);
+        NavController navController = navHostFragment.getNavController();
+
+        navController.navigate(action);
     }
 
     @Override

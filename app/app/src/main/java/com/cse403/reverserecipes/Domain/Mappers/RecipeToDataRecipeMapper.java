@@ -13,7 +13,9 @@ public class RecipeToDataRecipeMapper implements Mapper<Recipe, DataRecipe> {
                 o.getLink(),
                 o.getTitle(),
                 o.getTotalTime(),
-                o.getYields()
+                o.getYields(),
+                o.getIngredients(),
+                o.getInstructions()
         );
     }
 }

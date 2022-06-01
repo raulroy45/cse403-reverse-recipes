@@ -47,6 +47,7 @@ public class RecipeSearchRecipeListViewHolder
     public void bind(Recipe recipe) {
         mListItemTitle.setText(recipe.getTitle());
         mListItemTime.setText(Integer.toString(recipe.getTotalTime()));
+
         if (recipe.isSaved()) {
             mListItemFavoriteButton.setImageDrawable(mListItemFavoriteButtonFilledDrawable);
         } else {

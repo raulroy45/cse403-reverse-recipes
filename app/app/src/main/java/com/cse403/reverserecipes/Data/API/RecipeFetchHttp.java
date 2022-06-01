@@ -47,6 +47,23 @@ public class RecipeFetchHttp implements RecipeFetchApi {
 
                 // Convert fetched data to DataIngredient form.
                 JSONObject fetchedRecipeObject = new JSONObject(result.toString());
+
+                List<String> ingredients = new ArrayList<>();
+                JSONArray fetchedRecipeIngredientsArray = fetchedRecipeObject.
+                        getJSONArray("ingredients");
+                for (int j = 0; j < fetchedRecipeIngredientsArray.length(); j++) {
+                    String ingredient = fetchedRecipeIngredientsArray.getString(j);
+                    ingredients.add(ingredient);
+                }
+
+                List<String> instructions = new ArrayList<>();
+                JSONArray fetchedRecipeInstructionsArray = fetchedRecipeObject.
+                        getJSONArray("instructions");
+                for (int j = 0; j < fetchedRecipeInstructionsArray.length(); j++) {
+                    String instruction = fetchedRecipeInstructionsArray.getString(j);
+                    instructions.add(instruction);
+                }
+
                 fetchedRecipe =
                         new DataRecipe(
                                 fetchedRecipeObject.getInt("rid"),
@@ -54,7 +71,9 @@ public class RecipeFetchHttp implements RecipeFetchApi {
                                 fetchedRecipeObject.getString("link"),
                                 fetchedRecipeObject.getString("title"),
                                 fetchedRecipeObject.getInt("total_time"),
-                                fetchedRecipeObject.getInt("yields"));
+                                fetchedRecipeObject.getInt("yields"),
+                                ingredients,
+                                instructions);
             } finally {
                 urlConnection.disconnect();
             }

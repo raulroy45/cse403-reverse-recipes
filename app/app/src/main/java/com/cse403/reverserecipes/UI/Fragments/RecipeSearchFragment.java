@@ -4,8 +4,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +26,7 @@ import com.cse403.reverserecipes.UI.Entities.RecipeDiff;
 import com.cse403.reverserecipes.UI.ItemDecorations.IngredientCategoryListItemDecoration;
 import com.cse403.reverserecipes.UI.ItemDecorations.RecipeListItemDecoration;
 import com.cse403.reverserecipes.UI.ViewModels.RecipeSearchViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,10 +86,16 @@ public class RecipeSearchFragment
                 .getResultRecipes()
                 .getValue()
                 .get(recipePosition);
-        Uri clickedRecipeUri = Uri.parse(clickedRecipe.getLink());
-        Intent intent = new Intent(Intent.ACTION_VIEW, clickedRecipeUri);
-        // TODO: Handle case where no browser exists.
-        startActivity(intent);
+
+        RecipeSearchFragmentDirections.ActionRecipeSearchFragmentToRecipePageFragment action = RecipeSearchFragmentDirections.actionRecipeSearchFragmentToRecipePageFragment(clickedRecipe);
+
+        FragmentManager supportFragmentManager = requireActivity().getSupportFragmentManager();
+
+        NavHostFragment navHostFragment =
+                (NavHostFragment) supportFragmentManager.findFragmentById(R.id.nav_host_fragment);
+        NavController navController = navHostFragment.getNavController();
+
+        navController.navigate(action);
     }
 
     @Override

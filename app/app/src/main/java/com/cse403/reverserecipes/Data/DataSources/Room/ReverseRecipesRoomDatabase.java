@@ -5,7 +5,9 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
+import com.cse403.reverserecipes.Data.Converters.Converters;
 import com.cse403.reverserecipes.Data.Entities.DataIngredient;
 import com.cse403.reverserecipes.Data.Entities.DataRecipe;
 import com.cse403.reverserecipes.Data.Entities.IngredientSelection;
@@ -15,6 +17,7 @@ import java.util.concurrent.Executors;
 
 // TODO: Set schema to export.
 @Database(entities = {DataIngredient.class, DataRecipe.class}, version = 1, exportSchema = false)
+@TypeConverters({ Converters.class })
 public abstract class ReverseRecipesRoomDatabase extends RoomDatabase {
     public abstract DataIngredientDao ingredientDao();
     public abstract DataRecipeDao recipeDao();
